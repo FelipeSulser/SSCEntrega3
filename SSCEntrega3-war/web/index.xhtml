@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+    <ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+        <ui:define name="content">
+            
+            <h:outputStylesheet library="css" name="index.css"  />
+            <p class="estilo1">Sistema Malagueño de Servicios Sociales Comunitarios </p>
+            <p:toolbar></p:toolbar>
+            <br></br>
+            <br></br>
+            <br></br>
+            
+            <h:form rendered="#{ctrLogin.isLoggedIn() == false}">
+                <div class="modal fade" id="needHelpDiv">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">¿Necesita ayuda?</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Para utilizar el sistema es necesario disponer de una cuenta.
+                            <br></br>
+                            Consulte con su Centro Social más cercano o llame al 951 92 60 93.
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <a type="button" class="btn btn-default" data-dismiss="modal">De acuerdo</a>
+
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+                <div class="fixed-size-square">
+                    <span>
+                        <p class="estilo2">En este momento no se encuentra conectado. Por favor, conéctese.</p>
+                        <br></br>
+                        <div align="center" draggable="false" >
+                            <h:commandButton class="btn btn-info" value="Entrar en el Sistema" action="login.xhtml"/> 
+                        </div>
+                        
+                    </span>
+                </div>
+                
+                
+                <div align="center">
+                    <br></br>
+                    <a id="needHelp" data-toggle="modal" data-target="#needHelpDiv">¿Necesita ayuda?</a>
+                </div>
+                
+       <p:growl id="msgs" showDetail="true" />
+        <p:panel collapsed="true" id="toggleable" header="El País Noticias" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+ 
+        <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
+        <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
+ 
+         <h:panelGrid columns="2" cellpadding="10">
+             <p:feedReader size ="8" value="http://ep00.epimg.net/rss/ccaa/andalucia.xml" var="feed">      
+                 <h:outputText value="#{feed.title}" style="font-weight: bold;display:block;"/>
+             
+                <h:outputText value="#{feed.description.value}" escape="false"/>
+                <p:separator/>
+                  </p:feedReader> 
+        </h:panelGrid>
+ 
+        <f:facet name="options">
+            <p:menu>
+                <p:submenu label="Settings">
+                    <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="PF('panel').toggle()" />
+                    <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="PF('panel').close()" />
+                </p:submenu>
+            </p:menu>
+        </f:facet>
+    </p:panel>
+                      
+    
+            </h:form>
+            <h:form rendered="#{ctrLogin.isLoggedIn() == true}">
+                
+                <p:layout  style="min-width:500px;min-height:550px;" >
+                    <p:layoutUnit position="north" resizable="true">
+                        <p class="estilo2">Bienvenido, <h:outputText value="#{ctrLogin.getNombreDeUsuario()}"></h:outputText> </p>
+                    </p:layoutUnit>
+                    
+                    <p:layoutUnit position="west" resizable="true" size="350" minSize="250" maxSize="550">
+                        <p:panel id="handlepnl" header="Módulo citas" style="width: 100%">
+                            <h:link value="Crear nueva cita" outcome="nueva_cita.xhtml"/>
+                            <br />
+                            <h:link rendered="#{ctrLogin.isIsAdmin()== false}" value="Ver mis citas" outcome="agenda.xhtml"/>
+                            <h:link rendered="#{ctrLogin.isIsAdmin()== true}" value="Ver todas las citas" outcome="lista_citas.xhtml"/>
+                        </p:panel>
+                        <p:panel id="handlepn2" header="Módulo expedientes" style="width: 100%">
+                            <h:link value="Consultar y modificar expedientes" outcome="buscador_expedientes.xhtml"/>
+                            <br></br> 
+                        </p:panel>
+                        
+                        
+                    </p:layoutUnit>
+                    
+                    
+                    
+                    <p:layoutUnit position="center" resizable="true">
+                        <p class="estilo2"><h:outputText value="Mi perfil"/></p>
+                        <p:toolbar></p:toolbar>
+                        <br></br>
+                        <img src="./resources/images/#{sesionBean.user.image}"/>
+                        <p>Su usuario es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{sesionBean.user.usuario}"></h:outputText></p>
+                        <p>Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{sesionBean.user.dni}"></h:outputText></p>
+                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{sesionBean.citasHoy}"></h:outputText></p>
+                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{sesionBean.totalIntervenciones}"></h:outputText> </p>
+                        <p:separator/>
+
+                    </p:layoutUnit>
+                </p:layout>
+           </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,62 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 1, 2015, 8:55:22 PM
+    Author     : Esteban
+*/
+
+p.estilo1 {
+    //text-shadow: 2px 1px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    font-size: 48px;
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: #444;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    font-weight: 100;
+    text-align: center;
+}
+
+p.estilo2 {
+    font-family: arial, georgia, serif;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: -1.5px;
+    color: #020B14;
+    text-align: center;
+}
+
+p.estilo3 {
+    font-family:arial;
+    font-size: 15px;
+    color: #020B14;
+    text-align: left;
+    font-weight: 200;
+}
+p.estilo4 {
+    font-family: arial, georgia, serif;
+    font-size: 23px;
+    line-height: 40px;
+    letter-spacing: -1.5px;
+    color: #020B14;
+    
+}
+
+.fixed-size-square {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    width: 500px;
+    height: 200px;
+    background: #94C1F2;
+}
+.fixed-size-square span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}

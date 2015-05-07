@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 3, 2015, 12:40:09 PM
+    Author     : Esteban
+*/
+
+.cssCitaAusencia{
+    background-color: red;
+}
+         
+.cssCitaPlanificada{
+    background-color: green;
+}
+
+.cssCitaNoRealizada{
+    background-color: orange;
+}
+
+.cssCitaOtroProfesional{
+    background-color: violet;
+}

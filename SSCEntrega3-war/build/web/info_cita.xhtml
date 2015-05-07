@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" >
+    
+    <h:body>
+        <ui:composition template="WEB-INF/templates/plantilla.xhtml">
+            <ui:define name ="content">
+                <c:if test="#{ctrLogin.isLoggedIn() == false}">
+                <script>
+                    window.location = "login.xhtml";
+                </script>
+                </c:if>
+                <p:scrollPanel style="border-color: transparent;">
+                   
+                    
+                    
+                <h:panelGrid id="panel" columns="2" border="0" cellpadding="10" cellspacing="1">
+                <f:facet name="header">
+                    <h2> <h:outputText value="Datos de la Cita" style="padding-left: 10px;"/></h2>
+                    <p:separator />  
+                </f:facet>
+                <h:outputLabel style="padding-left: 10px;" value="Ciudadano: " />
+                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.ciudadano.nombre} #{controladorCita.ciudadano.apellido1} #{controladorCita.ciudadano.apellido2}"/>
+                <h:outputLabel style="padding-left: 10px;" value="Fecha" />
+                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.fecha}"/>
+                <h:outputLabel style="padding-left: 10px;" value="Tipo de Cita:" />
+                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.tipo_de_cita}"/>
+                <h:outputLabel style="padding-left: 10px;" value="Comentarios:" />
+                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.comentarios}"/>
+                <h:outputLabel style="padding-left: 10px;" value="Asistida por:" />
+                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.profesional.nombre} #{controladorCita.profesional.apellido1} #{controladorCita.profesional.apellido2}"/>
+               
+                    </h:panelGrid>
+                     <p:separator />  
+                <table>
+                    <tr>
+                        <td><h2><h:outputText style="padding-left: 10px;" value="Intervenciones: "/></h2><br> </br>
+                            <p:dataTable var="intervencion" scrollable = "true" value="#{controladorCita.intervenciones}" style="padding: 10px;">
+                                <p:column headerText="Fecha">
+                                    <h:outputText value="#{intervencion.fecha}" />
+                                </p:column>
+
+                                <p:column headerText="Anotaciones">
+                                    <h:outputText value="#{intervencion.anotaciones}" />
+                                </p:column>
+
+                            </p:dataTable>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><br> </br>
+                            <h:link value="Atrás" outcome="nueva_cita.xhtml" />
+                             
+                        </td>
+                    </tr>
+                </table>
+
+                </p:scrollPanel>  
+            </ui:define>     
+        </ui:composition>
+    </h:body>
+</html>
+

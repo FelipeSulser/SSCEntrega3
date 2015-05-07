@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+        
+        <ui:define  name="content">
+            <c:if test="#{ctrLogin.isLoggedIn() == false}">
+                <script>
+                    window.location = "login.xhtml";
+                </script>
+            </c:if>
+        <h:messages style="color:red" />      
+        <h1>Crear cita</h1>
+            <h:form style="padding: 10px;" rendered="#{ctrLogin.isLoggedIn() == true}">
+                <h:panelGrid columns="2">
+                    DNI del ciudadano: <h:inputText size="9" maxlength="9" value="#{ctrNuevaCita.DNICiudadano}"/>
+                    DNI del profesional: <h:inputText size="9" maxlength ="9" value="#{ctrNuevaCita.DNIProfesional}" />
+                    Fecha: <p:calendar  pattern="dd/MM/yyyy" value="#{ctrNuevaCita.fecha}" />
+                    Número de intervención: <h:inputText value="#{ctrNuevaCita.numIntervencion}" /> 
+                    Tipo de cita: <h:inputText value="#{ctrNuevaCita.tipoCita}"/>
+                    Detalle de la gestión : <h:inputText value="#{ctrNuevaCita.detalleGestion}" /> 
+                    <h:link value="Enviar" outcome="#{ctrNuevaCita.crearCita()}" > </h:link>
+                    
+                </h:panelGrid>
+	    </h:form>  
+        </ui:define>
+    </ui:composition>
+
+</html>

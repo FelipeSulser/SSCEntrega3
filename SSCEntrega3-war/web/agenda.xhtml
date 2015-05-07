@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+ 
+    <ui:composition template="WEB-INF/templates/plantilla.xhtml">
+        
+        <ui:define name ="content">
+        <h:body>    
+            <h:outputStylesheet library="css" name="agenda.css"/>
+            <c:if test="#{ctrLogin.isLoggedIn() == false }">
+                <script>
+                    window.location = "login.xhtml";
+                </script>
+            </c:if>
+            <c:if test="#{ctrLogin.isIsAdmin() == true}">
+               <script>
+                    window.location = "lista_citas.xhtml";
+                </script>
+            </c:if>
+                  
+            <h:form rendered="#{ctrLogin.isLoggedIn() == true}">
+                <p:growl id="messages" showDetail="true" />
+
+                <h:panelGrid style="width: 75%" columnClasses="value"  >
+                    <h3 style="margin-top: 0; padding: 10px;">Mi Agenda</h3>
+
+                        <p:schedule   locale="es" style="padding: 10px;" id="schedule" value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+2" draggable="false" rightHeaderTemplate="">
+                            <p:ajax  event="eventSelect" listener="#{scheduleView.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        </p:schedule>
+
+
+
+                </h:panelGrid>
+
+                <p:dialog widgetVar="eventDialog" header="Detalles de la cita" showEffect="clip" hideEffect="clip" resizable="false">
+                    <h:panelGrid id="eventDetails" columns="2">
+                        <h:outputLabel for="title" value="Descripción:" />
+                        <h:outputText id="title" value="#{scheduleView.event.title}" />
+                        
+                        <h:outputLabel for="id_cita" value="ID de cita:" />
+                        <h:outputText id="id_cita" value="#{scheduleView.event.getCitaID()}" />
+                        
+                        <h:outputLabel for="comentarios" value="Comentarios:" />
+                        <h:outputText id="comentarios" value="#{scheduleView.event.getComentarios()}" />
+
+                        <h:outputLabel for="ciudadano" value="Ciudadano:" />
+                        <h:outputText id="ciudadano" value="#{scheduleView.event.getCiudadano().getNombre()}" />
+
+                        <h:outputLabel for="tipocita" value="Tipo de cita:" />
+                        <h:outputText id="tipocita" value="#{scheduleView.event.getTipo_de_cita()}" />
+
+                        <h:outputLabel for="from" value="Empieza el:" />
+                        <p:inputMask id="from" value="#{scheduleView.event.startDate}" mask="99/99/9999" readonly="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
+                        </p:inputMask>
+
+                        <h:outputLabel for="to" value="Termina el:" />
+                        <p:inputMask id="to" value="#{scheduleView.event.endDate}" mask="99/99/9999" readonly="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
+                        </p:inputMask>
+
+                        <h:commandButton class="btn btn-info" value="Acceder a la cita" action="info_cita.xhtml"/> 
+
+
+                    </h:panelGrid>
+                </p:dialog>    
+            </h:form>
+            <script type="text/javascript">
+            PrimeFaces.locales['es'] = {
+                closeText: 'Primero',
+                prevText: 'Atrás',
+                nextText: 'Siguiente',
+                currentText: 'Actual',
+                monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+                    'Jul','Ago','Sep','Oct','Nov','Dic'],
+                dayNames: ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
+                dayNamesShort: ['Lu','Ma','Mi','Ju','Vi','Sa','Do'],
+                dayNamesMin: ['Lu','Ma','Mi','Ju','Vi','Sa','Do'],
+                weekHeader: 'Sem',
+                firstDay: 0,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText : 'Todo el día'
+            };
+        </script>
+
+</h:body>
+        </ui:define>
+        
+    </ui:composition>    
+</html>
+

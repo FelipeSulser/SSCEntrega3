@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+   
+         <ui:composition template="WEB-INF/templates/plantilla.xhtml">
+             
+        <ui:define name="content">
+            
+            
+        <title>Iniciar Sesión</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet  name="./css/bootstrap.min.css"/>
+        <div class="modal fade" id="forgetPassDiv">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">¿Has olvidado la contraseña?</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Para poder restaurar la contraseña de tu cuenta tendrás que ponerte en contacto con el administrador del sistema a través
+                          del siguiente teléfono de contacto: 902 123 456
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <a type="button" class="btn btn-default" data-dismiss="modal">De acuerdo</a>
+
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+       <div class="container">
+            <c:choose>
+                <c:when test="#{!empty flash.message.summary}">
+                    <!-- flash alert messages !-->
+                    <div class="alert alert-warning" role="alert" style="margin-top:20px;">
+                        #{flash.message.summary}
+                    </div>
+                    <!-- end flash alert messages !-->
+                </c:when>
+            </c:choose>
+            <div style="margin-top:50px;" class="col-md-6 col-md-offset-3">                    
+                <div class="panel panel-info" >
+                    <!-- panel header !-->
+                    <div class="panel-heading">
+                        <div class="panel-title">Iniciar Sesión</div>
+                    </div>    
+                    <!-- panel body !-->
+                    <div style="padding-top:30px" class="panel-body" >
+                        <h:form id="loginform" class="form-horizontal" role="form">
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <h:inputText binding="#{username}" class="form-control" a:placeholder="Username"/>                                        
+                            </div>
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <h:inputSecret binding="#{password}" class="form-control" a:placeholder="Contraseña"/>
+                            </div>                                    
+                            <div style="border-top: 1px solid#888; padding-top:20px;margin-top:10px;" class="form-group">
+                                <div style="float:right; font-size: 80%; margin-right:10px;">
+                                    <a  data-toggle="modal" data-target="#forgetPassDiv">¿Has olvidado la contraseña?</a></div>
+                                <div class="col-sm-12 controls">
+                                    <h:commandButton id="btn-login" value="Entrar" 
+                                        class="btn btn-info" action="#{ctrLogin.autenticar(username.value,password.value)}"/>
+                                </div>
+                            </div>
+                        </h:form>    
+                    </div>   
+                    <!-- end panel body !-->
+                </div>  
+            </div>
+        </div>
+   
+        </ui:define>
+              
+     </ui:composition>
+ 
+</html>

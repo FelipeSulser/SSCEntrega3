@@ -1,0 +1,31 @@
+
+#top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+/* Normalizando el boton de cerrar sesion*/
+#logout {
+    padding:15px;
+}
+
+#logout a:hover{
+    text-decoration:none;
+}
+
+#logout:hover{
+    background-color:#eee;
+}
+
+
+
+
+
+
+
+
+
+

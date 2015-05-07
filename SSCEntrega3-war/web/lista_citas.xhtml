@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+ 
+    <h:body>
+        <ui:composition template="WEB-INF/templates/plantilla.xhtml">
+ 
+            <ui:define name ="content">
+                <c:if test="#{ctrLogin.isLoggedIn() == false}">
+                <script>
+                    window.location = "login.xhtml";
+                </script>
+                </c:if>
+                <h:outputStylesheet library="css" name="tabla_expediente.css"  />
+                <h:outputStylesheet name="./css/default.css"/>
+                <h:outputStylesheet name="./css/cssLayout.css"/>
+                <h:outputStylesheet  name="./css/bootstrap.min.css"/>
+                    
+               
+                
+                <p:scrollPanel>
+                    <h2> <h:outputText value ="Citas:  " style="padding-left: 10px"/></h2>
+                <h:form rendered="#{ctrLogin.isIsAdmin() == true}">
+   
+                 
+                    <p:dataTable style="width:1000px; padding: 10px;" var="cita" scrollable = "true" value="#{ctrListaCita.citas}">
+                    <p:column    headerText="Id">
+                        <h:outputText value="#{cita.id}" />
+                    </p:column>
+
+                    <p:column  headerText="Fecha">
+                        <h:outputText value="#{cita.fecha}" />
+                    </p:column>
+
+                    <p:column  headerText="Tipo de Cita">
+                        <h:outputText value="#{cita.tipo_de_cita}" />
+                    </p:column>
+                     <p:column  headerText="Profesional Encargado">
+                         <h:outputText value="#{cita.profesional.nombre} #{cita.profesional.apellido1} #{cita.profesional.apellido2}" />
+                    </p:column>
+                          <p:column  headerText="Ciudadano">
+                              <h:outputText value="#{cita.ciudadano.nombre} #{cita.ciudadano.apellido1} #{cita.ciudadano.apellido2}" />
+                    </p:column>
+                    <p:column headerText="Ver cita">
+                       <h:commandButton id="btn-ver-cita" value="Ver cita" 
+                                        class="btn btn-info" action="#{ctrListaCita.verCita(cita.id)}"/>
+
+                    </p:column>   
+                   <p:column headerText="Eliminar">
+                       <h:commandButton id="btn-eliminar" value="Eliminar" 
+                                        class="btn btn-info" action="#{ctrListaCita.eliminar(cita.id)}"/>
+
+                    </p:column>
+                </p:dataTable>
+                 
+             </h:form>
+                 
+                
+                
+               </p:scrollPanel>  
+            </ui:define>
+ 
+        </ui:composition>
+    </h:body>
+</html>
