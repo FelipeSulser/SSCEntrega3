@@ -23,7 +23,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <button id="ayuda_button" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                       <h4 class="modal-title">¿Necesita ayuda?</h4>
                     </div>
                     <div class="modal-body">
@@ -44,7 +44,7 @@
                         <p class="estilo2">En este momento no se encuentra conectado. Por favor, conéctese.</p>
                         <br></br>
                         <div align="center" draggable="false" >
-                            <h:commandButton class="btn btn-info" value="Entrar en el Sistema" action="login.xhtml"/> 
+                            <h:commandButton id="index_entrar" class="btn btn-info" value="Entrar en el Sistema" action="login.xhtml"/> 
                         </div>
                         
                     </span>
@@ -92,13 +92,13 @@
                     
                     <p:layoutUnit position="west" resizable="true" size="350" minSize="250" maxSize="550">
                         <p:panel id="handlepnl" header="Módulo citas" style="width: 100%">
-                            <h:link value="Crear nueva cita" outcome="nueva_cita.xhtml"/>
+                            <h:link id="index_crear_nueva_cita" value="Crear nueva cita" outcome="nueva_cita.xhtml"/>
                             <br />
-                            <h:link rendered="#{ctrLogin.isIsAdmin()== false}" value="Ver mis citas" outcome="agenda.xhtml"/>
-                            <h:link rendered="#{ctrLogin.isIsAdmin()== true}" value="Ver todas las citas" outcome="lista_citas.xhtml"/>
+                            <h:link id="index_ver_cita" rendered="#{ctrLogin.isIsAdmin()== false}" value="Ver mis citas" outcome="agenda.xhtml"/>
+                            <h:link id="index_ver_todas" rendered="#{ctrLogin.isIsAdmin()== true}" value="Ver todas las citas" outcome="lista_citas.xhtml"/>
                         </p:panel>
                         <p:panel id="handlepn2" header="Módulo expedientes" style="width: 100%">
-                            <h:link value="Consultar y modificar expedientes" outcome="buscador_expedientes.xhtml"/>
+                            <h:link id="index_consultar_exp" value="Consultar y modificar expedientes" outcome="buscador_expedientes.xhtml"/>
                             <br></br> 
                         </p:panel>
                         
