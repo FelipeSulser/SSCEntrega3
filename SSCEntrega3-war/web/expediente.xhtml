@@ -21,11 +21,11 @@
    
                        
                 
-                <table>
+                <table id ="expediente_table_numero">
                     <tr>
                         <td>
                      <h1>
-                    <h:outputText value="Número de Expediente: #{expedienteView.expediente.id}"/>
+                    <h:outputText id="expediente_table_numero_out" value="Número de Expediente: #{expedienteView.expediente.id}"/>
                     
                     </h1>
                         </td>
@@ -36,15 +36,15 @@
                
 
                 <h2>
-                    <h:outputText value="#{expedienteView.ciudadano.nombre} 
+                    <h:outputText id="expediente_ciudadano_nombre_out" value="#{expedienteView.ciudadano.nombre} 
                                          #{expedienteView.ciudadano.apellido1} #{expedienteView.ciudadano.apellido2}"/>
                 </h2>
                  <p:separator />  
                         <h:panelGrid id="panel" columns="2" border="0"
              cellpadding="10" cellspacing="1">
                 <f:facet name="header">
-                    <h2> <h:outputText value="Datos Personales"/></h2>
-                    <img src="./resources/images/profile.png"/>
+                    <h2> <h:outputText id="expediente_datos_personales" value="Datos Personales"/></h2>
+                    <img id="expediente_profile_pic" src="./resources/images/profile.png"/>
                 </f:facet>
                 <h:outputLabel value="DNI:" />
                 <h:outputLabel value ="#{expedienteView.ciudadano.dni}"/>
@@ -101,7 +101,7 @@
                      </h:panelGrid>
                   </h:form>
 
-              <p:dataTable style="width:1000px;" var="familia" scrollable = "true" value="#{expedienteView.familia}">
+                <p:dataTable id="expediente_familia_tabla" style="width:1000px;" var="familia" scrollable = "true" value="#{expedienteView.familia}">
                     <p:column    headerText="DNI">
                         <h:outputText value="#{familia.dni}" />
                     </p:column>
@@ -153,7 +153,7 @@
                         <h:outputText style="color: red" value="Los campos marcados con * son obligatorios."/>
                      </h:panelGrid>
                   </h:form>
-                 <p:dataTable style="width:1000px;" var="viviendas" value="#{expedienteView.secundarias}">
+                 <p:dataTable id="expediente_viviendas_tabla" style="width:1000px;" var="viviendas" value="#{expedienteView.secundarias}">
                     <p:column headerText="Dirección">
                         <h:outputText value="#{viviendas.calle}" />
                     </p:column>
@@ -194,13 +194,13 @@
                         </p:calendar>
 
                         <h:outputText value="Anotaciones " />
-                        <h:inputTextarea value="#{expedienteView.newIntervencion.anotaciones}" cols="30" rows="10" />
+                        <h:inputTextarea id="expediente_intervenciones_anotaciones" value="#{expedienteView.newIntervencion.anotaciones}" cols="30" rows="10" />
                         <h:commandButton id="btn-intervencion" value="Enviar" 
                                         class="btn btn-info" action="#{expedienteView.persistIntervencion()}"/>
                      </h:panelGrid>
                   </h:form>
                  
-                 <p:dataTable  style="width:1000px;" var="intervencion" value="#{expedienteView.intervenciones}">
+                 <p:dataTable  id="expediente_intervenciones_tabla" style="width:1000px;" var="intervencion" value="#{expedienteView.intervenciones}">
                     <p:column style="width:100px;" headerText="Fecha">
                         <h:outputText value="#{intervencion.fecha}" />
                     </p:column>
