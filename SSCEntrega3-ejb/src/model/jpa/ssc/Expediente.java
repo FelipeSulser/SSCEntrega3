@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -23,6 +24,7 @@ import javax.persistence.Transient;
  * @author Grupo E
  */
 @Entity
+@NamedQuery(name="Expediente.GET_EXP",query="SELECT c FROM Expediente c WHERE c.id = :id")
 public class Expediente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
