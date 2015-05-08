@@ -21,48 +21,48 @@
                 </script>
             </c:if>
                   
-            <h:form rendered="#{ctrLogin.isLoggedIn() == true}">
-                <p:growl id="messages" showDetail="true" />
+            <h:form id="formCalendarioProfesional" rendered="#{ctrLogin.isLoggedIn() == true}">
+                
 
-                <h:panelGrid style="width: 75%" columnClasses="value"  >
+                <h:panelGrid id="panelCalendario" style="width: 75%" columnClasses="value"  >
                     <h3 style="margin-top: 0; padding: 10px;">Mi Agenda</h3>
 
-                        <p:schedule   locale="es" style="padding: 10px;" id="schedule" value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+2" draggable="false" rightHeaderTemplate="">
-                            <p:ajax  event="eventSelect" listener="#{scheduleView.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:schedule id="calendarioComponente"  locale="es" style="padding: 10px;" value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+2" draggable="false" rightHeaderTemplate="">
+                            <p:ajax  event="eventSelect" listener="#{scheduleView.onEventSelect}" update="panelDetallesEvento" oncomplete="PF('eventDialog').show();" />
                         </p:schedule>
 
 
 
                 </h:panelGrid>
 
-                <p:dialog widgetVar="eventDialog" header="Detalles de la cita" showEffect="clip" hideEffect="clip" resizable="false">
-                    <h:panelGrid id="eventDetails" columns="2">
-                        <h:outputLabel for="title" value="Descripción:" />
-                        <h:outputText id="title" value="#{scheduleView.event.title}" />
+                <p:dialog id="detallesDialogoCita" widgetVar="eventDialog" header="Detalles de la cita" showEffect="clip" hideEffect="clip" resizable="false">
+                    <h:panelGrid id="panelDetallesEvento" columns="2">
+                        <h:outputLabel for="detallesAgendaTitle" value="Descripción:" />
+                        <h:outputText id="detallesAgendaTitle" value="#{scheduleView.event.title}" />
                         
-                        <h:outputLabel for="id_cita" value="ID de cita:" />
-                        <h:outputText id="id_cita" value="#{scheduleView.event.getCitaID()}" />
+                        <h:outputLabel for="detallesAgendaId_cita" value="ID de cita:" />
+                        <h:outputText id="detallesAgendaId_cita" value="#{scheduleView.event.getCitaID()}" />
                         
-                        <h:outputLabel for="comentarios" value="Comentarios:" />
-                        <h:outputText id="comentarios" value="#{scheduleView.event.getComentarios()}" />
+                        <h:outputLabel for="detallesAgendaComentarios" value="Comentarios:" />
+                        <h:outputText id="detallesAgendaComentarios" value="#{scheduleView.event.getComentarios()}" />
 
-                        <h:outputLabel for="ciudadano" value="Ciudadano:" />
-                        <h:outputText id="ciudadano" value="#{scheduleView.event.getCiudadano().getNombre()}" />
+                        <h:outputLabel for="detallesAgendaCiudadano" value="Ciudadano:" />
+                        <h:outputText id="detallesAgendaCiudadano" value="#{scheduleView.event.getCiudadano().getNombre()}" />
 
-                        <h:outputLabel for="tipocita" value="Tipo de cita:" />
-                        <h:outputText id="tipocita" value="#{scheduleView.event.getTipo_de_cita()}" />
+                        <h:outputLabel for="detallesAgendaTipocita" value="Tipo de cita:" />
+                        <h:outputText id="detallesAgendaTipocita" value="#{scheduleView.event.getTipo_de_cita()}" />
 
-                        <h:outputLabel for="from" value="Empieza el:" />
-                        <p:inputMask id="from" value="#{scheduleView.event.startDate}" mask="99/99/9999" readonly="true">
+                        <h:outputLabel for="detallesAgendaFrom" value="Empieza el:" />
+                        <p:inputMask id="detallesAgendaFrom" value="#{scheduleView.event.startDate}" mask="99/99/9999" readonly="true">
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
                         </p:inputMask>
 
-                        <h:outputLabel for="to" value="Termina el:" />
-                        <p:inputMask id="to" value="#{scheduleView.event.endDate}" mask="99/99/9999" readonly="true">
+                        <h:outputLabel for="detallesAgendaTo" value="Termina el:" />
+                        <p:inputMask id="detallesAgendaTo" value="#{scheduleView.event.endDate}" mask="99/99/9999" readonly="true">
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
                         </p:inputMask>
 
-                        <h:commandButton class="btn btn-info" value="Acceder a la cita" action="info_cita.xhtml"/> 
+                        <h:commandButton id="botonVerDetallesCita" class="btn btn-info" value="Acceder a la cita" action="info_cita.xhtml"/> 
 
 
                     </h:panelGrid>
