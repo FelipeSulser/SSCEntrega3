@@ -32,9 +32,8 @@ public class ExpedienteEJB {
     }
     public Expediente getExpediente(Long id) {
         
-       
-      TypedQuery<Expediente> query = em.createNamedQuery("Expediente.GET_EXP",Expediente.class).setParameter("id", id);
-      return query.getSingleResult();
+       Expediente exp = em.find(Expediente.class, id);
+       return exp;
     }
     
     public Ciudadano getCiudadano(Long exp_id){

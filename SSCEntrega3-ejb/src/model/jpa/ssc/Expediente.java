@@ -24,7 +24,7 @@ import javax.persistence.Transient;
  * @author Grupo E
  */
 @Entity
-@NamedQuery(name="Expediente.GET_EXP",query="SELECT c FROM Expediente c WHERE c.id = :id")
+
 public class Expediente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
