@@ -195,6 +195,8 @@
 
                         <h:outputText value="Anotaciones " />
                         <h:inputTextarea id="expediente_intervenciones_anotaciones" value="#{expedienteView.newIntervencion.anotaciones}" cols="30" rows="10" />
+                         <h:outputText value="ID de la cita" />
+                         <h:inputText id="expediente_intervenciones_citaid" value="#{expedienteView.newInterCitaId}" />
                         <h:commandButton id="btn-intervencion" value="Enviar" 
                                         class="btn btn-info" action="#{expedienteView.persistIntervencion()}"/>
                      </h:panelGrid>

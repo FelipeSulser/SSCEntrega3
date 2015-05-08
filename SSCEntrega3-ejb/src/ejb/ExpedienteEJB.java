@@ -5,18 +5,21 @@
  */
 package ejb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Expediente;
+import model.jpa.ssc.Familiar;
+import model.jpa.ssc.Intervenciones;
+import model.jpa.ssc.Vivienda;
 
 /**
  *
- * @author Swissmate
+ * @author felipeSulser
  */
 @Stateless
 @LocalBean
@@ -24,12 +27,7 @@ public class ExpedienteEJB {
     @PersistenceContext(unitName="SSCPU")
     private EntityManager em;
     
-    private Long id;
-
-    
-    public void setExpediente(Long id){
-        this.id = id;
-    }
+   
     public Expediente getExpediente(Long id) {
         
        Expediente exp = em.find(Expediente.class, id);
@@ -37,8 +35,60 @@ public class ExpedienteEJB {
     }
     
     public Ciudadano getCiudadano(Long exp_id){
-        return null;
+        Expediente exp = em.find(Expediente.class, exp_id);
+        return exp.getCiudadano_exp();
     }
+    
+    public List<Intervenciones> getIntervenciones(Long exp_id){
+        Expediente exp = em.find(Expediente.class, exp_id);
+        return exp.getIntervenciones();
+    }
+    
+    public List<Familiar> getFamilia(Long exp_id){
+     Expediente exp = em.find(Expediente.class, exp_id);
+     return exp.getFamiliares();
+    }
+       
+    public Vivienda getPrincipal(Long exp_id){
+          Expediente exp = em.find(Expediente.class, exp_id);
+          return exp.getResidencia();
+    }
+        public List<Vivienda> getSecundarias(Long exp_id){
+          Expediente exp = em.find(Expediente.class, exp_id);
+          return exp.getViviendas();
+    }
+       
+       
+    public void setFamiliar(Long exp_id,Familiar f){
+        Expediente exp = em.find(Expediente.class,exp_id);
+        
+        f.setExpediente(exp);
+        
+        em.persist(f);
+        
+    }
+    
+  
+    public void setVivienda(Long exp_id, Vivienda v){
+        Expediente exp = em.find(Expediente.class, exp_id);
+        v.setExpediente_residencia(exp);
+        
+        em.persist(v);
+    }
+    
+    public void setIntervencion(Long exp_id, Long cita_id, Intervenciones inter){
+        
+        Expediente exp = em.find(Expediente.class,exp_id);
+        
+        Cita c = em.find(Cita.class, cita_id);
+        
+        inter.setExpediente(exp);
+        inter.setId_cita(c);
+        
+        em.persist(inter);
+    }
+       
+    
     
     
   
