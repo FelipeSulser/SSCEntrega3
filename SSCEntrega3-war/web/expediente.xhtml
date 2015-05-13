@@ -16,8 +16,8 @@
                     window.location = "login.xhtml";
                 </script>
                 </c:if>
-                 <div style="margin-left: 25px">
-                   <p:scrollPanel >  
+                <div style="margin-left: 25px">
+                <p:scrollPanel id="scrollPanel_expediente">  
    
                        
                 
@@ -46,20 +46,20 @@
                     <h2> <h:outputText id="expediente_datos_personales" value="Datos Personales"/></h2>
                     <img id="expediente_profile_pic" src="./resources/images/profile.png"/>
                 </f:facet>
-                <h:outputLabel value="DNI:" />
-                <h:outputLabel value ="#{expedienteView.ciudadano.dni}"/>
-                <h:outputLabel value="Fecha Nacimiento" />
-                <h:outputLabel value ="#{expedienteView.ciudadano.fecha_nacimiento}"/>
-                <h:outputLabel value="Nacionalidad:" />
-                <h:outputLabel value ="#{expedienteView.ciudadano.nacionalidad}"/>
-                <h:outputLabel value="CSS:" />
-                <h:outputLabel value ="#{expedienteView.expediente.css}"/>
-                <h:outputLabel value="CP:" />
-                <h:outputLabel value ="#{expedienteView.principal.codigoPostal}"/>
-                <h:outputLabel value="Vivienda" />
-                <h:outputLabel value ="#{expedienteView.principal.calle}"/>
-                <h:outputLabel value="Ingreso Medio" />
-                <h:outputLabel value ="#{expedienteView.ciudadano.ingreso_medio}"/>
+                <h:outputLabel id="dni" value="DNI:" />
+                <h:outputLabel id="valor_dni" value ="#{expedienteView.ciudadano.dni}"/>
+                <h:outputLabel id="fecha_nacimiento" value="Fecha Nacimiento" />
+                <h:outputLabel id="valor_fecha_nacimiento" value ="#{expedienteView.ciudadano.fecha_nacimiento}"/>
+                <h:outputLabel id="nacionalidad" value="Nacionalidad:" />
+                <h:outputLabel id="valor_nacionalidad" value ="#{expedienteView.ciudadano.nacionalidad}"/>
+                <h:outputLabel id="css" value="CSS:" />
+                <h:outputLabel id="valor_css" value ="#{expedienteView.expediente.css}"/>
+                <h:outputLabel id="CP" value="CP:" />
+                <h:outputLabel id="valor_CP" value ="#{expedienteView.principal.codigoPostal}"/>
+                <h:outputLabel id="vivienda" value="Vivienda" />
+                <h:outputLabel id="valor_vivienda" value ="#{expedienteView.principal.calle}"/>
+                <h:outputLabel id="ingreso_medio" value="Ingreso Medio" />
+                <h:outputLabel id="valor_ingreso_medio" value ="#{expedienteView.ciudadano.ingreso_medio}"/>
                 
                 
          </h:panelGrid>
@@ -102,50 +102,50 @@
                   </h:form>
 
                 <p:dataTable id="expediente_familia_tabla" style="width:1000px;" var="familia" scrollable = "true" value="#{expedienteView.familia}">
-                    <p:column    headerText="DNI">
-                        <h:outputText value="#{familia.dni}" />
+                    <p:column id="dni"   headerText="DNI">
+                        <h:outputText id="valor_dni" value="#{familia.dni}" />
                     </p:column>
 
-                    <p:column  headerText="Nombre">
-                        <h:outputText value="#{familia.nombre}" />
+                    <p:column id="nombre"  headerText="Nombre">
+                        <h:outputText id="valor_nombre" value="#{familia.nombre}" />
                     </p:column>
 
-                    <p:column  headerText="Apellido">
-                        <h:outputText value="#{familia.apellido1} #{familia.apellido2}" />
+                    <p:column id="apellido" headerText="Apellido">
+                        <h:outputText id="valor_apellido" value="#{familia.apellido1} #{familia.apellido2}" />
                     </p:column>
-                        <p:column style="width:100px;" headerText="Parentesco">
-                        <h:outputText value="#{familia.parentesco}" />
+                        <p:column id="parentesco" style="width:100px;" headerText="Parentesco">
+                        <h:outputText id="valor_parentesco" value="#{familia.parentesco}" />
                     </p:column>
-                  <p:column  headerText="Fecha Nacimiento">
-                      <h:outputText value="#{familia.fecha_nacimiento}" />
+                  <p:column id="fecha_nacimiento" headerText="Fecha Nacimiento">
+                      <h:outputText id="valor_fecha_nacimiento" value="#{familia.fecha_nacimiento}" />
                     </p:column>
-                    <p:column style="width: 100px;" headerText="MU">
-                        <h:outputText value="#{familia.mu}" />
+                    <p:column id="MU" style="width: 100px;" headerText="MU">
+                        <h:outputText id="valor_MU" value="#{familia.mu}" />
                     </p:column>
-                   <p:column headerText="Ingreso Medio">
-                       <h:outputText value="#{familia.ingreso_medio}" />
+                   <p:column id="ingreso_medio" headerText="Ingreso Medio">
+                       <h:outputText id="valor_ingreso_medio" value="#{familia.ingreso_medio}" />
                     </p:column>
                 </p:dataTable>
-                  <h2> <h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" value="Vivienda" /></h2>
+                  <h2> <h:outputText id="vivienda" rendered="#{ctrLogin.isIsAdmin() == false}" value="Vivienda" /></h2>
                   <h2>
-                     <h:form rendered="#{ctrLogin.isAdmin == true}">
-                     <h:outputText value ="Vivienda  "/>   
-                     <h:commandButton  class="btn btn-info" id="expediente_addVivienda" value="Añadir Vivienda" action="#{expedienteView.setAddingVivienda(true)}"/> 
+                     <h:form id="formulario_boton_vivienda" rendered="#{ctrLogin.isAdmin == true}">
+                     <h:outputText id="vivienda" value ="Vivienda  "/>   
+                     <h:commandButton id="boton_add_vivienda"  class="btn btn-info" id="expediente_addVivienda" value="Añadir Vivienda" action="#{expedienteView.setAddingVivienda(true)}"/> 
                       </h:form>
                  </h2>
-                 <h:form rendered="#{expedienteView.isAddingVivienda()  ==true }">
+                 <h:form id="formulario_vivienda" rendered="#{expedienteView.isAddingVivienda()  ==true }">
                      <h:panelGrid columns="2">
-                        <h:outputText value="*Dirección: " />
-                        <h:inputText id="direccion_vivienda" a:placeholder="Dirección" value="#{expedienteView.newVivienda.calle}" required="true">
+                        <h:outputText id="direccion" value="*Dirección: " />
+                        <h:inputText id="valor_direccion" a:placeholder="Dirección" value="#{expedienteView.newVivienda.calle}" required="true">
                         </h:inputText>
-                        <h:outputText value="*Codigo Postal: " />
-                        <h:inputText id="CP_vivienda" a:placeholder="CP" value="#{expedienteView.newVivienda.codigoPostal}" required="true"></h:inputText>
-                        <h:outputText value="*Municipio: " />
-                        <h:inputText id="municipio_vivienda" a:placeholder="Municipio" value="#{expedienteView.newVivienda.municipio}" required="true"></h:inputText>
-                        <h:outputText value="Régimen de Tenencia " />
-                        <h:inputText id="regimen_vivienda" a:placeholder="Régimen" value="#{expedienteView.newVivienda.regimen_tenencia}"></h:inputText>
-                        <h:outputText value="Metros Cuadrados " />
-                        <h:inputText id="m2_vivienda" a:placeholder="M2" value="#{expedienteView.newVivienda.metros_cuadrados}"> </h:inputText>
+                        <h:outputText id="codigo_postal" value="*Codigo Postal: " />
+                        <h:inputText id="valor_codigo_postal" a:placeholder="CP" value="#{expedienteView.newVivienda.codigoPostal}" required="true"></h:inputText>
+                        <h:outputText id="municipio_vivienda" value="*Municipio: " />
+                        <h:inputText id="valor_municipio_vivienda" a:placeholder="Municipio" value="#{expedienteView.newVivienda.municipio}" required="true"></h:inputText>
+                        <h:outputText id="regimen_vivienda" value="Régimen de Tenencia " />
+                        <h:inputText id="valor_regimen_vivienda" a:placeholder="Régimen" value="#{expedienteView.newVivienda.regimen_tenencia}"></h:inputText>
+                        <h:outputText id="m2" value="Metros Cuadrados " />
+                        <h:inputText id="valor_m2" a:placeholder="M2" value="#{expedienteView.newVivienda.metros_cuadrados}"> </h:inputText>
                         <h:outputText value="Estado " />
                         <h:inputText id="estado_vivienda" a:placeholder="Estado" value="#{expedienteView.newVivienda.condiciones}"></h:inputText>
                         <h:commandButton id="btn-vivienda" value="Enviar" 
@@ -154,30 +154,30 @@
                      </h:panelGrid>
                   </h:form>
                  <p:dataTable id="expediente_viviendas_tabla" style="width:1000px;" var="viviendas" value="#{expedienteView.secundarias}">
-                    <p:column headerText="Dirección">
-                        <h:outputText value="#{viviendas.calle}" />
+                    <p:column id="direccion" headerText="Dirección">
+                        <h:outputText id="valor_direccion" value="#{viviendas.calle}" />
                     </p:column>
 
-                    <p:column style="width: 100px;" headerText="CP">
-                        <h:outputText value="#{viviendas.codigoPostal}" />
+                    <p:column id="CP" style="width: 100px;" headerText="CP">
+                        <h:outputText id="valor_CP" value="#{viviendas.codigoPostal}" />
                     </p:column>
 
-                    <p:column headerText="Municipio">
-                        <h:outputText value="#{viviendas.municipio}" />
+                    <p:column id="municipio" headerText="Municipio">
+                        <h:outputText id="valor_municipio" value="#{viviendas.municipio}" />
                     </p:column>
 
-                    <p:column headerText="Regimen Tenencia">
-                        <h:outputText value="#{viviendas.regimen_tenencia}" />
+                    <p:column id="regimen_tenencia" headerText="Regimen Tenencia">
+                        <h:outputText id="valor_regimen_tenencia" value="#{viviendas.regimen_tenencia}" />
                     </p:column>
-                     <p:column style="width: 100px;" headerText="Metros Cuadrados">
-                         <h:outputText value="#{viviendas.metros_cuadrados}" />
+                     <p:column id="m2" style="width: 100px;" headerText="Metros Cuadrados">
+                         <h:outputText id="valor_m2" value="#{viviendas.metros_cuadrados}" />
                     </p:column>
-                      <p:column headerText="Estado">
-                          <h:outputText value="#{viviendas.condiciones}" />
+                      <p:column id="estado" headerText="Estado">
+                          <h:outputText id="valor_estado" value="#{viviendas.condiciones}" />
                     </p:column>
                 </p:dataTable>
                   <h2>
-                     <h:form rendered="#{ctrLogin.isAdmin ==  false}" >
+                     <h:form id="formulario_boton_intervenciones" rendered="#{ctrLogin.isAdmin ==  false}" >
                      <h:outputText value ="Intervenciones  "/>   
                      <h:commandButton  class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" action="#{expedienteView.setAddingIntervencion(true)}"/> 
                       </h:form>
