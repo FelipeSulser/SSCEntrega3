@@ -178,35 +178,33 @@
                 </p:dataTable>
                   <h2>
                      <h:form id="formulario_boton_intervenciones" rendered="#{ctrLogin.isAdmin ==  false}" >
-                     <h:outputText value ="Intervenciones  "/>   
+                     <h:outputText id=intervenciones"" value ="Intervenciones  "/>   
                      <h:commandButton  class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" action="#{expedienteView.setAddingIntervencion(true)}"/> 
                       </h:form>
                  </h2>
                  
-                 <h:form rendered="#{expedienteView.isAddingIntervencion()  ==true }">
+                 <h:form id="formulario_add_intervenciones" rendered="#{expedienteView.isAddingIntervencion()  ==true }">
                          
 
                      <h:panelGrid columns="2">
 
-                        <h:outputText value="Fecha: " />
-                        <p:calendar  pattern="dd/MM/yyyy" value="#{expedienteView.intervencionDate}">  
-                      
-                        </p:calendar>
+                        <h:outputText id="fecha" value="Fecha: " />
+                        <p:calendar id="calendario"  pattern="dd/MM/yyyy" value="#{expedienteView.intervencionDate}"></p:calendar>
 
-                        <h:outputText value="Anotaciones " />
-                        <h:inputTextarea id="expediente_intervenciones_anotaciones" value="#{expedienteView.newIntervencion.anotaciones}" cols="30" rows="10" />
+                        <h:outputText id="anotaciones" value="Anotaciones " />
+                        <h:inputTextarea id="introducir_anotaciones" value="#{expedienteView.newIntervencion.anotaciones}" cols="30" rows="10" />
                         <h:commandButton id="btn-intervencion" value="Enviar" 
                                         class="btn btn-info" action="#{expedienteView.persistIntervencion()}"/>
                      </h:panelGrid>
                   </h:form>
                  
-                 <p:dataTable  id="expediente_intervenciones_tabla" style="width:1000px;" var="intervencion" value="#{expedienteView.intervenciones}">
+                 <p:dataTable id="expediente_intervenciones_tabla" style="width:1000px;" var="intervencion" value="#{expedienteView.intervenciones}">
                     <p:column style="width:100px;" headerText="Fecha">
-                        <h:outputText value="#{intervencion.fecha}" />
+                        <h:outputText id="intervencion" value="#{intervencion.fecha}" />
                     </p:column>
 
                     <p:column headerText="Anotaciones">
-                        <h:outputText value="#{intervencion.anotaciones}" />
+                        <h:outputText id="anotacion" value="#{intervencion.anotaciones}" />
                     </p:column>
 
                    
