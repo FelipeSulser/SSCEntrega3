@@ -37,27 +37,27 @@
 
                 <p:dialog id="detallesDialogoCita" widgetVar="eventDialog" header="Detalles de la cita" showEffect="clip" hideEffect="clip" resizable="false">
                     <h:panelGrid id="panelDetallesEvento" columns="2">
-                        <h:outputLabel for="detallesAgendaTitle" value="Descripción:" />
+                        <h:outputLabel id="lbl_detallesAgendaTitle" for="detallesAgendaTitle" value="Descripción:" />
                         <h:outputText id="detallesAgendaTitle" value="#{scheduleView.event.title}" />
                         
-                        <h:outputLabel for="detallesAgendaId_cita" value="ID de cita:" />
+                        <h:outputLabel id="lbl_detallesAgendaId_cita" for="detallesAgendaId_cita" value="ID de cita:" />
                         <h:outputText id="detallesAgendaId_cita" value="#{scheduleView.event.getCitaID()}" />
                         
-                        <h:outputLabel for="detallesAgendaComentarios" value="Comentarios:" />
+                        <h:outputLabel id="lbl_detallesAgendaComentarios" for="detallesAgendaComentarios" value="Comentarios:" />
                         <h:outputText id="detallesAgendaComentarios" value="#{scheduleView.event.getComentarios()}" />
 
-                        <h:outputLabel for="detallesAgendaCiudadano" value="Ciudadano:" />
+                        <h:outputLabel id="lbl_detallesAgendaCiudadano" for="detallesAgendaCiudadano" value="Ciudadano:" />
                         <h:outputText id="detallesAgendaCiudadano" value="#{scheduleView.event.getCiudadano().getNombre()}" />
 
-                        <h:outputLabel for="detallesAgendaTipocita" value="Tipo de cita:" />
+                        <h:outputLabel id="lbl_detallesAgendaTipocita" for="detallesAgendaTipocita" value="Tipo de cita:" />
                         <h:outputText id="detallesAgendaTipocita" value="#{scheduleView.event.getTipo_de_cita()}" />
 
-                        <h:outputLabel for="detallesAgendaFrom" value="Empieza el:" />
+                        <h:outputLabel id="lbl_detallesAgendaFrom" for="detallesAgendaFrom" value="Empieza el:" />
                         <p:inputMask id="detallesAgendaFrom" value="#{scheduleView.event.startDate}" mask="99/99/9999" readonly="true">
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
                         </p:inputMask>
 
-                        <h:outputLabel for="detallesAgendaTo" value="Termina el:" />
+                        <h:outputLabel id="lbl_detallesAgendaTo" for="detallesAgendaTo" value="Termina el:" />
                         <p:inputMask id="detallesAgendaTo" value="#{scheduleView.event.endDate}" mask="99/99/9999" readonly="true">
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
                         </p:inputMask>
