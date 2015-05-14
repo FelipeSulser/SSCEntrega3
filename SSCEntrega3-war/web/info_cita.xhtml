@@ -15,38 +15,38 @@
                     window.location = "login.xhtml";
                 </script>
                 </c:if>
-                <p:scrollPanel style="border-color: transparent;">
+                <p:scrollPanel id="scrollPanelInfoCita" style="border-color: transparent;">
                    
                     
                     
                 <h:panelGrid id="panel" columns="2" border="0" cellpadding="10" cellspacing="1">
                 <f:facet name="header">
-                    <h2> <h:outputText value="Datos de la Cita" style="padding-left: 10px;"/></h2>
+                    <h2> <h:outputText id="head" value="Datos de la Cita" style="padding-left: 10px;"/></h2>
                     <p:separator />  
                 </f:facet>
-                <h:outputLabel style="padding-left: 10px;" value="Ciudadano: " />
-                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.ciudadano.nombre} #{controladorCita.ciudadano.apellido1} #{controladorCita.ciudadano.apellido2}"/>
-                <h:outputLabel style="padding-left: 10px;" value="Fecha" />
-                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.fecha}"/>
-                <h:outputLabel style="padding-left: 10px;" value="Tipo de Cita:" />
-                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.tipo_de_cita}"/>
-                <h:outputLabel style="padding-left: 10px;" value="Comentarios:" />
-                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.comentarios}"/>
-                <h:outputLabel style="padding-left: 10px;" value="Asistida por:" />
-                <h:outputLabel style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.profesional.nombre} #{controladorCita.profesional.apellido1} #{controladorCita.profesional.apellido2}"/>
+                <h:outputLabel id="ciudano1" style="padding-left: 10px;" value="Ciudadano: " />
+                <h:outputLabel id="ciudano2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.ciudadano.nombre} #{controladorCita.ciudadano.apellido1} #{controladorCita.ciudadano.apellido2}"/>
+                <h:outputLabel id="fecha1" style="padding-left: 10px;" value="Fecha" />
+                <h:outputLabel id="fecha2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.fecha}"/>
+                <h:outputLabel id="tipo1" style="padding-left: 10px;" value="Tipo de Cita:" />
+                <h:outputLabel id="tipo2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.tipo_de_cita}"/>
+                <h:outputLabel id="comentarios1" style="padding-left: 10px;" value="Comentarios:" />
+                <h:outputLabel id="comentarios2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.comentarios}"/>
+                <h:outputLabel id="profesional1" style="padding-left: 10px;" value="Asistida por:" />
+                <h:outputLabel id="profesional2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.profesional.nombre} #{controladorCita.profesional.apellido1} #{controladorCita.profesional.apellido2}"/>
                
                     </h:panelGrid>
                      <p:separator />  
-                <table>
+                <table id="tabla">
                     <tr>
-                        <td><h2><h:outputText style="padding-left: 10px;" value="Intervenciones: "/></h2><br> </br>
-                            <p:dataTable var="intervencion" scrollable = "true" value="#{controladorCita.intervenciones}" style="padding: 10px;">
-                                <p:column headerText="Fecha">
-                                    <h:outputText value="#{intervencion.fecha}" />
+                        <td><h2><h:outputText id="intervenciones1" style="padding-left: 10px;" value="Intervenciones: "/></h2><br> </br>
+                            <p:dataTable id="intervenciones2" var="intervencion" scrollable = "true" value="#{controladorCita.intervenciones}" style="padding: 10px;">
+                                <p:column id="fecha1" headerText="Fecha">
+                                    <h:outputText id="fecha2" value="#{intervencion.fecha}" />
                                 </p:column>
 
-                                <p:column headerText="Anotaciones">
-                                    <h:outputText value="#{intervencion.anotaciones}" />
+                                <p:column id="anotaciones1" headerText="Anotaciones">
+                                    <h:outputText id="anotaciones2" value="#{intervencion.anotaciones}" />
                                 </p:column>
 
                             </p:dataTable>
@@ -54,7 +54,7 @@
                     </tr>
                     <tr>
                         <td><br> </br>
-                            <h:link value="Atrás" outcome="nueva_cita.xhtml" />
+                            <h:link id="atras" value="Atrás" outcome="nueva_cita.xhtml" />
                              
                         </td>
                     </tr>
