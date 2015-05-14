@@ -20,11 +20,11 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">¿Has olvidado la contraseña?</h4>
+                      <button id="btn_olvidé_pass" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 id="olvidé_pass" class="modal-title">¿Has olvidado la contraseña?</h4>
                     </div>
                     <div class="modal-body">
-                      <p>Para poder restaurar la contraseña de tu cuenta tendrás que ponerte en contacto con el administrador del sistema a través
+                      <p id="info_recuperar_pass">Para poder restaurar la contraseña de tu cuenta tendrás que ponerte en contacto con el administrador del sistema a través
                           del siguiente teléfono de contacto: 902 123 456
                       </p>
                     </div>
@@ -56,11 +56,11 @@
                         <h:form id="loginform" class="form-horizontal" role="form">
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <h:inputText binding="#{username}" class="form-control" a:placeholder="Username"/>                                        
+                                <h:inputText id="lbl_username" binding="#{username}" class="form-control" a:placeholder="Username"/>                                        
                             </div>
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <h:inputSecret binding="#{password}" class="form-control" a:placeholder="Contraseña"/>
+                                <h:inputSecret id="campo_introducir_pass" binding="#{password}" class="form-control" a:placeholder="Contraseña"/>
                             </div>                                    
                             <div style="border-top: 1px solid#888; padding-top:20px;margin-top:10px;" class="form-group">
                                 <div style="float:right; font-size: 80%; margin-right:10px;">
