@@ -29,38 +29,44 @@ public class ExpedienteEJB {
     
    
     public Expediente getExpediente(Long id) {
-        
        Expediente exp = em.find(Expediente.class, id);
+       
        return exp;
     }
     
     public Ciudadano getCiudadano(Long exp_id){
         Expediente exp = em.find(Expediente.class, exp_id);
+        if(exp == null) return null;
         return exp.getCiudadano_exp();
     }
     
     public List<Intervenciones> getIntervenciones(Long exp_id){
         Expediente exp = em.find(Expediente.class, exp_id);
+        if(exp == null) return null;
         return exp.getIntervenciones();
     }
     
     public List<Familiar> getFamilia(Long exp_id){
      Expediente exp = em.find(Expediente.class, exp_id);
+     if(exp == null) return null;
      return exp.getFamiliares();
     }
        
     public Vivienda getPrincipal(Long exp_id){
           Expediente exp = em.find(Expediente.class, exp_id);
+          if(exp == null) return null;
           return exp.getResidencia();
     }
         public List<Vivienda> getSecundarias(Long exp_id){
           Expediente exp = em.find(Expediente.class, exp_id);
+          if(exp == null) return null;
           return exp.getViviendas();
     }
        
        
     public void setFamiliar(Long exp_id,Familiar f){
         Expediente exp = em.find(Expediente.class,exp_id);
+        if(exp == null) return;
         
         f.setExpediente(exp);
         
@@ -71,6 +77,7 @@ public class ExpedienteEJB {
   
     public void setVivienda(Long exp_id, Vivienda v){
         Expediente exp = em.find(Expediente.class, exp_id);
+        if(exp == null) return;
         v.setExpediente_residencia(exp);
         
         em.persist(v);
@@ -79,8 +86,10 @@ public class ExpedienteEJB {
     public void setIntervencion(Long exp_id, Long cita_id, Intervenciones inter){
         
         Expediente exp = em.find(Expediente.class,exp_id);
+        if(exp == null) return;
         
         Cita c = em.find(Cita.class, cita_id);
+        if(c == null) return;
         
         inter.setExpediente(exp);
         inter.setId_cita(c);

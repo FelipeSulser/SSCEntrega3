@@ -12,28 +12,31 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Expediente;
 import model.jpa.ssc.Familiar;
 import model.jpa.ssc.Intervenciones;
 import model.jpa.ssc.Vivienda;
 
+
 /**
  *
  * @author felipesulser
  */
-@ManagedBean(name="expedienteView")
+@Named(value="expedienteView")
 @RequestScoped
 public class ControllerVistaExp {
     //Injected
-    @Inject
+    @EJB
     private ExpedienteEJB expedienteBean;
     
     
@@ -85,9 +88,12 @@ public class ControllerVistaExp {
     }
     
     
-    @PostConstruct
-    public void init(){
-        expediente = expedienteBean.getExpediente(id);
+    
+    
+    public String browsePage(Long id){
+        
+        this.id = id;
+         expediente = expedienteBean.getExpediente(id);
         
         ciudadano = expedienteBean.getCiudadano(id);
         
@@ -99,8 +105,8 @@ public class ControllerVistaExp {
         
         intervenciones = expedienteBean.getIntervenciones(id);
         
+        return "expediente.xhtml";
     }
-    
     public void addFamiliar() throws IOException{
         addingFamiliar = true;
         
