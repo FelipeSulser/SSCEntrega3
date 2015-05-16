@@ -56,7 +56,7 @@
                 <h:outputLabel id="valor_css" value ="#{expedienteView.expediente.css}"/>
                 <h:outputLabel id="CP" value="CP:" />
                 <h:outputLabel id="valor_CP" value ="#{expedienteView.principal.codigoPostal}"/>
-                <h:outputLabel id="vivienda" value="Vivienda" />
+                <h:outputLabel id="vivienda_label" value="Vivienda" />
                 <h:outputLabel id="valor_vivienda" value ="#{expedienteView.principal.calle}"/>
                 <h:outputLabel id="ingreso_medio" value="Ingreso Medio" />
                 <h:outputLabel id="valor_ingreso_medio" value ="#{expedienteView.ciudadano.ingreso_medio}"/>
@@ -126,11 +126,11 @@
                        <h:outputText id="valor_ingreso_medio" value="#{familia.ingreso_medio}" />
                     </p:column>
                 </p:dataTable>
-                  <h2> <h:outputText id="vivienda" rendered="#{ctrLogin.isIsAdmin() == false}" value="Vivienda" /></h2>
+                  <h2> <h:outputText id="vivienda_output" rendered="#{ctrLogin.isIsAdmin() == false}" value="Vivienda" /></h2>
                   <h2>
                      <h:form id="formulario_boton_vivienda" rendered="#{ctrLogin.isAdmin == true}">
                      <h:outputText id="vivienda" value ="Vivienda  "/>   
-                     <h:commandButton id="boton_add_vivienda"  class="btn btn-info" id="expediente_addVivienda" value="Añadir Vivienda" action="#{expedienteView.setAddingVivienda(true)}"/> 
+                     <h:commandButton id="boton_add_vivienda"  class="btn btn-info"  value="Añadir Vivienda" action="#{expedienteView.setAddingVivienda(true)}"/> 
                       </h:form>
                  </h2>
                  <h:form id="formulario_vivienda" rendered="#{expedienteView.isAddingVivienda()  ==true }">
@@ -178,7 +178,7 @@
                 </p:dataTable>
                   <h2>
                      <h:form id="formulario_boton_intervenciones" rendered="#{ctrLogin.isAdmin ==  false}" >
-                     <h:outputText id=intervenciones"" value ="Intervenciones  "/>   
+                     <h:outputText id="intervenciones" value ="Intervenciones  "/>   
                      <h:commandButton  class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" action="#{expedienteView.setAddingIntervencion(true)}"/> 
                       </h:form>
                  </h2>
