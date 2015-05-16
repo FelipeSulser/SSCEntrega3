@@ -84,10 +84,10 @@ public class ExpedienteEJB {
     }
     
     public void setIntervencion(Long exp_id, Long cita_id, Intervenciones inter){
-        
+        if(exp_id == null)return;
         Expediente exp = em.find(Expediente.class,exp_id);
         if(exp == null) return;
-        
+        if(cita_id == null) return;
         Cita c = em.find(Cita.class, cita_id);
         if(c == null) return;
         

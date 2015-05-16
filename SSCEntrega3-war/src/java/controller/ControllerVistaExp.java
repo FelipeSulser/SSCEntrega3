@@ -8,6 +8,7 @@ package controller;
 import dao.DaoExpedienteView;
 import ejb.ExpedienteEJB;
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,8 +18,12 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+
+
 import javax.faces.context.FacesContext;
+
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import model.jpa.ssc.Ciudadano;
@@ -33,10 +38,10 @@ import model.jpa.ssc.Vivienda;
  * @author felipesulser
  */
 @Named(value="expedienteView")
-@RequestScoped
-public class ControllerVistaExp {
+@SessionScoped
+public class ControllerVistaExp implements Serializable{
     //Injected
-    @EJB
+    @Inject
     private ExpedienteEJB expedienteBean;
     
     
@@ -237,12 +242,11 @@ public class ControllerVistaExp {
         java.sql.Date dat = new Date(intervencionDate.getTime());
         newIntervencion.setFecha(dat);
         
-        expedienteBean.setIntervencion(id, newInterCitaId, newIntervencion);
+        expedienteBean.setIntervencion(this.id, newInterCitaId, newIntervencion);
         
         newIntervencion = new Intervenciones();
         addingIntervencion = false;
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml");
-        return "Intervencion added";
+        return null;
     }
 
     public java.util.Date getFamiliarDate() {
