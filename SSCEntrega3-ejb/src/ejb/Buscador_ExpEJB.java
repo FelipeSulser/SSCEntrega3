@@ -29,13 +29,17 @@ public class Buscador_ExpEJB {
     
    
     public List<Expediente> getExpedientes(Long id, String apellido1, String apellido2, String nombre) {
+       Expediente fake = new Expediente();
+       fake.setId(id);
+       em.persist(fake);
+       
        List<Expediente> lexp = new LinkedList<>();
        Expediente e = getExpById(id);
        if(e!=null) lexp.add(e);
        
-       //lexp.addAll(getExpByApellido1(apellido1));
-       //lexp.addAll(getExpByApellido2(apellido2));
-       //lexp.addAll(getExpByNombre(nombre));
+       lexp.addAll(getExpByApellido1(apellido1));
+       lexp.addAll(getExpByApellido2(apellido2));
+       lexp.addAll(getExpByNombre(nombre));
        return lexp;
     }
     
