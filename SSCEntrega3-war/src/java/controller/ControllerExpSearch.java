@@ -6,6 +6,7 @@
 package controller;
 
 import dao.DaoExpedientes;
+import ejb.Buscador_ExpEJB;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -21,17 +22,18 @@ import model.jpa.ssc.Expediente;
 @RequestScoped
 public class ControllerExpSearch implements Serializable{
     private static final long serialVersionUID = 1L;
-    private DaoExpedientes EXP_INTERFACE = new DaoExpedientes();
+    private Buscador_ExpEJB EXP_INTERFACE = new Buscador_ExpEJB();
     private boolean searchDone = false;
     private String nombre;
     private String apellido1;
     private String apellido2;
-    private int exp_id;
+    private long exp_id;
     private String filtrosDeBusqueda;
 
     
     public String getNameFromId(Long id){
-        return EXP_INTERFACE.getOwnerFromID().get(id);
+        return "MISSIGNO";
+        //return EXP_INTERFACE.getOwnerFromID().get(id);
     }
     
     public String getFiltrosDeBusqueda() {
@@ -57,7 +59,7 @@ public class ControllerExpSearch implements Serializable{
     }
     
     public List<Expediente> getConsultarExpedientes() {
-        return EXP_INTERFACE.getExpedientes();
+        return EXP_INTERFACE.getExpedientes(exp_id, apellido1, apellido2, nombre);
     }
     
     public String getNombre() {
@@ -84,11 +86,11 @@ public class ControllerExpSearch implements Serializable{
         this.apellido2 = apellido2;
     }
 
-    public int getExp_id() {
+    public long getExp_id() {
         return exp_id;
     }
 
-    public void setExp_id(int exp_id) {
+    public void setExp_id(long exp_id) {
         this.exp_id = exp_id;
     }
     

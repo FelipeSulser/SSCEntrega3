@@ -5,8 +5,10 @@
  */
 package ejb;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -29,11 +31,11 @@ public class Buscador_ExpEJB {
     public List<Expediente> getExpedientes(Long id, String apellido1, String apellido2, String nombre) {
        List<Expediente> lexp = new LinkedList<>();
        Expediente e = getExpById(id);
-       if(e==null) lexp.add(e);
+       if(e!=null) lexp.add(e);
        
-       lexp.addAll(getExpByApellido1(apellido1));
-       lexp.addAll(getExpByApellido2(apellido2));
-       lexp.addAll(getExpByNombre(nombre));
+       //lexp.addAll(getExpByApellido1(apellido1));
+       //lexp.addAll(getExpByApellido2(apellido2));
+       //lexp.addAll(getExpByNombre(nombre));
        return lexp;
     }
     
@@ -46,7 +48,8 @@ public class Buscador_ExpEJB {
     
     public List<Expediente> getExpByApellido1(String apellido1){
         if(apellido1 != null){
-            Query q = em.createQuery("SELECT * FROM CIUDADANO where apellido1 = '"+apellido1+"'");
+            //select id,zona from EXPEDIENTE where ciudadano_id = (select id from CIUDADANO where apellido1 = 'PEREZ');
+            Query q = em.createQuery("SELECT * FROM EXPEDIENTE where ciudadano_id = (SELECT id FROM CIUDADANO where apellido1 = '"+apellido1+"')");
             return (List<Expediente>) q.getResultList();
         }
         return null;
@@ -54,7 +57,7 @@ public class Buscador_ExpEJB {
     
     public List<Expediente> getExpByApellido2(String apellido2){
         if(apellido2 != null){
-            Query q = em.createQuery("SELECT * FROM CIUDADANO where apellido2 = '"+apellido2+"'");
+            Query q = em.createQuery("SELECT * FROM EXPEDIENTE where ciudadano_id = (SELECT id FROM CIUDADANO where apellido1 = '"+apellido2+"')");
             return (List<Expediente>) q.getResultList();
         }
         return null;
@@ -62,12 +65,26 @@ public class Buscador_ExpEJB {
     
     public List<Expediente> getExpByNombre(String nombre){
         if(nombre != null){
-            Query q = em.createQuery("SELECT * FROM CIUDADANO where nombre = '"+nombre+"'");
+            Query q = em.createQuery("SELECT * FROM EXPEDIENTE where ciudadano_id = (SELECT id FROM CIUDADANO where apellido1 = '"+nombre+"')"); 
             return (List<Expediente>) q.getResultList();
         }
         return null;
     }
-    
-    
+    /*
+    public Map<Long, String> getOwnerFromID(List<Expediente> lexp){
+        //TODO add query select expediente.id, ciudadano.nombre from expediente join ciudadano on expediente.ciudadano_id = ciudadano.id;
+        Map<Long,String> expNamesId = new HashMap<Long,String>();
+        List<Expediente> queryNames = new LinkedList<>();
+        Query q = em.createQuery("");
+        for(Expediente exp : lexp){
+            
+        }
+        
+        expNamesId.put(dummy1.getId(), c1.getNombre()+" "+c1.getApellido1());
+        expNamesId.put(dummy2.getId(), c2.getNombre()+" "+c2.getApellido1());
+        expNamesId.put(dummy3.getId(), c3.getNombre()+" "+c3.getApellido1());
+        return expNamesId;
+    }
+    */
 }
        
