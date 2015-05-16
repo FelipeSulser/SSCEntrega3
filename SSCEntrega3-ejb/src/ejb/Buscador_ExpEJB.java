@@ -61,7 +61,7 @@ public class Buscador_ExpEJB {
     
     public List<Expediente> getExpByApellido2(String apellido2){
         if(apellido2 != null){
-            Query q = em.createQuery("SELECT * FROM EXPEDIENTE where ciudadano_id = (SELECT id FROM CIUDADANO where apellido1 = '"+apellido2+"')");
+            Query q = em.createQuery("SELECT * FROM EXPEDIENTE where ciudadano_id = (SELECT id FROM CIUDADANO where apellido2 = '"+apellido2+"')");
             return (List<Expediente>) q.getResultList();
         }
         return null;
@@ -69,7 +69,7 @@ public class Buscador_ExpEJB {
     
     public List<Expediente> getExpByNombre(String nombre){
         if(nombre != null){
-            Query q = em.createQuery("SELECT * FROM EXPEDIENTE where ciudadano_id = (SELECT id FROM CIUDADANO where apellido1 = '"+nombre+"')"); 
+            Query q = em.createQuery("SELECT * FROM EXPEDIENTE where ciudadano_id = (SELECT id FROM CIUDADANO where nombre = '"+nombre+"')"); 
             return (List<Expediente>) q.getResultList();
         }
         return null;
