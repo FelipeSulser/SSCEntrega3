@@ -15,81 +15,81 @@
                             window.location = "login.xhtml";
                         </script>
                     </c:if>
-                    <h:outputLabel style="padding: 10px" value="Búsqueda de Expedientes. Escriba los datos con los que desee filtrar:"/>
-                    <h:form style="padding: 10px;" rendered ="#{ctrLogin.isLoggedIn()}">
-                        <table border="0">
+                    <h:outputLabel id="labelCabeceraInformacion" style="padding: 10px" value="Búsqueda de Expedientes. Escriba los datos con los que desee filtrar:"/>
+                    <h:form id="formularioSeleccionExpedientes" style="padding: 10px;" rendered ="#{ctrLogin.isLoggedIn()}">
+                        <table id="tablaEstructurarCamposBusqueda" border="0">
                             <tr>
-                                <td><h:outputLabel value="Nombre"/></td>
-                                <td><h:inputText class="form-control" value="#{ctrExps.nombre}"></h:inputText></td>
+                                <td><h:outputLabel id="labelCampoNombre" value="Nombre"/></td>
+                                <td><h:inputText id="inputCampoNombre" class="form-control" value="#{ctrExps.nombre}"></h:inputText></td>
                             </tr>
                             <tr><td><br></br></td></tr>
                             <tr>
-                                <td><h:outputLabel value="Primer Apellido"/></td>
-                                <td><h:inputText class="form-control" value="#{ctrExps.apellido1}"></h:inputText></td>
+                                <td><h:outputLabel id="labelCampoApellido1" value="Primer Apellido"/></td>
+                                <td><h:inputText id="inputCampoApellido1" class="form-control" value="#{ctrExps.apellido1}"></h:inputText></td>
                             </tr>
                             <tr><td><br></br></td></tr>
                             <tr>
-                                <td><h:outputLabel value="Segundo Apellido"/></td>
-                                <td><h:inputText class="form-control"  value="#{ctrExps.apellido2}"></h:inputText></td>
+                                <td><h:outputLabel id="labelCampoApellido2" value="Segundo Apellido"/></td>
+                                <td><h:inputText id="inputCampoApellido2" class="form-control"  value="#{ctrExps.apellido2}"></h:inputText></td>
                             </tr>
                             <tr><td><br></br></td></tr>
                             <tr>
-                                <td><h:outputLabel value="Número de Expediente"/></td>
-                                <td><h:inputText class="form-control" value="#{ctrExps.exp_id}"></h:inputText></td>
+                                <td><h:outputLabel id="labelCampoExpedienteNum" value="Número de Expediente"/></td>
+                                <td><h:inputText id="inputCampoExpedienteNum" class="form-control" value="#{ctrExps.exp_id}"></h:inputText></td>
                             </tr>
                             <tr><td><br></br></td></tr>
                         </table>
-                        <h:commandButton class="btn btn-info" value="Buscar expedientes" action="#{ctrExps.performSearch}"/>                      
+                        <h:commandButton id="botonEnviarQueryExpedientes" class="btn btn-info" value="Buscar expedientes" action="#{ctrExps.performSearch}"/>                      
                         <br></br>
                         <br></br>
-                        <h:outputText value="#{ctrExps.filtrosDeBusqueda}"/>
+                        <h:outputText id="labelFiltrosBusquedaUsados" value="#{ctrExps.filtrosDeBusqueda}"/>
                     </h:form>
                     <br></br>
                     <br></br>
-                    <h:outputLabel style="padding: 10px;" value="Resultado de la búsqueda:"/>
+                    <h:outputLabel id="labelResultadosBusqueda" style="padding: 10px;" value="Resultado de la búsqueda:"/>
                     <br></br>
-                    <h:form rendered="#{ctrExps.searchDone == true}">
-                        <!-- <p:scrollPanel style="width:1200px;height:600px">  -->
-                        
-                        <p:dataTable style="padding: 10px;" value="#{ctrExps.getConsultarExpedientes()}"  resizableColumns="true" scrollable = "true"   var="expediente">
+                    <h:form id="formTablaResultadosBusqueda" rendered="#{ctrExps.searchDone == true}">
+                                                
+                        <p:dataTable id="tablaResultadoBusquedaExpedientes" style="padding: 10px;" value="#{ctrExps.getConsultarExpedientes()}"  resizableColumns="true" scrollable = "true"   var="expediente">
                             
                             <p:column>
                                 
                                 <f:facet name="header" >
-                                    <h:outputText value="Exp.ID" />
+                                    <h:outputText id="labelColumnaEXPID" value="Exp.ID" />
                                 </f:facet>
-                                <h:commandButton id="content" value="#{expediente.id}" action="#{expedienteView.browsePage(expediente.id)}"/>
-                                   
-                              
-                                <p:tooltip id="toolTipContent" for="content">
-                                    <p:graphicImage name="/images/#{expediente.ciudadano_exp.image}" />
+
+                                <h:link id="linkToExpediente" value="#{expediente.id}" outcome="expediente.xhtml">
+                                    <f:param name="#{expedienteView.id}" value="#{expediente.id}" />
+                                </h:link>
+                                <p:tooltip id="toolTipContent" for="linkToExpediente">
+                                    <p:graphicImage id="cargaImagenPerfil" name="/images/#{expediente.ciudadano_exp.image}" />
                                 </p:tooltip>
 
                             </p:column>
                             
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="CSS"/>
+                                    <h:outputText id="labelColumnaCSS" value="CSS"/>
                                 </f:facet>
-                                <h:outputLabel value="#{expediente.css}"/>
+                                <h:outputLabel id="outputCampoColumnaCSS" value="#{expediente.css}"/>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Fecha de Apertura"/>
+                                    <h:outputText id="labelColumnaFechaApertura" value="Fecha de Apertura"/>
                                 </f:facet>
-                                <h:outputLabel value="#{expediente.fecha_apertura}"/>
+                                <h:outputLabel id="outputCampoColumnaFechaApertura" value="#{expediente.fecha_apertura}"/>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Zona"/>
+                                    <h:outputText id="labelColumnaZona" value="Zona"/>
                                 </f:facet>
-                                <h:outputLabel value="#{expediente.zona}"/>
+                                <h:outputLabel id="outputCampoColumnaZona" value="#{expediente.zona}"/>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Nombre del Ciudadano"/>
+                                    <h:outputText id="labelColumnaNombre" value="Nombre del Ciudadano"/>
                                 </f:facet>
-                                <h:outputLabel value="#{ctrExps.getNameFromId(expediente.id)}"/>
+                                <h:outputLabel id="outputCampoColumnaNombre" value="#{ctrExps.getNameFromId(expediente.id)}"/>
                             </p:column>
                         </p:dataTable>
                     </h:form>
