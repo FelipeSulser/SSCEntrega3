@@ -38,9 +38,9 @@ public class DaoExpedientes {
             dummy1.setCss("1221");
             dummy2.setCss("2222");
             dummy3.setCss("4232");
-            dummy1.setId(new Long(12112));
-            dummy2.setId(new Long(12933));
-            dummy3.setId(new Long(39240));
+            dummy1.setId(new Long(1));
+            dummy2.setId(new Long(2));
+            dummy3.setId(new Long(3));
             dummy1.setZona("LOS PERALES");
             dummy2.setZona("TORRE DE BENAGALBÓN");
             dummy3.setZona("CARRETERA DE CÁDIZ");

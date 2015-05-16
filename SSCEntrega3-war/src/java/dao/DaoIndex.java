@@ -8,7 +8,7 @@ package dao;
 import java.util.LinkedList;
 import java.util.List;
 import model.jpa.ssc.Administrativo;
-import model.jpa.ssc.Profesional;
+import model.jpa.ssc.Profesional; 
 
 /**
  *
