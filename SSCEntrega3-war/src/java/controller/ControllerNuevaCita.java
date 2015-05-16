@@ -42,26 +42,8 @@ public class ControllerNuevaCita implements Serializable {
     private int numIntervencion; /// <------------- DUDA
     private String tipoCita;
     private String detalleGestion;
-    
-    
-    
-    private DaoNuevaCita dao = new DaoNuevaCita();
-    
+        
 
-    public DaoNuevaCita getDao() {
-        return dao;
-    }
-
-    public void setDao(DaoNuevaCita dao) {
-        this.dao = dao;
-    }
-    
-    public String crearCita(){
-        dao.setTipo_de_cita(tipoCita);
-        dao.setDetalleGestion(detalleGestion);
-        dao.setFecha(fecha);
-        return "info_cita.xhtml";
-    }
     
     public String getDNICiudadano() {
         return DNICiudadano;
@@ -132,7 +114,7 @@ public class ControllerNuevaCita implements Serializable {
         
         crearCitaBean.setCita(cita);
         
-        
+        return null;
     }
 
 }
