@@ -114,7 +114,7 @@ public class ControllerNuevaCita implements Serializable {
         
         crearCitaBean.setCita(cita);
         
-        return null;
+        return "info_cita.xhtml";
     }
 
 }
