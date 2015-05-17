@@ -9,14 +9,19 @@ import ejb.AgendaEJB;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
- 
+import javax.inject.Named; 
+
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
@@ -28,10 +33,10 @@ import org.primefaces.model.ScheduleModel;
  *
  * @author Esteban
  */
-
 @ManagedBean
 @ViewScoped
 public class ScheduleView implements Serializable {
+    @EJB
     private AgendaEJB agendaEjb;
     private ScheduleModel eventModel; 
  
@@ -40,6 +45,13 @@ public class ScheduleView implements Serializable {
  
     @PostConstruct
     public void init() {
+        
+        List<Cita> l = agendaEjb.getCitas(2);
+        for(Cita c : l){
+            eventModel.addEvent(new AdvancedScheduleEvent(c.getTipo_de_cita(), c.getFecha(),c.getFecha(),"cssCitaPlanificada",c.getId(),c.getComentarios(),c.getTipo_de_cita(),c.getCiudadano()));
+        }
+        
+        /*
         Ciudadano c = new Ciudadano();
         c.setNombre("Esteban");
         eventModel = new DefaultScheduleModel();
@@ -53,7 +65,7 @@ public class ScheduleView implements Serializable {
         start = anyDay(7,4);
         end = anyDay(7,5);
         eventModel.addEvent(new AdvancedScheduleEvent("Revisión sanitaria", start, end, "cssCitaOtroProfesional", 3, "", "REVISION", c));
- 
+        */
     }
     public ScheduleModel getEventModel() {
         return eventModel;
