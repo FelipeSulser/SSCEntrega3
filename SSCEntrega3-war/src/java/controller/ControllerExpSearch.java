@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import model.jpa.ssc.Ciudadano;
@@ -24,7 +25,7 @@ import model.jpa.ssc.Expediente;
  */
 
 @Named(value="ctrExps")
-@RequestScoped
+@SessionScoped
 public class ControllerExpSearch implements Serializable{
     private static final long serialVersionUID = 1L;
     @EJB

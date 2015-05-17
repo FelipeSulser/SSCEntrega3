@@ -41,6 +41,7 @@ public class Buscador_ExpEJB {
       return exps;
                
       }else{
+         
           //now do all queries by parameters
           if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
               return exps;
