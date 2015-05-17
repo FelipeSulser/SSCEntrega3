@@ -5,6 +5,7 @@
  */
 package controller;
 
+import ejb.AgendaEJB;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,7 +32,7 @@ import org.primefaces.model.ScheduleModel;
 @ManagedBean
 @ViewScoped
 public class ScheduleView implements Serializable {
- 
+    private AgendaEJB agendaEjb;
     private ScheduleModel eventModel; 
  
     private ScheduleEvent event = new AdvancedScheduleEvent();
