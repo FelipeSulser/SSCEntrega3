@@ -23,20 +23,23 @@ import model.jpa.ssc.Profesional;
 public class CrearCitaEJB {
     @PersistenceContext(unitName="SSCPU")
     private EntityManager em;
-    Query query = em.createQuery("SELECT c FROM Ciudadano c WHERE c.dni = :paramDni", Ciudadano.class);
-    Query queryProf = em.createQuery("SELECT p FROM Profesional p WHERE p.dni = :paramDni", Profesional.class);
+    
 
     private Ciudadano ciudadano;
     private Profesional profesional;
     
 
     public Ciudadano getCiudadano(String DNICiudadano) {
+        Query query = em.createQuery("SELECT c FROM Ciudadano c WHERE c.dni = :paramDni", Ciudadano.class);
+    
         query.setParameter("paramDni", DNICiudadano);
         ciudadano = (Ciudadano) query.getSingleResult();
         return ciudadano;
     }
 
     public Profesional getProfesional(String DNIProfesional) {
+        Query query = em.createQuery("SELECT c FROM Ciudadano c WHERE c.dni = :paramDni", Ciudadano.class);
+         Query queryProf = em.createQuery("SELECT p FROM Profesional p WHERE p.dni = :paramDni", Profesional.class);
         queryProf.setParameter("paramDni",DNIProfesional);
         profesional = (Profesional) query.getSingleResult();
         return profesional;
