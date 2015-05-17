@@ -8,8 +8,8 @@ package controller;
 import dao.DaoCita;
 import java.util.Date;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Intervenciones;
@@ -111,6 +111,7 @@ public class ControladorCita {
     public void setDaoEntities(DaoCita daoEntities) {
         this.daoEntities = daoEntities;
     }
+    
     
     
 }
