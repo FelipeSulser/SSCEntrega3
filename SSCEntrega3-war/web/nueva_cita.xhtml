@@ -25,7 +25,7 @@
                     Número de intervención: <h:inputText id="num_intervencion" value="#{ctrNuevaCita.numIntervencion}" /> 
                     Tipo de cita: <h:inputText id="tipo_cita" value="#{ctrNuevaCita.tipoCita}"/>
                     Detalle de la gestión : <h:inputText id="detalle_gestion" value="#{ctrNuevaCita.detalleGestion}" /> 
-                    <h:link id="enviar" value="Enviar" outcome="#{ctrNuevaCita.crearCita()}" > </h:link>
+                    <h:commandButton id="enviar" value="Enviar" action="#{ctrNuevaCita.persistCita()}" > </h:link>
                     
                 </h:panelGrid>
 	    </h:form>  

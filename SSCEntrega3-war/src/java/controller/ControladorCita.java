@@ -8,6 +8,7 @@ package controller;
 import ejb.InfoCitaEJB;
 import java.util.Date;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
@@ -120,6 +121,7 @@ public class ControladorCita {
         this.intervenciones = intervenciones;
     }
 
+    
     
     
 }

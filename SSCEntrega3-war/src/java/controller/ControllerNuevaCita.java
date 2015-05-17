@@ -7,11 +7,18 @@ package controller;
 
 import dao.DaoCita;
 import dao.DaoNuevaCita;
+import ejb.CrearCitaEJB;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import model.jpa.ssc.Cita;
+import model.jpa.ssc.Ciudadano;
+import model.jpa.ssc.EstadoCita;
+import model.jpa.ssc.Profesional;
 
 /**
  *
@@ -21,29 +28,22 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped //Not sure about this
 public class ControllerNuevaCita implements Serializable {
     
+    @EJB
+    private CrearCitaEJB crearCitaBean;
+    
     private String DNICiudadano;
+    private Ciudadano ciudadano;
+    
     private String DNIProfesional;
+    private Profesional profesional;
+    
+    
     private Date fecha;
-    private int numIntervencion;
+    private int numIntervencion; /// <------------- DUDA
     private String tipoCita;
     private String detalleGestion;
-    private DaoNuevaCita dao = new DaoNuevaCita();
-    
+        
 
-    public DaoNuevaCita getDao() {
-        return dao;
-    }
-
-    public void setDao(DaoNuevaCita dao) {
-        this.dao = dao;
-    }
-    
-    public String crearCita(){
-        dao.setTipo_de_cita(tipoCita);
-        dao.setDetalleGestion(detalleGestion);
-        dao.setFecha(fecha);
-        return "info_cita.xhtml";
-    }
     
     public String getDNICiudadano() {
         return DNICiudadano;
@@ -92,4 +92,29 @@ public class ControllerNuevaCita implements Serializable {
     public void setDetalleGestion(String detalleGestion) {
         this.detalleGestion = detalleGestion;
     }
+    
+    
+    
+    public String persistCita() throws IOException{
+        ciudadano = crearCitaBean.getCiudadano(DNICiudadano);
+        profesional = crearCitaBean.getProfesional(DNIProfesional);
+        
+        //COnvierto aquí la fecha a sql.date
+        java.sql.Date date = new java.sql.Date(fecha.getTime());
+
+        Cita cita = new Cita();
+        //Creo la cita ahora.
+        cita.setCiudadano(ciudadano);
+        cita.setProfesional(profesional);
+        cita.setComentarios(detalleGestion);
+        cita.setEstado(EstadoCita.citaPlanificada);
+        cita.setFecha(date);
+        cita.setTipo_de_cita(tipoCita);
+        cita.setIntervenciones(null); //Al crear una cita no puede haber ninguna intervención todavía.
+        
+        crearCitaBean.setCita(cita);
+        
+        return "info_cita.xhtml";
+    }
+
 }
