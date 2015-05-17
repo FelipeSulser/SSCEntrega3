@@ -45,9 +45,11 @@ public class CrearCitaEJB {
     public void setCita(Cita cita) {
         em.persist(cita);
     }
-    
-    
 
-
+    public Long getCitaId(Cita cita) {
+        cita = em.find(Cita.class, cita);
+        return cita.getId();
+    }
+    
     
 }
