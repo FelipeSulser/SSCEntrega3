@@ -62,7 +62,7 @@
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
                         </p:inputMask>
 
-                        <h:commandButton id="botonVerDetallesCita" class="btn btn-info" value="Acceder a la cita" action="info_cita.xhtml"/> 
+                        <h:commandButton id="botonVerDetallesCita" class="btn btn-info" value="#{detallesAgendaId_cita.value}" action="#{controladorCita.browsePage(detallesAgendaId_cita.value)}"/> 
 
 
                     </h:panelGrid>

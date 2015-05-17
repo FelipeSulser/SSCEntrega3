@@ -6,14 +6,20 @@
 package controller;
 
 import dao.DaoCita;
+import ejb.InfoCitaEJB;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Intervenciones;
 import model.jpa.ssc.Profesional;
+import javax.ejb.EJB;
+
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
@@ -24,25 +30,39 @@ import model.jpa.ssc.Profesional;
 @RequestScoped
 public class ControladorCita {
     
-    private Long id;
+    @Inject
+    private InfoCitaEJB infoCitaBean;
+    
+    
+    //Datos de la cita
     private Date fecha;
     private String comentarios;
     private String tipo_de_cita;
     private Ciudadano ciudadano;
     private Profesional profesional;
     private List<Intervenciones> intervenciones;
-    DaoCita daoEntities;
+    
+    //Id obtenido al crear una cita o al pinchar en ver cita
+    private Long id;
+    
     
     public ControladorCita(){
-        daoEntities = new DaoCita();
-        fecha = daoEntities.getFecha();
-        ciudadano = daoEntities.getCiudadano();
-        comentarios = daoEntities.getComentarios();
-        tipo_de_cita = daoEntities.getTipo_de_cita();
-        profesional = daoEntities.getProfesional();
-        intervenciones = daoEntities.getIntervenciones();
+        
     }
     
+    public String browsePage(Long id){
+        
+        this.id=id;
+        fecha = infoCitaBean.getFecha(id);
+        comentarios = infoCitaBean.getComentarios(id);
+        tipo_de_cita = infoCitaBean.getTipo_de_cita(id);
+        ciudadano = infoCitaBean.getCiudadano(id);
+        profesional = infoCitaBean.getProfesional(id);
+        intervenciones = infoCitaBean.getIntervenciones(id);
+        
+        return "info_cita.xhtml";
+    }
+        
     
     public void initialize(Cita c){
        
@@ -104,13 +124,6 @@ public class ControladorCita {
         this.intervenciones = intervenciones;
     }
 
-    public DaoCita getDaoEntities() {
-        return daoEntities;
-    }
-
-    public void setDaoEntities(DaoCita daoEntities) {
-        this.daoEntities = daoEntities;
-    }
     
     
 }
