@@ -5,16 +5,14 @@
  */
 package controller;
 
-import dao.DaoCita;
-import dao.DaoNuevaCita;
 import ejb.CrearCitaEJB;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.EstadoCita;
@@ -25,11 +23,18 @@ import model.jpa.ssc.Profesional;
  * @author haritz
  */
 @ManagedBean(name="ctrNuevaCita")
-@RequestScoped //Not sure about this
+@RequestScoped
 public class ControllerNuevaCita implements Serializable {
     
     @EJB
     private CrearCitaEJB crearCitaBean;
+    
+    
+
+    @ManagedProperty(value = "#{controladorCita}")
+    private ControladorCita verCita; //Para poder pasarle el id a ver cita.
+
+
     
     private String DNICiudadano;
     private Ciudadano ciudadano;
@@ -39,7 +44,6 @@ public class ControllerNuevaCita implements Serializable {
     
     
     private Date fecha;
-    private int numIntervencion; /// <------------- DUDA
     private String tipoCita;
     private String detalleGestion;
         
@@ -69,14 +73,6 @@ public class ControllerNuevaCita implements Serializable {
         this.fecha = fecha;
     }
 
-    public int getNumIntervencion() {
-        return numIntervencion;
-    }
-
-    public void setNumIntervencion(int numIntervencion) {
-        this.numIntervencion = numIntervencion;
-    }
-
     public String getTipoCita() {
         return tipoCita;
     }
@@ -95,7 +91,7 @@ public class ControllerNuevaCita implements Serializable {
     
     
     
-    public String persistCita() throws IOException{
+    public void persistCita() throws IOException{
         ciudadano = crearCitaBean.getCiudadano(DNICiudadano);
         profesional = crearCitaBean.getProfesional(DNIProfesional);
         
@@ -113,8 +109,7 @@ public class ControllerNuevaCita implements Serializable {
         cita.setIntervenciones(null); //Al crear una cita no puede haber ninguna intervención todavía.
         
         crearCitaBean.setCita(cita);
-        
-        return "info_cita.xhtml";
+        verCita.browsePage(crearCitaBean.getCitaId(cita));
     }
 
 }
