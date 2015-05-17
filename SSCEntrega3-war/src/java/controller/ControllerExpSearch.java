@@ -6,10 +6,17 @@
 package controller;
 
 import dao.DaoExpedientes;
+import ejb.Buscador_ExpEJB;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
+import model.jpa.ssc.Ciudadano;
+
 import model.jpa.ssc.Expediente;
 
 /**
@@ -17,21 +24,24 @@ import model.jpa.ssc.Expediente;
  * @author Esteban
  */
 
-@ManagedBean(name="ctrExps")
-@RequestScoped
+@Named(value="ctrExps")
+@SessionScoped
 public class ControllerExpSearch implements Serializable{
     private static final long serialVersionUID = 1L;
-    private DaoExpedientes EXP_INTERFACE = new DaoExpedientes();
+    @EJB
+    private Buscador_ExpEJB EXP_INTERFACE;
     private boolean searchDone = false;
     private String nombre;
     private String apellido1;
     private String apellido2;
-    private int exp_id;
+    private long exp_id;
     private String filtrosDeBusqueda;
-
+    private Map<Long,Ciudadano> ciudadanos;
     
     public String getNameFromId(Long id){
-        return EXP_INTERFACE.getOwnerFromID().get(id);
+        Ciudadano c = ciudadanos.get(id);
+      return c.getNombre() + " "+c.getApellido1()+" "+c.getApellido2();
+        //return EXP_INTERFACE.getOwnerFromID().get(id);
     }
     
     public String getFiltrosDeBusqueda() {
@@ -51,13 +61,14 @@ public class ControllerExpSearch implements Serializable{
     }
 
     public void performSearch(){
-        //TODO add query transmission to DaoExpedientes
+     
         filtrosDeBusqueda = "Se aplicaron los siguientes filtros: "+ nombre + " - " + apellido1 + " - " + apellido2 + " - " + exp_id;
         this.setSearchDone(true);
     }
     
     public List<Expediente> getConsultarExpedientes() {
-        return EXP_INTERFACE.getExpedientes();
+        ciudadanos = EXP_INTERFACE.getCiudadanos(exp_id,apellido1,apellido2,nombre);
+        return EXP_INTERFACE.getExpedientes(exp_id, apellido1, apellido2, nombre);
     }
     
     public String getNombre() {
@@ -84,11 +95,11 @@ public class ControllerExpSearch implements Serializable{
         this.apellido2 = apellido2;
     }
 
-    public int getExp_id() {
+    public long getExp_id() {
         return exp_id;
     }
 
-    public void setExp_id(int exp_id) {
+    public void setExp_id(long exp_id) {
         this.exp_id = exp_id;
     }
     
