@@ -9,8 +9,13 @@ import dao.DaoExpedientes;
 import ejb.Buscador_ExpEJB;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
+import model.jpa.ssc.Ciudadano;
+
 import model.jpa.ssc.Expediente;
 
 /**
@@ -18,21 +23,23 @@ import model.jpa.ssc.Expediente;
  * @author Esteban
  */
 
-@ManagedBean(name="ctrExps")
+@Named(value="ctrExps")
 @RequestScoped
 public class ControllerExpSearch implements Serializable{
     private static final long serialVersionUID = 1L;
-    private Buscador_ExpEJB EXP_INTERFACE = new Buscador_ExpEJB();
+    @EJB
+    private Buscador_ExpEJB EXP_INTERFACE;
     private boolean searchDone = false;
     private String nombre;
     private String apellido1;
     private String apellido2;
     private long exp_id;
     private String filtrosDeBusqueda;
-
+    private Map<Long,Ciudadano> ciudadanos;
     
     public String getNameFromId(Long id){
-        return "MISSIGNO";
+        Ciudadano c = ciudadanos.get(id);
+      return c.getNombre() + " "+c.getApellido1()+" "+c.getApellido2();
         //return EXP_INTERFACE.getOwnerFromID().get(id);
     }
     
@@ -53,12 +60,13 @@ public class ControllerExpSearch implements Serializable{
     }
 
     public void performSearch(){
-        //TODO add query transmission to DaoExpedientes
+     
         filtrosDeBusqueda = "Se aplicaron los siguientes filtros: "+ nombre + " - " + apellido1 + " - " + apellido2 + " - " + exp_id;
         this.setSearchDone(true);
     }
     
     public List<Expediente> getConsultarExpedientes() {
+        ciudadanos = EXP_INTERFACE.getCiudadanos(exp_id,apellido1,apellido2,nombre);
         return EXP_INTERFACE.getExpedientes(exp_id, apellido1, apellido2, nombre);
     }
     
