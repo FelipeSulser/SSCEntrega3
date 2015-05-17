@@ -5,7 +5,6 @@
  */
 package controller;
 
-import dao.DaoCita;
 import ejb.InfoCitaEJB;
 import java.util.Date;
 import java.util.List;
@@ -14,11 +13,8 @@ import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Intervenciones;
 import model.jpa.ssc.Profesional;
-import javax.ejb.EJB;
 
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
 /**
