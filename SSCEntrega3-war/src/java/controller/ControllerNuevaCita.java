@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.inject.Named;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.EstadoCita;
@@ -22,7 +23,7 @@ import model.jpa.ssc.Profesional;
  *
  * @author haritz
  */
-@ManagedBean(name="ctrNuevaCita")
+@Named(value="ctrNuevaCita")
 @RequestScoped
 public class ControllerNuevaCita implements Serializable {
     
@@ -32,8 +33,7 @@ public class ControllerNuevaCita implements Serializable {
     
 
     @ManagedProperty(value = "#{controladorCita}")
-    private ControladorCita verCita; //Para poder pasarle el id a ver cita.
-
+    private ControladorCita controladorCita; //Para poder pasarle el id a ver cita.
 
     
     private String DNICiudadano;
@@ -89,6 +89,38 @@ public class ControllerNuevaCita implements Serializable {
         this.detalleGestion = detalleGestion;
     }
     
+        public CrearCitaEJB getCrearCitaBean() {
+        return crearCitaBean;
+    }
+
+    public void setCrearCitaBean(CrearCitaEJB crearCitaBean) {
+        this.crearCitaBean = crearCitaBean;
+    }
+
+    public ControladorCita getControladorCita() {
+        return controladorCita;
+    }
+
+    public void setControladorCita(ControladorCita controladorCita) {
+        this.controladorCita = controladorCita;
+    }
+
+    public Ciudadano getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+    public Profesional getProfesional() {
+        return profesional;
+    }
+
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;
+    }
+
     
     
     public void persistCita() throws IOException{
@@ -109,7 +141,7 @@ public class ControllerNuevaCita implements Serializable {
         cita.setIntervenciones(null); //Al crear una cita no puede haber ninguna intervención todavía.
         
         crearCitaBean.setCita(cita);
-        verCita.browsePage(crearCitaBean.getCitaId(cita));
+        controladorCita.browsePage(crearCitaBean.getCitaId(cita));
     }
 
 }
