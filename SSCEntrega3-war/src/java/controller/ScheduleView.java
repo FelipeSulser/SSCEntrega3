@@ -11,16 +11,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
-import javax.inject.Named; 
+import model.jpa.ssc.EstadoCita;
+
 
 
 import org.primefaces.event.SelectEvent;
@@ -33,8 +37,8 @@ import org.primefaces.model.ScheduleModel;
  *
  * @author Esteban
  */
-@ManagedBean
-@ViewScoped
+@Named
+@SessionScoped
 public class ScheduleView implements Serializable {
     @EJB
     private AgendaEJB agendaEjb;
@@ -42,16 +46,25 @@ public class ScheduleView implements Serializable {
  
     private ScheduleEvent event = new AdvancedScheduleEvent();
     
+        
+    
  
     @PostConstruct
     public void init() {
         
-        List<Cita> l = agendaEjb.getCitas(2);
-        for(Cita c : l){
-            eventModel.addEvent(new AdvancedScheduleEvent(c.getTipo_de_cita(), c.getFecha(),c.getFecha(),"cssCitaPlanificada",c.getId(),c.getComentarios(),c.getTipo_de_cita(),c.getCiudadano()));
+        eventModel = new DefaultScheduleModel();
+        List<Cita> l = agendaEjb.getCitas(2); //Actualmente la id es fija para hacer pruebas       
+        if(!l.isEmpty()){
+            for(Cita c : l){
+                eventModel.addEvent(new AdvancedScheduleEvent(c.getTipo_de_cita(), c.getFecha(),
+                c.getFecha(),returnCssCitaTipo(c.getEstado()),c.getId(),c.getComentarios(),c.getTipo_de_cita(),c.getCiudadano()));
+            }
         }
         
         /*
+
+        
+        
         Ciudadano c = new Ciudadano();
         c.setNombre("Esteban");
         eventModel = new DefaultScheduleModel();
@@ -67,6 +80,25 @@ public class ScheduleView implements Serializable {
         eventModel.addEvent(new AdvancedScheduleEvent("Revisión sanitaria", start, end, "cssCitaOtroProfesional", 3, "", "REVISION", c));
         */
     }
+    public String returnCssCitaTipo(EstadoCita ec){
+        /*
+        citaPlanificada,    //Verde
+        ausencia,   //Rojo
+        noRealizada,    //Naranja
+        planificadaPorOtroProfesional   //Violeta
+        --------------------------
+        .cssCitaAusencia{
+        .cssCitaPlanificada{
+        .cssCitaNoRealizada{
+        .cssCitaOtroProfesional{
+
+        */
+        if(ec.equals(EstadoCita.ausencia)) return "cssCitaAusencia";
+        if(ec.equals(EstadoCita.citaPlanificada)) return "cssCitaPlanificada";
+        if(ec.equals(EstadoCita.noRealizada)) return "cssCitaNoRealizada";
+        return "cssCitaOtroProfesional";
+    }
+    
     public ScheduleModel getEventModel() {
         return eventModel;
     }     
