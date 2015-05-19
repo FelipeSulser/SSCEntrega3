@@ -125,6 +125,8 @@ public class Buscador_ExpEJB {
           //si proporciona una id, la búsqueda se hace por id
        TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where c.expediente_personal.id = :idx",Ciudadano.class);
        q.setParameter("idx", id);
+       List<Ciudadano> lista = q.getResultList();
+       if(lista == null || lista.isEmpty()) return myMap;
        Ciudadano ciu = q.getSingleResult();
        myMap.put(ciu.getExpediente_personal().getId(), ciu);
       return myMap;

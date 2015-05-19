@@ -11,9 +11,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
+import javax.faces.view.ViewScoped;
+
+
 import javax.inject.Named;
 import model.jpa.ssc.Ciudadano;
 
@@ -25,7 +25,7 @@ import model.jpa.ssc.Expediente;
  */
 
 @Named(value="ctrExps")
-@SessionScoped
+@ViewScoped
 public class ControllerExpSearch implements Serializable{
     private static final long serialVersionUID = 1L;
     @EJB
@@ -39,6 +39,7 @@ public class ControllerExpSearch implements Serializable{
     private Map<Long,Ciudadano> ciudadanos;
     
     public String getNameFromId(Long id){
+        if(id == null) return null;
         Ciudadano c = ciudadanos.get(id);
       return c.getNombre() + " "+c.getApellido1()+" "+c.getApellido2();
         //return EXP_INTERFACE.getOwnerFromID().get(id);
@@ -68,6 +69,7 @@ public class ControllerExpSearch implements Serializable{
     
     public List<Expediente> getConsultarExpedientes() {
         ciudadanos = EXP_INTERFACE.getCiudadanos(exp_id,apellido1,apellido2,nombre);
+        if(ciudadanos.isEmpty()) return null;
         return EXP_INTERFACE.getExpedientes(exp_id, apellido1, apellido2, nombre);
     }
     
