@@ -8,8 +8,7 @@ package controller;
 import ejb.InfoCitaEJB;
 import java.util.Date;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Intervenciones;
@@ -23,7 +22,7 @@ import javax.enterprise.context.RequestScoped;
  * @author Álvaro
  */
 
-@ManagedBean(name="controladorCita")
+@Named(value="controladorCita")
 @RequestScoped
 public class ControladorCita {
     
@@ -48,7 +47,7 @@ public class ControladorCita {
     }
     
     public String browsePage(Long id){
-        
+        if(id == null) return "index.xhtml";
         this.id=id;
         fecha = infoCitaBean.getFecha(id);
         comentarios = infoCitaBean.getComentarios(id);
