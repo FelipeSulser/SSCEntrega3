@@ -16,8 +16,8 @@ insert into CIUDADANO values (7, 'Fernández', 'Suárez' , '55223344K','01/12/18
 insert into CIUDADANO values (9, 'García-Faure', 'Torres' , '35243342E','01/20/1994',null,4000, 'ESPAÑA', 'Álvaro');
 insert into CIUDADANO values (11, 'Puerto', 'San Román' , '24249942R','11/20/1994',null,1000, 'ESPAÑA', 'Haritz');
 insert into CIUDADANO values (2, 'Filopeña', 'Faríbico', '44553311A', '08/15/1978',null,1500, 'ESPAÑA', 'Fausto');
-insert into CIUDADANO values (4, 'Ónix', 'López', '22553311B', '03/01/1962', 'ESPAÑA',null,900, 'Patrisano');
-insert into CIUDADANO values (6, 'Bab', '', '44553122C', '10/08/1992', 'TAILANDIA',null,1500, 'Edorrica');
+insert into CIUDADANO values (4, 'Ónix', 'López', '22553311B', '03/01/1962', null,900, 'ESPAÑA', 'Patrisano');
+insert into CIUDADANO values (6, 'Bab', '', '44553122C', '10/08/1992', null,1500,'TAILANDIA', 'Edorrica');
 insert into CIUDADANO values (8, 'Gandalfín', 'Ajonjolí', '41552319D', '02/17/1955',null,756, 'ESPAÑA', 'Lucrecia');
 insert into CIUDADANO values (10, 'Vingrede', 'Custodia', '12553771C', '11/09/1980',null,4520, 'ESPAÑA', 'Poncio Teobaldo');
 
