@@ -1,12 +1,16 @@
 package controller;
 
 
+import ejb.LoginEJB;
 import java.io.IOException;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import model.jpa.ssc.Administrativo;
+import model.jpa.ssc.Profesional;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,6 +24,9 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name="ctrLogin")
 @SessionScoped
 public class ControllerLogin implements Serializable{
+    //Injected
+    @EJB
+    private LoginEJB loginBean;
     
     private String nombreDeUsuario;
     private boolean isAdmin;
@@ -43,18 +50,17 @@ public class ControllerLogin implements Serializable{
     }
     
     public void autenticar(String username, String password) throws IOException{
+        Object usuario = loginBean.existeUsuario(username, password);
         // if user validates, we continue navigation
-        if(username.equals("user") && password.equals("user")){
-          
+        if(usuario instanceof Profesional){ // Profesional
             this.setIsAdmin(false);
-            this.setNombreDeUsuario("Lorenzo Pascales del Valle");
+            this.setNombreDeUsuario(((Profesional) usuario).getNombreCompleto());
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         // else we return to the login page
-        }else if(username.equals("admin") && password.equals("admin")){
-           this.setIsAdmin(true);
-           
-            this.setNombreDeUsuario("Lorenzo Admini Strativo");
-             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        }else if(usuario instanceof Administrativo){ //Administrativo
+            this.setIsAdmin(true);
+            this.setNombreDeUsuario(((Administrativo) usuario).getNombreCompleto());
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         }else{
             // We put a message inside the flash
             FacesContext.getCurrentInstance().getExternalContext().getFlash().put("message",
