@@ -89,7 +89,7 @@ public class ControllerNuevaCita implements Serializable {
         this.detalleGestion = detalleGestion;
     }
     
-        public CrearCitaEJB getCrearCitaBean() {
+    public CrearCitaEJB getCrearCitaBean() {
         return crearCitaBean;
     }
 
