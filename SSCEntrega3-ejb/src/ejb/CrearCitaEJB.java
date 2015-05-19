@@ -5,9 +5,11 @@
  */
 package ejb;
 
+import exceptions.CiudadanoNotFoundException;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import model.jpa.ssc.Cita;
@@ -29,12 +31,16 @@ public class CrearCitaEJB {
     private Profesional profesional;
     
 
-    public Ciudadano getCiudadano(String DNICiudadano) {
-        Query query = em.createQuery("SELECT c FROM Ciudadano c WHERE c.dni = :paramDni", Ciudadano.class);
+    public Ciudadano getCiudadano(String DNICiudadano) throws CiudadanoNotFoundException {
+        try{
+            Query query = em.createQuery("SELECT c FROM Ciudadano c WHERE c.dni = :paramDni", Ciudadano.class);
     
-        query.setParameter("paramDni", DNICiudadano);
-        ciudadano = (Ciudadano) query.getSingleResult();
-        return ciudadano;
+            query.setParameter("paramDni", DNICiudadano);
+            ciudadano = (Ciudadano) query.getSingleResult();
+            return ciudadano;
+        } catch(NoResultException e){
+            throw new CiudadanoNotFoundException(DNICiudadano);
+        }
     }
 
     public Profesional getProfesional(String DNIProfesional) {

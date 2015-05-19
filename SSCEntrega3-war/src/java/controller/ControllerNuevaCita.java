@@ -6,13 +6,20 @@
 package controller;
 
 import ejb.CrearCitaEJB;
+import exceptions.CiudadanoNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ExceptionQueuedEvent;
+import javax.faces.event.ExceptionQueuedEventContext;
 import javax.inject.Named;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
@@ -124,7 +131,16 @@ public class ControllerNuevaCita implements Serializable {
     
     
     public void persistCita() throws IOException{
-        ciudadano = crearCitaBean.getCiudadano(DNICiudadano);
+        try {
+            ciudadano = crearCitaBean.getCiudadano(DNICiudadano);
+        } catch (CiudadanoNotFoundException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(DNICiudadano, new FacesMessage(e.getMessage()));
+            
+            //ExceptionQueuedEventContext eventContext = new ExceptionQueuedEventContext(ctx, e);
+            //eventContext.getAttributes().put("key", "value");
+            //Logger.getLogger(ControllerNuevaCita.class.getName()).log(Level.SEVERE, null, ex);
+        }
         profesional = crearCitaBean.getProfesional(DNIProfesional);
         
         //COnvierto aquí la fecha a sql.date
