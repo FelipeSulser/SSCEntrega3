@@ -6,12 +6,14 @@
 package ejb;
 
 import exceptions.CiudadanoNotFoundException;
+import exceptions.ProfesionalNotFoundException;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Profesional;
@@ -33,9 +35,9 @@ public class CrearCitaEJB {
 
     public Ciudadano getCiudadano(String DNICiudadano) throws CiudadanoNotFoundException {
         try{
-            Query query = em.createQuery("SELECT c FROM Ciudadano c WHERE c.dni = :paramDni", Ciudadano.class);
-    
-            query.setParameter("paramDni", DNICiudadano);
+            String stringQuery = "SELECT c FROM Ciudadano c WHERE c.dni = '"  +DNICiudadano + "'";
+            TypedQuery query;   
+            query = em.createQuery(stringQuery, Ciudadano.class);
             ciudadano = (Ciudadano) query.getSingleResult();
             return ciudadano;
         } catch(NoResultException e){
@@ -43,12 +45,16 @@ public class CrearCitaEJB {
         }
     }
 
-    public Profesional getProfesional(String DNIProfesional) {
-        Query query = em.createQuery("SELECT c FROM Ciudadano c WHERE c.dni = :paramDni", Ciudadano.class);
-         Query queryProf = em.createQuery("SELECT p FROM Profesional p WHERE p.dni = :paramDni", Profesional.class);
-        queryProf.setParameter("paramDni",DNIProfesional);
-        profesional = (Profesional) query.getSingleResult();
-        return profesional;
+    public Profesional getProfesional(String DNIProfesional) throws ProfesionalNotFoundException {
+        try{
+            String stringQuery = "SELECT c FROM Ciudadano c WHERE c.dni = '"  +DNIProfesional + "'";
+            Query query;
+            query = em.createQuery(stringQuery, Profesional.class);
+            profesional = (Profesional) query.getSingleResult();
+            return profesional;
+        }catch(NoResultException e){
+            throw new ProfesionalNotFoundException(DNIProfesional);
+        }
     }
 
     public void setCita(Cita cita) {

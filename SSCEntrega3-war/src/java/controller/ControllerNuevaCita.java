@@ -7,6 +7,7 @@ package controller;
 
 import ejb.CrearCitaEJB;
 import exceptions.CiudadanoNotFoundException;
+import exceptions.ProfesionalNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,11 +16,8 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ExceptionQueuedEvent;
-import javax.faces.event.ExceptionQueuedEventContext;
 import javax.inject.Named;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
@@ -133,31 +131,39 @@ public class ControllerNuevaCita implements Serializable {
     public void persistCita() throws IOException{
         try {
             ciudadano = crearCitaBean.getCiudadano(DNICiudadano);
+            profesional = crearCitaBean.getProfesional(DNIProfesional);       
+           //COnvierto aquí la fecha a sql.date
+            java.sql.Date date = new java.sql.Date(fecha.getTime());
+
+            Cita cita = new Cita();
+            //Creo la cita ahora.
+            cita.setCiudadano(ciudadano);
+            cita.setProfesional(profesional);
+            cita.setComentarios(detalleGestion);
+            cita.setEstado(EstadoCita.citaPlanificada);
+            cita.setFecha(date);
+            cita.setTipo_de_cita(tipoCita);
+            cita.setIntervenciones(null); //Al crear una cita no puede haber ninguna intervención todavía.
+        
+            crearCitaBean.setCita(cita);
+            controladorCita.browsePage(crearCitaBean.getCitaId(cita));
         } catch (CiudadanoNotFoundException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(DNICiudadano, new FacesMessage(e.getMessage()));
+            String error = "No se encuentra al ciudadano con DNI " + e.getMessage() +
+                    " en la base de datos. Es posible que esté mal escrito o"
+                    + " que no se haya dado de alta aún";
+            ctx.addMessage(DNICiudadano, new FacesMessage(error));
             
-            //ExceptionQueuedEventContext eventContext = new ExceptionQueuedEventContext(ctx, e);
-            //eventContext.getAttributes().put("key", "value");
+            //Logger.getLogger(ControllerNuevaCita.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ProfesionalNotFoundException e) {
+            String error = "No se encuentra al profesional con DNI " + e.getMessage()
+                    + " en la base de datos. Es posible que esté mal escrito o"
+                    + " no esté dado de alta aún.";
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(DNICiudadano, new FacesMessage(error));
             //Logger.getLogger(ControllerNuevaCita.class.getName()).log(Level.SEVERE, null, ex);
         }
-        profesional = crearCitaBean.getProfesional(DNIProfesional);
-        
-        //COnvierto aquí la fecha a sql.date
-        java.sql.Date date = new java.sql.Date(fecha.getTime());
 
-        Cita cita = new Cita();
-        //Creo la cita ahora.
-        cita.setCiudadano(ciudadano);
-        cita.setProfesional(profesional);
-        cita.setComentarios(detalleGestion);
-        cita.setEstado(EstadoCita.citaPlanificada);
-        cita.setFecha(date);
-        cita.setTipo_de_cita(tipoCita);
-        cita.setIntervenciones(null); //Al crear una cita no puede haber ninguna intervención todavía.
-        
-        crearCitaBean.setCita(cita);
-        controladorCita.browsePage(crearCitaBean.getCitaId(cita));
     }
 
 }
