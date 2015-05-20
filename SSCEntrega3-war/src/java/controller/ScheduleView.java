@@ -15,14 +15,13 @@ import javax.annotation.PostConstruct;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.inject.Named;
 import model.jpa.ssc.Cita;
-import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.EstadoCita;
 
 
@@ -37,23 +36,24 @@ import org.primefaces.model.ScheduleModel;
  *
  * @author Esteban
  */
-@Named
+
+@ManagedBean
 @SessionScoped
 public class ScheduleView implements Serializable {
     @EJB
     private AgendaEJB agendaEjb;
     private ScheduleModel eventModel; 
- 
+    
+    @ManagedProperty(value="#{sesionBean}")
+    private SesionBean SB;
+
     private ScheduleEvent event = new AdvancedScheduleEvent();
-    
-        
-    
- 
+
     @PostConstruct
     public void init() {
         
         eventModel = new DefaultScheduleModel();
-        List<Cita> l = agendaEjb.getCitas(2); //Actualmente la id es fija para hacer pruebas       
+        List<Cita> l = agendaEjb.getCitas(2); //SesionBean tiene que tener eso bien implementado     
         if(!l.isEmpty()){
             for(Cita c : l){
                 eventModel.addEvent(new AdvancedScheduleEvent(c.getTipo_de_cita(), c.getFecha(),
@@ -79,6 +79,12 @@ public class ScheduleView implements Serializable {
         end = anyDay(7,5);
         eventModel.addEvent(new AdvancedScheduleEvent("Revisión sanitaria", start, end, "cssCitaOtroProfesional", 3, "", "REVISION", c));
         */
+    }
+    public SesionBean getSB(){
+        return SB;
+    }
+    public void setSB(SesionBean SB) {
+        this.SB = SB;
     }
     public String returnCssCitaTipo(EstadoCita ec){
         /*
