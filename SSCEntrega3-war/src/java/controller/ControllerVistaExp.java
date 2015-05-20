@@ -6,10 +6,13 @@
 package controller;
 
 import ejb.ExpedienteEJB;
+import exceptions.ExpedienteNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
 
@@ -91,7 +94,11 @@ public class ControllerVistaExp implements Serializable{
     public String browsePage(Long id){
         
         this.id = id;
-         expediente = expedienteBean.getExpediente(id);
+        try {
+            expediente = expedienteBean.getExpediente(id);
+        } catch (ExpedienteNotFoundException ex) {
+            expediente = null;
+        }
         
         ciudadano = expedienteBean.getCiudadano(id);
         
