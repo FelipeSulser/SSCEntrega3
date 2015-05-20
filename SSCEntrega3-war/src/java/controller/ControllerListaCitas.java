@@ -53,6 +53,6 @@ public class ControllerListaCitas {
     
     public void eliminar(Long id) throws IOException{
         listaCitas.eliminar(id);
-         FacesContext.getCurrentInstance().getExternalContext().redirect("lista_citas.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("lista_citas.xhtml");
     }
 }
