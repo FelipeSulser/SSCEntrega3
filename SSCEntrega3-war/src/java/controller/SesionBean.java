@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.DaoIndex;
+
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -21,10 +21,9 @@ import model.jpa.ssc.Profesional;
 @SessionScoped
 public class SesionBean implements Serializable{
     private static final long serialVersionUID = 1L;
-    private DaoIndex dindex = new DaoIndex();
     private int citasHoy;
     private int totalIntervenciones;
-
+    private long userId;
     
 
     public Profesional getUser(){
@@ -32,10 +31,21 @@ public class SesionBean implements Serializable{
         //TODO add query 
         setCitasHoy(3);
         setTotalIntervenciones(64);
-        
-        return dindex.getProf();
+        Profesional p = new Profesional();
+        p.setApellido1("Suárez");
+        p.setApellido2("Fernández");
+        p.setNombre("Juan");
+        p.setId(2L);
+        p.setUsuario("usuarioFake1234");
+        p.setDni("11223344E");
+        return p;
     }
-    
+    public void setUserId(long id){
+        userId = id;
+    }
+    public long getUserId(){
+        return 2; //TO DOOOOOOOOOOOOO
+    }
     
     public int getCitasHoy() {
         return citasHoy;
