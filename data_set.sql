@@ -1,3 +1,8 @@
+--administrativo
+insert into ADMINISTRATIVO values (1, 'López', 'García', 'password', '11223344Z', null, 'Franchesco', 'usuario66');
+insert into ADMINISTRATIVO values (2, 'Pérez', 'Larraz', 'password', '11244366Z', null, 'Teodobo', 'usuario67');
+insert into ADMINISTRATIVO values (3, 'Domínguez', 'Laurel', 'password', '11443377A', null, 'John', 'usuario68');
+
 --profesional
 insert into PROFESIONAL values (1, 'Vercetti', 'Pérez','1234', '11223344E',null, 'John','usuario1');
 insert into PROFESIONAL values (3, 'García', 'de Laghetto','1234', '12243541D',null, 'Ron','usuario2');
@@ -16,10 +21,11 @@ insert into CIUDADANO values (7, 'Fernández', 'Suárez' , '55223344K','01/12/18
 insert into CIUDADANO values (9, 'García-Faure', 'Torres' , '35243342E','01/20/1994',null,4000, 'ESPAÑA', 'Álvaro');
 insert into CIUDADANO values (11, 'Puerto', 'San Román' , '24249942R','11/20/1994',null,1000, 'ESPAÑA', 'Haritz');
 insert into CIUDADANO values (2, 'Filopeña', 'Faríbico', '44553311A', '08/15/1978',null,1500, 'ESPAÑA', 'Fausto');
-insert into CIUDADANO values (4, 'Ónix', 'López', '22553311B', '03/01/1962', null,900, 'ESPAÑA', 'Patrisano');
+insert into CIUDADANO values (4, 'Ónix', 'López', '22553311B', '03/01/1962', null,900,'ESPAÑA', 'Patrisano');
 insert into CIUDADANO values (6, 'Bab', '', '44553122C', '10/08/1992', null,1500,'TAILANDIA', 'Edorrica');
 insert into CIUDADANO values (8, 'Gandalfín', 'Ajonjolí', '41552319D', '02/17/1955',null,756, 'ESPAÑA', 'Lucrecia');
 insert into CIUDADANO values (10, 'Vingrede', 'Custodia', '12553771C', '11/09/1980',null,4520, 'ESPAÑA', 'Poncio Teobaldo');
+
 
 --expedientes
 insert into EXPEDIENTE values (1, 'RONDA', '11/11/1111', 'RONDA', 1);
@@ -41,41 +47,41 @@ insert into CITA values (5, '',3, '08/03/1990', 'SESION INFORMATIVA', 1, 5);
 insert into CITA values (7, 'solicitud y tramitación',1, '07/03/1990', 'TELEASISTENCIA', 5, 3);
 insert into CITA values (9, 'solicitud de atención',1, '04/11/2015', 'TELEASISTENCIA', 9, 5);
 insert into CITA values (11, 'mantenimiento GITHUB',1, '05/11/2015', 'SERVICIO ATENCION', 11, 3);
-insert into CITA values (2, '',1, '02/08/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (4, '',1, '03/16/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (6, '',1, '03/21/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (8, '',1, '03/24/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (10, '',1, '04/02/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (12, '',1, '04/05/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (13, '',1, '04/08/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (14, '',1, '04/09/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (15, '',1, '04/11/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (16, '',1, '04/15/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (17, '',1, '04/16/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (18, '',1, '04/19/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (19, '',1, '04/22/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (20, '',1, '04/27/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (21, '',1, '04/29/2013', 'FONTANERÍA', 2, 2);
-insert into CITA values (22, '',1, '06/09/2428', 'FONTANERÍA', 2, 2);	
+insert into CITA values (2, '',1, '02/08/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (4, '',1, '03/16/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (6, '',0, '03/21/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (8, '',1, '03/24/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (10, '',2, '04/02/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (12, '',1, '04/05/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (13, '',2, '04/08/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (14, '',2, '04/09/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (15, '',3, '04/11/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (16, '',1, '04/15/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (17, '',2, '04/16/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (18, '',1, '04/19/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (19, '',1, '04/22/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (20, '',0, '04/27/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (21, '',1, '04/29/2015', 'FONTANERÍA', 2, 2);
+insert into CITA values (22, '',0, '06/09/2428', 'FONTANERÍA', 2, 2);	
 insert into CITA values (23, '',2, '05/12/1993', 'SERVICIOS SANITARIOS', 4, 6);	
 
 
 --intervenciones
-insert into INTERVENCIONES values (1, 'Obturación obstruida', '02/08/2013', 2, 2);
-insert into INTERVENCIONES values (2, 'Obturación sigue obstruida y se oyen voces', '03/16/2013', 4, 2);
-insert into INTERVENCIONES values (3, 'Persiste problema. Llamada furgoneta de recambio', '03/21/2013', 6, 2);
-insert into INTERVENCIONES values (4, 'Problema parecía resuelto pero no. Furgoneta de recambio insiste en que no es de su competencia. Llamada segunda furgoneta de recambio', '03/24/2013', 8, 2);
-insert into INTERVENCIONES values (5, 'El musgo verde se ha extendido por las paredes del recibidor. Probados desinfectante y llave inglesa', '04/02/2013', 10, 2);
-insert into INTERVENCIONES values (6, 'El desinfectante solo parece alimentar al parásito. La llave inglesa ha tenido algo más de efecto. Las voces hablan ahora sobre la guerra del Golfo', '04/05/2013',12, 2);
-insert into INTERVENCIONES values (7, 'Posteriores aplicaciones de la llave inglesa solo resultan en eslóganes ecologistas. Musgo tiene ahora forma de cara de María Magdalena. Segunda furgoneta de recambio deja la vivienda', '04/08/2013',13, 2);
-insert into INTERVENCIONES values (8, 'A las tres de la madrugada el musgo comienza a llamar por teléfono. La segunda furgoneta de recambio vuelve pero no consigue acceder a la vivienda. El parásito produce ahora su propio desinfectante. El baño está limpio y resbaladizo', '04/09/2013',14, 2);
-insert into INTERVENCIONES values (9, 'No es posible acceder sin suelas antideslizantes. El parásito parece tener consciencia propia; intentos de convencerlo de que deje de producir desinfectante resultan en complicada discusión ontológica. Tercera furgoneta de recambio en camino', '04/11/2013',15, 2);
-insert into INTERVENCIONES values (10, 'Musgo abandona la vivienda y se instala en el pasillo. Tercera furgoneta de recambio olvidó las suelas antideslizantes y las máscaras de gas', '04/15/2013', 16, 2);
-insert into INTERVENCIONES values (11, 'Parásito accede a filmoteca del inquilino y absorbe DVD de Billy Elliot. Se escucha música de ballet durante toda la noche. Furgoneta de recambio atascada en Alcalá', '04/16/2013', 17, 2);
-insert into INTERVENCIONES values (12, 'Tercera furgoneta de recambio irrumpe por fin en baño. Diagnostica problema agravado por llave inglesa. Discusión con parásito sobre claqué y bachata', '04/19/2013',  18, 2);
-insert into INTERVENCIONES values (13, 'Musgo es ahora problema de otro vecino. Tercera furgoneta de recambio abandona el domicilio tras tres días de esfuerzo infructuoso. Parásito empecinado en superioridad del Método Vaganova. Muy insistente.', '04/22/2013', 19, 2);
-insert into INTERVENCIONES values (14, 'Imposible convencer a parásito de nada. Desde el piso del vecino se oyen cánticos marxistas. Suelas antideslizantes inutilizadas', '04/27/2013',  20, 2);
-insert into INTERVENCIONES values (15, 'Cánticos marxistas distraen ahora a todo el edificio. Parásito es un maldito terco y no admite influencias italianas en ballet ruso. Supervivencia del vecindario en peligro', '04/29/2013',  21, 2);
+insert into INTERVENCIONES values (1, 'Obturación obstruida', '02/08/2015', 2, 2);
+insert into INTERVENCIONES values (2, 'Obturación sigue obstruida y se oyen voces', '03/16/2015', 4, 2);
+insert into INTERVENCIONES values (3, 'Persiste problema. Llamada furgoneta de recambio', '03/21/2015', 6, 2);
+insert into INTERVENCIONES values (4, 'Problema parecía resuelto pero no. Furgoneta de recambio insiste en que no es de su competencia. Llamada segunda furgoneta de recambio', '03/24/2015', 8, 2);
+insert into INTERVENCIONES values (5, 'El musgo verde se ha extendido por las paredes del recibidor. Probados desinfectante y llave inglesa', '04/02/2015', 10, 2);
+insert into INTERVENCIONES values (6, 'El desinfectante solo parece alimentar al parásito. La llave inglesa ha tenido algo más de efecto. Las voces hablan ahora sobre la guerra del Golfo', '04/05/2015',12, 2);
+insert into INTERVENCIONES values (7, 'Posteriores aplicaciones de la llave inglesa solo resultan en eslóganes ecologistas. Musgo tiene ahora forma de cara de María Magdalena. Segunda furgoneta de recambio deja la vivienda', '04/08/2015',13, 2);
+insert into INTERVENCIONES values (8, 'A las tres de la madrugada el musgo comienza a llamar por teléfono. La segunda furgoneta de recambio vuelve pero no consigue acceder a la vivienda. El parásito produce ahora su propio desinfectante. El baño está limpio y resbaladizo', '04/09/2015',14, 2);
+insert into INTERVENCIONES values (9, 'No es posible acceder sin suelas antideslizantes. El parásito parece tener consciencia propia; intentos de convencerlo de que deje de producir desinfectante resultan en complicada discusión ontológica. Tercera furgoneta de recambio en camino', '04/11/2015',15, 2);
+insert into INTERVENCIONES values (10, 'Musgo abandona la vivienda y se instala en el pasillo. Tercera furgoneta de recambio olvidó las suelas antideslizantes y las máscaras de gas', '04/15/2015', 16, 2);
+insert into INTERVENCIONES values (11, 'Parásito accede a filmoteca del inquilino y absorbe DVD de Billy Elliot. Se escucha música de ballet durante toda la noche. Furgoneta de recambio atascada en Alcalá', '04/16/2015', 17, 2);
+insert into INTERVENCIONES values (12, 'Tercera furgoneta de recambio irrumpe por fin en baño. Diagnostica problema agravado por llave inglesa. Discusión con parásito sobre claqué y bachata', '04/19/2015',  18, 2);
+insert into INTERVENCIONES values (13, 'Musgo es ahora problema de otro vecino. Tercera furgoneta de recambio abandona el domicilio tras tres días de esfuerzo infructuoso. Parásito empecinado en superioridad del Método Vaganova. Muy insistente.', '04/22/2015', 19, 2);
+insert into INTERVENCIONES values (14, 'Imposible convencer a parásito de nada. Desde el piso del vecino se oyen cánticos marxistas. Suelas antideslizantes inutilizadas', '04/27/2015',  20, 2);
+insert into INTERVENCIONES values (15, 'Cánticos marxistas distraen ahora a todo el edificio. Parásito es un maldito terco y no admite influencias italianas en ballet ruso. Supervivencia del vecindario en peligro', '04/29/2015',  21, 2);
 insert into INTERVENCIONES values (16, 'Método Vaganova implantado como obligatorio y universal en el planeta Tierra. Procediendo a la expansión interestelar. Llamada de emergencia A29#24', '06/09/2428', 22, 2);	
 insert into INTERVENCIONES values (17, 'Comida para gatos anunciada falsamente como "con alto contenido en hierro". Daños aún por cuantificar', '05/12/1993', 6, 4);	
 	
@@ -106,3 +112,4 @@ insert into FAMILIAR values (1, 'Henrik', 'Abel', '33221100K', '02/02/1992',900,
 insert into FAMILIAR values (3, 'García-Faure', 'Torres', '32221110B', '04/02/1995',0,'','Jonatan','HERMANO', 9);
 insert into FAMILIAR values (2, 'Filopeña', 'Faríbico', '44663399C', '02/19/1974',600,'','Godofreda','HERMANA', 2);
 insert into FAMILIAR values (4, 'Bab', '', '42263249C', '08/05/1967',1000,'','Aristides','PADRE', 4);
+
