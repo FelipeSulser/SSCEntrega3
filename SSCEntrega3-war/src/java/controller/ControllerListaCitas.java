@@ -5,14 +5,10 @@
  */
 package controller;
 
-import dao.DaoCita;
 import ejb.ListaCitasEJB;
 import java.io.IOException;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
-
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
