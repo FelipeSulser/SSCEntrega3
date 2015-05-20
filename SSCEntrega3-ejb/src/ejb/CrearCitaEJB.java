@@ -62,7 +62,7 @@ public class CrearCitaEJB {
     }
 
     public Long getCitaId(Cita cita) {
-        cita = em.find(Cita.class, cita);
+        cita = em.merge(cita);
         return cita.getId();
     }
     
