@@ -57,10 +57,7 @@
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
                         </p:inputMask>
 
-                        <h:outputLabel id="lbl_detallesAgendaTo" for="detallesAgendaTo" value="Termina el:" />
-                        <p:inputMask id="detallesAgendaTo" value="#{scheduleView.event.endDate}" mask="99/99/9999" readonly="true">
-                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
-                        </p:inputMask>
+                        
 
                         <h:commandButton id="botonVerDetallesCita" class="btn btn-info" value="Acceder a la cita" action="info_cita.xhtml"/> 
 
