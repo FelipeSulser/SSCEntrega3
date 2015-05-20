@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
 import model.jpa.ssc.Profesional;
 
 /**
@@ -62,6 +63,7 @@ public class SesionBean implements Serializable{
     public void setTotalIntervenciones(int totalIntervenciones) {
         this.totalIntervenciones = totalIntervenciones;
     }
+    
     
     
     

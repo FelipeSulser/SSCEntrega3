@@ -21,6 +21,7 @@ import javax.faces.bean.SessionScoped;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.EstadoCita;
 
@@ -53,7 +54,7 @@ public class ScheduleView implements Serializable {
     public void init() {
         
         eventModel = new DefaultScheduleModel();
-        List<Cita> l = agendaEjb.getCitas(2); //SesionBean tiene que tener eso bien implementado     
+        List<Cita> l = agendaEjb.getCitas(SB.getUserId()); //SesionBean tiene que tener eso bien implementado     
         if(!l.isEmpty()){
             for(Cita c : l){
                 eventModel.addEvent(new AdvancedScheduleEvent(c.getTipo_de_cita(), c.getFecha(),
