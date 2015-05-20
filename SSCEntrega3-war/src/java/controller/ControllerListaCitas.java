@@ -5,25 +5,27 @@
  */
 package controller;
 
-import dao.DaoCita;
+import ejb.ListaCitasEJB;
 import java.io.IOException;
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 import model.jpa.ssc.Cita;
 
 /**
  *
  * @author felipesulser
  */
-@ManagedBean(name="ctrListaCita")
+@Named(value="ctrListaCita")
 @RequestScoped
 public class ControllerListaCitas {
     
     //Los admins pueden ver todas las citas y eliminar cualquier cita!!
-    private DaoCita daoCitas;
+   
+    @Inject
+    private ListaCitasEJB listaCitas;
     
     
     
@@ -31,13 +33,10 @@ public class ControllerListaCitas {
     
     
     
-     @PostConstruct
-    public void init() {
-        daoCitas = new DaoCita();
-        citas = daoCitas.getAllCitas();
-    }
+    
 
     public List<Cita> getCitas() {
+        citas = listaCitas.getCitas();
         return citas;
     }
 
@@ -46,13 +45,14 @@ public class ControllerListaCitas {
     }
     
     public String verCita(Long id){
+        
+        //TO_DO, pasarle al Backing bean de info cita la ID de la cita
         return "info_cita.xhtml";
     }
     
     
     public void eliminar(Long id) throws IOException{
-        //eliminar la cita, por ahora no hace nada
-        //TODO add EJB logic
-         FacesContext.getCurrentInstance().getExternalContext().redirect("lista_citas.xhtml");
+        listaCitas.eliminar(id);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("lista_citas.xhtml");
     }
 }
