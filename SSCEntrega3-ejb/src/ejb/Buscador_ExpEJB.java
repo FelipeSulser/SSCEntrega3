@@ -7,14 +7,12 @@ package ejb;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Expediente;
@@ -33,63 +31,63 @@ public class Buscador_ExpEJB {
    
     public List<Expediente> getExpedientes(Long id, String apellido1, String apellido2, String nombre) {
         List<Expediente> exps = new ArrayList();
-      if(id != null && !id.equals(new Long(0))){
+        if(id != null && !id.equals(new Long(0))){
           
           //si proporciona una id, la búsqueda se hace por id
-      Expediente onlyOne = em.find(Expediente.class,id);
-      exps.add(onlyOne);
-      return exps;
+        Expediente onlyOne = em.find(Expediente.class,id);
+        exps.add(onlyOne);
+        return exps;
                
-      }else{
-         
+        }else{
           //now do all queries by parameters
-          if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
-              return exps;
-          }
-          if(apellido1.equals("") && apellido2.equals("")){
-              TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre)",Ciudadano.class);
-              for(Ciudadano s : q.setParameter("nombre", nombre).getResultList()){
-                  exps.add(s.getExpediente_personal());
-              }
-              return exps;
-          }
-          if(apellido1.equals("") && nombre.equals("")){
-               TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
-              for(Ciudadano s : q.setParameter("nombre", apellido2).getResultList()){
-                  exps.add(s.getExpediente_personal());
-              }
-              return exps;
-          }
-          if(apellido2.equals("") && nombre.equals("")){
-                 TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
-              for(Ciudadano s : q.setParameter("nombre", apellido1).getResultList()){
-                  exps.add(s.getExpediente_personal());
-              }
-              return exps;
-          }
-          if(apellido2.equals("")){
+            if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
+                return exps;
+            }
+            if(apellido1.equals("") && apellido2.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre)",Ciudadano.class);
+                for(Ciudadano s : q.setParameter("nombre", nombre).getResultList()){
+                    exps.add(s.getExpediente_personal());
+                }
+                return exps;
+            }
+        
+            if(apellido1.equals("") && nombre.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
+                for(Ciudadano s : q.setParameter("nombre", apellido2).getResultList()){
+                    exps.add(s.getExpediente_personal());
+                }
+                return exps;
+            }
+            if(apellido2.equals("") && nombre.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
+                for(Ciudadano s : q.setParameter("nombre", apellido1).getResultList()){
+                    exps.add(s.getExpediente_personal());
+                }
+                return exps;
+            }
+            if(apellido2.equals("")){
                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre) AND UPPER(c.apellido1) = UPPER(:ap)",Ciudadano.class);
-              for(Ciudadano s : q.setParameter("nombre", nombre).setParameter("ap", apellido1).getResultList()){
-                  exps.add(s.getExpediente_personal());
-              }
-              return exps;
-          }
-          if(apellido1.equals("")){
-              TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap)",Ciudadano.class);
-              for(Ciudadano s : q.setParameter("nombre", nombre).setParameter("ap", apellido2).getResultList()){
-                  exps.add(s.getExpediente_personal());
-              }
-              return exps;
-          }
-          if(nombre.equals("")){
-               TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap)",Ciudadano.class);
-              for(Ciudadano s : q.setParameter("nombre", apellido1).setParameter("ap", apellido2).getResultList()){
-                  exps.add(s.getExpediente_personal());
-              }
-              return exps;
-          }
-      }
-      return exps;
+                for(Ciudadano s : q.setParameter("nombre", nombre).setParameter("ap", apellido1).getResultList()){
+                    exps.add(s.getExpediente_personal());
+                }
+                return exps;
+            }
+            if(apellido1.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap)",Ciudadano.class);
+                for(Ciudadano s : q.setParameter("nombre", nombre).setParameter("ap", apellido2).getResultList()){
+                    exps.add(s.getExpediente_personal());
+                }
+                return exps;
+            }
+            if(nombre.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap)",Ciudadano.class);
+                for(Ciudadano s : q.setParameter("nombre", apellido1).setParameter("ap", apellido2).getResultList()){
+                    exps.add(s.getExpediente_personal());
+                }
+                return exps;
+            }
+        }
+        return exps;
     }
     
   
@@ -112,82 +110,77 @@ public class Buscador_ExpEJB {
 
     public String getNombre(Long id) {
         TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where c.expediente_personal.id = :idx",Ciudadano.class);
-            q.setParameter("idx", id);
-                 Ciudadano ciu = q.getSingleResult();
-              return ciu.getNombre() +" "+ciu.getApellido1()+" "+ciu.getApellido2();
+        q.setParameter("idx", id);
+        Ciudadano ciu = q.getSingleResult();
+        return ciu.getNombre() +" "+ciu.getApellido1()+" "+ciu.getApellido2();
     }
 
     public Map<Long,Ciudadano> getCiudadanos(Long id, String apellido1, String apellido2, String nombre) {
-       List<Ciudadano> exps = new ArrayList();
-       Map<Long,Ciudadano> myMap = new HashMap();
-      if(id != null && !id.equals(new Long(0))){
+        List<Ciudadano> exps = new ArrayList();
+        Map<Long,Ciudadano> myMap = new HashMap();
+        if(id != null && !id.equals(new Long(0))){
           
-          //si proporciona una id, la búsqueda se hace por id
-       TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where c.expediente_personal.id = :idx",Ciudadano.class);
-       q.setParameter("idx", id);
-       Ciudadano ciu = q.getSingleResult();
-       myMap.put(ciu.getExpediente_personal().getId(), ciu);
-      return myMap;
+        //si proporciona una id, la búsqueda se hace por id
+        TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where c.expediente_personal.id = :idx",Ciudadano.class);
+        q.setParameter("idx", id);
+        Ciudadano ciu = q.getSingleResult();
+        myMap.put(ciu.getExpediente_personal().getId(), ciu);
+        return myMap;
                
-      }else{
+        }else{
           //now do all queries by parameters
-          if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
-              return myMap;
-          }
-          if(apellido1.equals("") && apellido2.equals("")){
-              TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre)",Ciudadano.class);
-              for(Ciudadano ci :q.setParameter("nombre", nombre).getResultList()){
-                  myMap.put(ci.getExpediente_personal().getId(), ci);
-              }
-             return myMap;
-          }
-          if(apellido1.equals("") && nombre.equals("")){
-               TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
-               
-               List<Ciudadano> li = q.setParameter("nombre", apellido2).getResultList();
-               for(Ciudadano ci : li){
-                   myMap.put(ci.getExpediente_personal().getId(),ci);
-               }
-               return myMap;
-          }
-          if(apellido2.equals("") && nombre.equals("")){
-                 TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
-                  List<Ciudadano> li =  q.setParameter("nombre", apellido1).getResultList();
-                  for(Ciudadano ci: li){
-                      myMap.put(ci.getExpediente_personal().getId(), ci);
-                  }
+            if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
                 return myMap;
-          }
-          if(apellido2.equals("")){
-               TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre) AND UPPER(c.apellido1) = UPPER(:ap)",Ciudadano.class);
-               List<Ciudadano> li =  q.setParameter("nombre", nombre).setParameter("ap", apellido1).getResultList();
-               for(Ciudadano ci: li){
-                   myMap.put(ci.getExpediente_personal().getId(), ci);
-               }
-               return myMap;
+            }
+            if(apellido1.equals("") && apellido2.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre)",Ciudadano.class);
+                for(Ciudadano ci :q.setParameter("nombre", nombre).getResultList()){
+                    myMap.put(ci.getExpediente_personal().getId(), ci);
+                }
+                return myMap;
+            }
+            if(apellido1.equals("") && nombre.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);               
+                List<Ciudadano> li = q.setParameter("nombre", apellido2).getResultList();
+                for(Ciudadano ci : li){
+                    myMap.put(ci.getExpediente_personal().getId(),ci);
+                }
+                return myMap;
+            }
+            if(apellido2.equals("") && nombre.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
+                List<Ciudadano> li =  q.setParameter("nombre", apellido1).getResultList();
+                for(Ciudadano ci: li){
+                    myMap.put(ci.getExpediente_personal().getId(), ci);
+                }
+                return myMap;
+            }
+            if(apellido2.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre) AND UPPER(c.apellido1) = UPPER(:ap)",Ciudadano.class);
+                List<Ciudadano> li =  q.setParameter("nombre", nombre).setParameter("ap", apellido1).getResultList();
+                for(Ciudadano ci: li){
+                    myMap.put(ci.getExpediente_personal().getId(), ci);
+                }
+                return myMap;
                 
-          }
-          if(apellido1.equals("")){
-              TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap)",Ciudadano.class);
-             List<Ciudadano> li =  q.setParameter("nombre", nombre).setParameter("ap", apellido2).getResultList();
-             for(Ciudadano ci : li){
-                 myMap.put(ci.getExpediente_personal().getId(),ci);
-             }
-             return myMap;
-                  
-          }
-          if(nombre.equals("")){
-               TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap)",Ciudadano.class);
-               List<Ciudadano> li =  q.setParameter("nombre", apellido1).setParameter("ap", apellido2).getResultList();
-               for(Ciudadano ci: li){
-                   myMap.put(ci.getExpediente_personal().getId(),ci);
-               }
-               return myMap;
-          }
-      }
-      return myMap;   
+            }
+            if(apellido1.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.nombre) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap)",Ciudadano.class);
+                List<Ciudadano> li =  q.setParameter("nombre", nombre).setParameter("ap", apellido2).getResultList();
+                for(Ciudadano ci : li){
+                    myMap.put(ci.getExpediente_personal().getId(),ci);
+                }
+                return myMap;              
+            }
+            if(nombre.equals("")){
+                TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap)",Ciudadano.class);
+                List<Ciudadano> li =  q.setParameter("nombre", apellido1).setParameter("ap", apellido2).getResultList();
+                for(Ciudadano ci: li){
+                    myMap.put(ci.getExpediente_personal().getId(),ci);
+                }
+                return myMap;
+            }
+        }
+        return myMap;   
     }
-
-  
 }
-       
