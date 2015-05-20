@@ -143,7 +143,7 @@ public class ControllerNuevaCita implements Serializable {
             cita.setEstado(EstadoCita.citaPlanificada);
             cita.setFecha(date);
             cita.setTipo_de_cita(tipoCita);
-            cita.setIntervenciones(null); //Al crear una cita no puede haber ninguna intervención todavía.
+          
         
             crearCitaBean.setCita(cita);
             controladorCita.browsePage(crearCitaBean.getCitaId(cita));

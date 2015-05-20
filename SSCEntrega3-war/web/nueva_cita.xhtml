@@ -22,7 +22,7 @@
                     DNI del ciudadano: <h:inputText id="dni_ciudadano" size="9" maxlength="9" value="#{ctrNuevaCita.DNICiudadano}"/>
                     DNI del profesional: <h:inputText id="dni_profesional" size="9" maxlength ="9" value="#{ctrNuevaCita.DNIProfesional}" />
                     Fecha: <p:calendar id="calendario" pattern="dd/MM/yyyy" value="#{ctrNuevaCita.fecha}" />
-                    Tipo de cita: <h:inputText id="tipo_cita" value="#{ctrNuevaCita.tipoCita}"/>
+                    Tipo de cita: <h:inputText id="tipo_cita" value="#{ctrNuevaCita.tipoCita}"/>   
                     Detalle de la gestión : <h:inputText id="detalle_gestion" value="#{ctrNuevaCita.detalleGestion}" /> 
                     <h:commandButton id="enviar" value="Enviar" action="#{ctrNuevaCita.persistCita()}" > </h:commandButton>
                     

@@ -47,7 +47,7 @@ public class CrearCitaEJB {
 
     public Profesional getProfesional(String DNIProfesional) throws ProfesionalNotFoundException {
         try{
-            String stringQuery = "SELECT c FROM Ciudadano c WHERE c.dni = '"  +DNIProfesional + "'";
+            String stringQuery = "SELECT c FROM Profesional c WHERE c.dni = '"  +DNIProfesional + "'";
             Query query;
             query = em.createQuery(stringQuery, Profesional.class);
             profesional = (Profesional) query.getSingleResult();
