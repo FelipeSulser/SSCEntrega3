@@ -26,12 +26,8 @@ public class ListaCitasEJB {
     private EntityManager em;
 
     public List<Cita> getCitas() {
-        
         TypedQuery<Cita> q = em.createQuery("Select c from Cita c",Cita.class);
-        
-        
-        return q.getResultList();
-             
+        return q.getResultList();     
     }
 
     public void eliminar(Long id) {
@@ -39,10 +35,7 @@ public class ListaCitasEJB {
         if(c != null){
             em.remove(c);
         }
-        }
-    
-    
-    
-    
+    }
+
     
 }
