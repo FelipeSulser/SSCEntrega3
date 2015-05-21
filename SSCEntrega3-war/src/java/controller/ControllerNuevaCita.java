@@ -127,7 +127,7 @@ public class ControllerNuevaCita implements Serializable {
 
     
     
-    public void persistCita() throws IOException{
+    public String persistCita() throws IOException{
         try {
             ciudadano = crearCitaBean.getCiudadano(DNICiudadano);
             profesional = crearCitaBean.getProfesional(DNIProfesional);       
@@ -145,13 +145,15 @@ public class ControllerNuevaCita implements Serializable {
           
         
             crearCitaBean.setCita(cita);
-            controladorCita.browsePage(crearCitaBean.getCitaId(cita));
+            return controladorCita.browsePage(crearCitaBean.getCitaId(cita));
         } catch (CiudadanoNotFoundException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
             String error = "No se encuentra al ciudadano con DNI " + e.getMessage() +
                     " en la base de datos. Es posible que esté mal escrito o"
                     + " que no se haya dado de alta aún";
             ctx.addMessage(DNICiudadano, new FacesMessage(error));
+            
+            return null;
             
             //Logger.getLogger(ControllerNuevaCita.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ProfesionalNotFoundException e) {
@@ -161,6 +163,8 @@ public class ControllerNuevaCita implements Serializable {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(DNICiudadano, new FacesMessage(error));
             //Logger.getLogger(ControllerNuevaCita.class.getName()).log(Level.SEVERE, null, ex);
+            
+            return null;
         }
 
     }
