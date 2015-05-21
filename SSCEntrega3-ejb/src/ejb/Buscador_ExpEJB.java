@@ -61,7 +61,7 @@ public class Buscador_ExpEJB {
               return exps;
           }
           if(apellido2.equals("") && nombre.equals("")){
-                 TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
+                 TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre)",Ciudadano.class);
               for(Ciudadano s : q.setParameter("nombre", apellido1).getResultList()){
                   exps.add(s.getExpediente_personal());
               }
@@ -87,9 +87,15 @@ public class Buscador_ExpEJB {
                   exps.add(s.getExpediente_personal());
               }
               return exps;
+          }else{
+              TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap) AND UPPER(c.nombre) = UPPER(:nom)",Ciudadano.class);
+              for(Ciudadano s : q.setParameter("nombre", apellido1).setParameter("ap", apellido2).setParameter("nom",nombre).getResultList()){
+                  exps.add(s.getExpediente_personal());
+              }
+              return exps;
           }
       }
-      return exps;
+     
     }
     
   
@@ -185,9 +191,17 @@ public class Buscador_ExpEJB {
                    myMap.put(ci.getExpediente_personal().getId(),ci);
                }
                return myMap;
+          }else{
+              TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre) AND UPPER(c.apellido2) = UPPER(:ap) AND UPPER(c.nombre) = UPPER(:nom)",Ciudadano.class);
+             List<Ciudadano> li ;
+             li =  q.setParameter("nombre", apellido1).setParameter("ap", apellido2).setParameter("nom",nombre).getResultList();
+                 for(Ciudadano ci: li){
+              myMap.put(ci.getExpediente_personal().getId(),ci);
+              }
+              return myMap;
           }
       }
-      return myMap;   
+     
     }
 
   
