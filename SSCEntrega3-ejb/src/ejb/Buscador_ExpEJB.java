@@ -30,7 +30,7 @@ public class Buscador_ExpEJB {
     @PersistenceContext(unitName="SSCPU")
     private EntityManager em;
     
-   
+  
     public List<Expediente> getExpedientes(Long id, String apellido1, String apellido2, String nombre) {
         List<Expediente> exps = new ArrayList();
       if(id != null && !id.equals(new Long(0))){
@@ -40,7 +40,7 @@ public class Buscador_ExpEJB {
       exps.add(onlyOne);
       return exps;
                
-      }else{
+      }else if (apellido1 != null && apellido2 != null && nombre!= null){
          
           //now do all queries by parameters
           if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
@@ -129,8 +129,9 @@ public class Buscador_ExpEJB {
        myMap.put(ciu.getExpediente_personal().getId(), ciu);
       return myMap;
                
-      }else{
+      }else if(apellido1 != null && apellido2 != null && nombre!= null){
           //now do all queries by parameters
+          
           if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
               return myMap;
           }

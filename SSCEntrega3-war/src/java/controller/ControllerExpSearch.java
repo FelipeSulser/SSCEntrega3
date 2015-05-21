@@ -10,10 +10,12 @@ import ejb.Buscador_ExpEJB;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import model.jpa.ssc.Ciudadano;
 
@@ -100,7 +102,8 @@ public class ControllerExpSearch implements Serializable{
     }
 
     public void setExp_id(long exp_id) {
-        this.exp_id = exp_id;
+        this.exp_id = exp_id; 
     }
-    
+
+  
 }
