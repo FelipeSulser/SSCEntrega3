@@ -89,6 +89,11 @@ public class Profesional implements Serializable {
     public String getApellido2(){
         return apellido2;
     }
+    
+    public String getNombreCompleto(){
+        return nombre+" "+apellido1+" "+apellido2;
+    }
+    
     public Long getId() {
         return id;
     }

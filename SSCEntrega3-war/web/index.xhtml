@@ -111,11 +111,11 @@
                         <p class="estilo2"><h:outputText value="Mi perfil"/></p>
                         <p:toolbar></p:toolbar>
                         <br></br>
-                        <img src="./resources/images/#{sesionBean.user.image}"/>
-                        <p>Su usuario es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{sesionBean.user.usuario}"></h:outputText></p>
-                        <p>Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{sesionBean.user.dni}"></h:outputText></p>
-                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{sesionBean.citasHoy}"></h:outputText></p>
-                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{sesionBean.totalIntervenciones}"></h:outputText> </p>
+                        <img src="./resources/images/#{ctrLogin.image}"/>
+                        <p>Su usuario es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
+                        <p>Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.dni}"></h:outputText></p>
+                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{ctrLogin.citasHoy}"></h:outputText></p>
+                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{ctrLogin.totalIntervenciones}"></h:outputText> </p>
                         <p:separator/>
 
                     </p:layoutUnit>

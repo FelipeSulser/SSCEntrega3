@@ -99,7 +99,9 @@ public class Administrativo implements Serializable {
         this.apellido2 = apellido2;
     }
     
-    
+    public String getNombreCompleto(){
+        return nombre+" "+apellido1+" "+apellido2;
+    }
     
     public void setId(Long id) {
         this.id = id;
