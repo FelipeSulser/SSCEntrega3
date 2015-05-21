@@ -190,6 +190,11 @@ public class ControllerLogin implements Serializable{
         this.totalIntervenciones = totalIntervenciones;
     }
 
+    long getUserId() {
+       if(isAdmin) return admin.getId();
+       else return pro.getId();
+    }
+
   
     
     

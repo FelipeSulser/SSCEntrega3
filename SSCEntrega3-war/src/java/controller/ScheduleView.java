@@ -14,10 +14,11 @@ import javax.annotation.PostConstruct;
 
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -45,8 +46,8 @@ public class ScheduleView implements Serializable {
     private AgendaEJB agendaEjb;
     private ScheduleModel eventModel; 
     
-    @ManagedProperty(value="#{sesionBean}")
-    private SesionBean SB;
+    @ManagedProperty(value="#{ctrLogin}")
+    private ControllerLogin SB;
 
     private ScheduleEvent event = new AdvancedScheduleEvent();
 
@@ -81,10 +82,10 @@ public class ScheduleView implements Serializable {
         eventModel.addEvent(new AdvancedScheduleEvent("Revisión sanitaria", start, end, "cssCitaOtroProfesional", 3, "", "REVISION", c));
         */
     }
-    public SesionBean getSB(){
+    public ControllerLogin getSB(){
         return SB;
     }
-    public void setSB(SesionBean SB) {
+    public void setSB(ControllerLogin SB) {
         this.SB = SB;
     }
     public String returnCssCitaTipo(EstadoCita ec){
