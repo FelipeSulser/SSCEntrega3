@@ -60,6 +60,7 @@ public class ControllerLogin implements Serializable{
         }else if(usuario instanceof Administrativo){ //Administrativo
             this.setIsAdmin(true);
             this.setNombreDeUsuario(((Administrativo) usuario).getNombreCompleto());
+            
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         }else{
             // We put a message inside the flash

@@ -12,6 +12,8 @@ import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import model.jpa.ssc.Profesional;
 
 /**
  *
@@ -31,23 +33,23 @@ public class LoginEJB {
      */    
     public Object existeUsuario(String user, String password){
         //create an ejbql expression
-        String ejbQL = "From Profesional p where p.usuario = ?1 and p.contrasenia = ?2";
+        String ejbQL = "Select p from Profesional p where p.usuario = :name and p.contrasenia = :contrasenia";
         //create query
-        Query query = em.createQuery(ejbQL);
-        query.setParameter(1, user);
-        query.setParameter(2, hashSHA256(password));
+        TypedQuery<Profesional> q = em.createQuery(ejbQL, Profesional.class);
+        q.setParameter("name",user).setParameter("contrasenia", hashSHA256(password));
+
         //execute the query and check result
-        List result = query.getResultList();
+        List<Profesional> result = q.getResultList();
         // No existe el usuario Profesional comprobamos Administrativo
         if(result.isEmpty()){
             //create an ejbql expression
-            ejbQL = "From Administrativo a where a.usuario = ?1 and a.contrasenia = ?2";
+            ejbQL = "Select a from Administrativo a where a.usuario = :name and a.contrasenia = :contrasenia";
             //create query
-            query = em.createQuery(ejbQL);
-            query.setParameter(1, user);
-            query.setParameter(2, hashSHA256(password));
+            q = em.createQuery(ejbQL,Profesional.class);
+            q.setParameter("name", user).setParameter("contrasenia", hashSHA256(password));
+           
             // Comprobamos resultado Si no, no existe usuario
-            result = query.getResultList();
+            result = q.getResultList();
             if(result.isEmpty()) return null; // no existe usuario
             else return result.get(0); // devolvemos el Administrativo
         } else return result.get(0); // devolvemos el Profesional
