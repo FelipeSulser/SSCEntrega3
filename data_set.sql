@@ -1,7 +1,11 @@
 --administrativo
-insert into ADMINISTRATIVO values (1, 'López', 'García', 'password', '11223344Z', null, 'Franchesco', 'usuario66');
-insert into ADMINISTRATIVO values (2, 'Pérez', 'Larraz', 'password', '11244366Z', null, 'Teodobo', 'usuario67');
-insert into ADMINISTRATIVO values (3, 'Domínguez', 'Laurel', 'password', '11443377A', null, 'John', 'usuario68');
+INSERT INTO APP.ADMINISTRATIVO (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (1, 'López', 'García', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11223344Z', NULL, 'Franchesco', 'usuario66');
+INSERT INTO APP.ADMINISTRATIVO (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (2, 'Pérez', 'Larraz', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11244366Z', NULL, 'Teodobo', 'usuario67');
+INSERT INTO APP.ADMINISTRATIVO (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (3, 'Domínguez', 'Laurel', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11443377A', NULL, 'John', 'usuario68');
+
 
 --profesional
 insert into PROFESIONAL values (1, 'Vercetti', 'Pérez','1234', '11223344E',null, 'John','usuario1');
