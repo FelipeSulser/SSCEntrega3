@@ -5,17 +5,27 @@
  */
 package controller;
 
+import ejb.AgendaEJB;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
+
+
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import model.jpa.ssc.Ciudadano;
- 
+import javax.inject.Named;
+import model.jpa.ssc.Cita;
+import model.jpa.ssc.EstadoCita;
+
+
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
@@ -29,16 +39,33 @@ import org.primefaces.model.ScheduleModel;
  */
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ScheduleView implements Serializable {
- 
+    @EJB
+    private AgendaEJB agendaEjb;
     private ScheduleModel eventModel; 
- 
-    private ScheduleEvent event = new AdvancedScheduleEvent();
     
- 
+    @ManagedProperty(value="#{sesionBean}")
+    private SesionBean SB;
+
+    private ScheduleEvent event = new AdvancedScheduleEvent();
+
     @PostConstruct
     public void init() {
+        
+        eventModel = new DefaultScheduleModel();
+        List<Cita> l = agendaEjb.getCitas(SB.getUserId()); //SesionBean tiene que tener eso bien implementado     
+        if(!l.isEmpty()){
+            for(Cita c : l){
+                eventModel.addEvent(new AdvancedScheduleEvent(c.getTipo_de_cita(), c.getFecha(),
+                c.getFecha(),returnCssCitaTipo(c.getEstado()),c.getId(),c.getComentarios(),c.getTipo_de_cita(),c.getCiudadano()));
+            }
+        }
+        
+        /*
+
+        
+        
         Ciudadano c = new Ciudadano();
         c.setNombre("Esteban");
         eventModel = new DefaultScheduleModel();
@@ -52,8 +79,33 @@ public class ScheduleView implements Serializable {
         start = anyDay(7,4);
         end = anyDay(7,5);
         eventModel.addEvent(new AdvancedScheduleEvent("Revisión sanitaria", start, end, "cssCitaOtroProfesional", 3, "", "REVISION", c));
- 
+        */
     }
+    public SesionBean getSB(){
+        return SB;
+    }
+    public void setSB(SesionBean SB) {
+        this.SB = SB;
+    }
+    public String returnCssCitaTipo(EstadoCita ec){
+        /*
+        citaPlanificada,    //Verde
+        ausencia,   //Rojo
+        noRealizada,    //Naranja
+        planificadaPorOtroProfesional   //Violeta
+        --------------------------
+        .cssCitaAusencia{
+        .cssCitaPlanificada{
+        .cssCitaNoRealizada{
+        .cssCitaOtroProfesional{
+
+        */
+        if(ec.equals(EstadoCita.ausencia)) return "cssCitaAusencia";
+        if(ec.equals(EstadoCita.citaPlanificada)) return "cssCitaPlanificada";
+        if(ec.equals(EstadoCita.noRealizada)) return "cssCitaNoRealizada";
+        return "cssCitaOtroProfesional";
+    }
+    
     public ScheduleModel getEventModel() {
         return eventModel;
     }     

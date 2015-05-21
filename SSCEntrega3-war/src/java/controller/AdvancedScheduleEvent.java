@@ -14,13 +14,13 @@ import org.primefaces.model.DefaultScheduleEvent;
  * @author Esteban
  */
 public class AdvancedScheduleEvent extends DefaultScheduleEvent{
-    private int citaID;
+    private long citaID;
     private String comentarios;
     private String tipo_de_cita;
     private Ciudadano ciudadano;
 
     
-    public AdvancedScheduleEvent(String desc, Date s, Date e, String cssClass, int cita, String coment, String tipocita, Ciudadano c){
+    public AdvancedScheduleEvent(String desc, Date s, Date e, String cssClass, long cita, String coment, String tipocita, Ciudadano c){
         super(desc, s, e, cssClass);
         super.setStyleClass(cssClass);
         citaID = cita;
@@ -33,7 +33,7 @@ public class AdvancedScheduleEvent extends DefaultScheduleEvent{
         super();
     }
     
-    public int getCitaID() {
+    public long getCitaID() {
         return citaID;
     }
 
