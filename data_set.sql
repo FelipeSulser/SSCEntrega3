@@ -8,13 +8,21 @@ INSERT INTO ADMINISTRATIVO (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, N
 
 
 --profesional
-insert into PROFESIONAL values (1, 'Vercetti', 'Pérez','1234', '11223344E',null, 'John','usuario1');
-insert into PROFESIONAL values (3, 'García', 'de Laghetto','1234', '12243541D',null, 'Ron','usuario2');
-insert into PROFESIONAL values (5, 'Milner', '', '34223342K','1234',null, 'Sam','usuario3');
-insert into PROFESIONAL values (2, 'Salvador', 'Solanera','1234', '31113322G',null, 'Saturnino','usuario4');
-insert into PROFESIONAL values (4, 'Sotomayor', 'Claus','1234', '664255542K',null, 'Eutropia','usuario5');
-insert into PROFESIONAL values (6, 'Buchubán', '','1234', '22442342G',null, 'Yobitabe','usuario6');
-insert into PROFESIONAL values (7, 'Alfrédez', 'César','1234', '99923342E',null, 'Natanaela','usuario7');
+INSERT INTO PROFESIONAL (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (1, 'Vercetti', 'Pérez', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', '11223344E', 'profile.png', 'John', 'usuario1');
+INSERT INTO PROFESIONAL (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (3, 'García', 'de Laghetto', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', '12243541D', 'profile.png', 'Ron', 'usuario2');
+INSERT INTO PROFESIONAL (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (5, 'Milner', '', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', '1234', 'profile.png', 'Sam', 'usuario3');
+INSERT INTO PROFESIONAL (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (2, 'Salvador', 'Solanera', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', '31113322G', 'profile.png', 'Saturnino', 'usuario4');
+INSERT INTO PROFESIONAL (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (4, 'Sotomayor', 'Claus', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', '664255542K', 'profile.png', 'Eutropia', 'usuario5');
+INSERT INTO PROFESIONAL (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (6, 'Buchubán', '', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', '22442342G', 'profile.png', 'Yobitabe', 'usuario6');
+INSERT INTO PROFESIONAL (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
+	VALUES (7, 'Alfrédez', 'César', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', '99923342E', 'profile.png', 'Natanaela', 'usuario7');
+
 
 
 --ciudadano
