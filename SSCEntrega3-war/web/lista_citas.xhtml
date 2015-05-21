@@ -47,8 +47,8 @@
                               <h:outputText id="ciudadano2" value="#{cita.ciudadano.nombre} #{cita.ciudadano.apellido1} #{cita.ciudadano.apellido2}" />
                     </p:column>
                     <p:column id="verCita" headerText="Ver cita">
-                       <h:commandButton id="btn-ver-cita" value="#{cita.id}" 
-                                        class="btn btn-info" action="#{controladorCita.browsePage(cita.id)}"/>
+                       <h:commandButton id="btn-ver-cita" value="Ver cita" 
+-                                        class="btn btn-info" action="#{ctrListaCita.verCita(cita.id)}"/>
 
                     </p:column>   
                    <p:column id="eliminar" headerText="Eliminar">
