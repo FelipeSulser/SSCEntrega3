@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import model.jpa.ssc.Administrativo;
 import model.jpa.ssc.Profesional;
 
 /**
@@ -24,6 +25,10 @@ import model.jpa.ssc.Profesional;
 public class LoginEJB {
     @PersistenceContext(unitName="SSCPU")
     private EntityManager em;
+    
+    private Profesional pro;
+    private Administrativo admin;
+    private boolean isAdmin;
 
     /**
      * Metodo que dado un usuario/contrasena devuelve si el usuario existe en la BD
@@ -31,7 +36,7 @@ public class LoginEJB {
      * @param password
      * @return Profesional, Administrativo or null
      */    
-    public Object existeUsuario(String user, String password){
+    public boolean existeUsuario(String user, String password){
         //create an ejbql expression
         String ejbQL = "Select p from Profesional p where p.usuario = :name and p.contrasenia = :contrasenia";
         //create query
@@ -45,14 +50,23 @@ public class LoginEJB {
             //create an ejbql expression
             ejbQL = "Select a from Administrativo a where a.usuario = :name and a.contrasenia = :contrasenia";
             //create query
-            q = em.createQuery(ejbQL,Profesional.class);
-            q.setParameter("name", user).setParameter("contrasenia", hashSHA256(password));
-           
+          TypedQuery<Administrativo> q2 = em.createQuery(ejbQL, Administrativo.class);
+
+           q.setParameter("name", user).setParameter("contrasenia", hashSHA256(password));
+           List<Administrativo> result2 = q2.getResultList();
             // Comprobamos resultado Si no, no existe usuario
-            result = q.getResultList();
-            if(result.isEmpty()) return null; // no existe usuario
-            else return result.get(0); // devolvemos el Administrativo
-        } else return result.get(0); // devolvemos el Profesional
+            result2 = q2.getResultList();
+            if(result2.isEmpty()) return false; // no existe usuario
+            
+            else{
+                admin = result2.get(0);
+                isAdmin = true;
+                return true;
+            } // devolvemos el Administrativo
+        }
+        isAdmin = false;
+        pro = result.get(0);
+        return true;
     }
     
     private String hashSHA256(String text){
