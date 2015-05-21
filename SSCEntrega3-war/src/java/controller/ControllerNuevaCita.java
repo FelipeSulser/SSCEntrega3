@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -28,14 +29,12 @@ import model.jpa.ssc.Profesional;
  *
  * @author haritz
  */
-@Named(value="ctrNuevaCita")
+@ManagedBean(name="ctrNuevaCita")
 @RequestScoped
 public class ControllerNuevaCita implements Serializable {
     
     @EJB
     private CrearCitaEJB crearCitaBean;
-    
-    
 
     @ManagedProperty(value = "#{controladorCita}")
     private ControladorCita controladorCita; //Para poder pasarle el id a ver cita.
