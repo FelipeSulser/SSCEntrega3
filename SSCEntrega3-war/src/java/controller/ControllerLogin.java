@@ -55,6 +55,7 @@ public class ControllerLogin implements Serializable{
     
     public String logOut(){
         nombreDeUsuario = null;
+        isLogged = false;
         return "index.xhtml";
     }
     
