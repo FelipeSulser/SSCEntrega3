@@ -47,7 +47,8 @@ public class ControllerLogin implements Serializable{
     private String dni;
     private String image;
     private String user;
-   
+   private Integer citasHoy;
+   private Integer totalIntervenciones;
     
     public boolean isLoggedIn(){
         return isLogged;
@@ -96,6 +97,8 @@ public class ControllerLogin implements Serializable{
             dni = pro.getDni();
             user = pro.getUsuario();
             image = pro.getImage();
+            totalIntervenciones = loginBean.getTotalIntervenciones(pro);
+            citasHoy = loginBean.getCitasHoy(pro);
            
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
             }
@@ -169,6 +172,22 @@ public class ControllerLogin implements Serializable{
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public Integer getCitasHoy() {
+        return citasHoy;
+    }
+
+    public void setCitasHoy(Integer citasHoy) {
+        this.citasHoy = citasHoy;
+    }
+
+    public Integer getTotalIntervenciones() {
+        return totalIntervenciones;
+    }
+
+    public void setTotalIntervenciones(Integer totalIntervenciones) {
+        this.totalIntervenciones = totalIntervenciones;
     }
 
   

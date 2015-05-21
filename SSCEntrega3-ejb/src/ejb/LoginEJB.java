@@ -6,6 +6,8 @@
 package ejb;
 
 import java.security.MessageDigest;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -14,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import model.jpa.ssc.Administrativo;
+import model.jpa.ssc.Cita;
 import model.jpa.ssc.Profesional;
 
 /**
@@ -99,6 +102,44 @@ public class LoginEJB {
 
     public Profesional getPro() {
         return pro;
+    }
+
+   
+
+    public Integer getCitasHoy(Profesional pro) {
+        //query all of todays dates
+          String ejbQL = "Select c from Cita c where (c.fecha BETWEEN :fecha1 AND :fecha2) and c.profesional = :id";
+        //create query
+        
+        TypedQuery<Cita> q = em.createQuery(ejbQL, Cita.class);
+        java.sql.Date curr = new java.sql.Date(System.currentTimeMillis());
+        
+           q.setParameter("id", pro).setParameter("fecha1", addDays(curr,-1)).setParameter("fecha2",addDays(curr,1));
+           
+          return q.getResultList().size();
+        
+    }
+
+   public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return new java.sql.Date(cal.getTime().getTime());
+    }
+
+    public Integer getTotalIntervenciones(Profesional pro) {
+        //query all accumulated interventions
+        
+        //mas rapido con count, pero por ahora lo hacemos asi
+          String ejbQL = "Select c from Cita c where c.profesional = :id and c.fecha < CURRENT_DATE";
+        //create query
+        TypedQuery<Cita> q = em.createQuery(ejbQL, Cita.class);
+        q.setParameter("id", pro);
+        
+        return q.getResultList().size();
+        
+        
     }
     
 }
