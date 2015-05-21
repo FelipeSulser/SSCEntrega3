@@ -61,8 +61,8 @@ public class Buscador_ExpEJB {
               return exps;
           }
           if(apellido2.equals("") && nombre.equals("")){
-                 TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre)",Ciudadano.class);
-              for(Ciudadano s : q.setParameter("nombre", apellido1).getResultList()){
+                 TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:apellido)",Ciudadano.class);
+              for(Ciudadano s : q.setParameter("apellido", apellido1).getResultList()){
                   exps.add(s.getExpediente_personal());
               }
               return exps;
@@ -159,7 +159,7 @@ public class Buscador_ExpEJB {
                return myMap;
           }
           if(apellido2.equals("") && nombre.equals("")){
-                 TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido2) = UPPER(:nombre)",Ciudadano.class);
+                 TypedQuery<Ciudadano> q = em.createQuery("Select c from Ciudadano c where UPPER(c.apellido1) = UPPER(:nombre)",Ciudadano.class);
                   List<Ciudadano> li =  q.setParameter("nombre", apellido1).getResultList();
                   for(Ciudadano ci: li){
                       myMap.put(ci.getExpediente_personal().getId(), ci);
