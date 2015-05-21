@@ -1,10 +1,10 @@
 --administrativo
 INSERT INTO ADMINISTRATIVO (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
-	VALUES (1, 'López', 'García', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11223344Z', NULL, 'Franchesco', 'usuario66');
+	VALUES (1, 'López', 'García', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11223344Z', 'profile.png', 'Franchesco', 'usuario66');
 INSERT INTO ADMINISTRATIVO (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
-	VALUES (2, 'Pérez', 'Larraz', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11244366Z', NULL, 'Teodobo', 'usuario67');
+	VALUES (2, 'Pérez', 'Larraz', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11244366Z', 'profile.png', 'Teodobo', 'usuario67');
 INSERT INTO ADMINISTRATIVO (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMBRE, USUARIO) 
-	VALUES (3, 'Domínguez', 'Laurel', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11443377A', NULL, 'John', 'usuario68');
+	VALUES (3, 'Domínguez', 'Laurel', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11443377A', 'profile.png', 'John', 'usuario68');
 
 
 --profesional
