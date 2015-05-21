@@ -5,10 +5,17 @@ import ejb.LoginEJB;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.el.ELContext;
+import javax.el.ExpressionFactory;
+import javax.el.ValueExpression;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
+
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import model.jpa.ssc.Administrativo;
 import model.jpa.ssc.Profesional;
 /*
@@ -21,19 +28,29 @@ import model.jpa.ssc.Profesional;
  *
  * @author felipesulser
  */
-@ManagedBean(name="ctrLogin")
+@Named(value="ctrLogin")
 @SessionScoped
 public class ControllerLogin implements Serializable{
     //Injected
     @EJB
     private LoginEJB loginBean;
     
+    
+    
     private String nombreDeUsuario;
     private boolean isAdmin;
+    
+    private Administrativo admin;
+    private Profesional pro;
+    private boolean isLogged;
+    
+    private String dni;
+    private String image;
+    private String user;
    
     
     public boolean isLoggedIn(){
-        return nombreDeUsuario != null;
+        return isLogged;
     }
     
     public String logOut(){
@@ -50,25 +67,41 @@ public class ControllerLogin implements Serializable{
     }
     
     public void autenticar(String username, String password) throws IOException{
-        Object usuario = loginBean.existeUsuario(username, password);
-        // if user validates, we continue navigation
-        if(usuario instanceof Profesional){ // Profesional
-            this.setIsAdmin(false);
-            this.setNombreDeUsuario(((Profesional) usuario).getNombreCompleto());
-            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-        // else we return to the login page
-        }else if(usuario instanceof Administrativo){ //Administrativo
-            this.setIsAdmin(true);
-            this.setNombreDeUsuario(((Administrativo) usuario).getNombreCompleto());
-            
-            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-        }else{
+        boolean existe = loginBean.existeUsuario(username, password);
+        if(!existe){
+            isLogged = false;
             // We put a message inside the flash
             FacesContext.getCurrentInstance().getExternalContext().getFlash().put("message",
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "La combinación usuario/contraseña no es correcta",""));
             // We redirect to the login page
             FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+        }else
+        {   isLogged = true;
+            isAdmin = loginBean.isAdmin();
+            if(isAdmin){
+                admin = loginBean.getAdmin();
+               /* sesionB.setAdmin(admin);
+                sesionB.setIsAdmin(true);*/
+                nombreDeUsuario = admin.getNombre()+" "+admin.getApellido1()+" "+admin.getApellido2();
+                dni = admin.getDni();
+                user = admin.getUsuario();
+                image = admin.getImage();
+            
+                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            }else{
+            pro = loginBean.getPro();
+            
+            nombreDeUsuario = pro.getNombre()+" "+pro.getApellido1()+" "+pro.getApellido2();
+            dni = pro.getDni();
+            user = pro.getUsuario();
+            image = pro.getImage();
+           
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            }
+            
         }
+        // if user validates, we continue navigation
+        
     }
 
     public boolean isIsAdmin() {
@@ -77,6 +110,64 @@ public class ControllerLogin implements Serializable{
 
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    public LoginEJB getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginEJB loginBean) {
+        this.loginBean = loginBean;
+    }
+
+  
+
+    public Administrativo getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Administrativo admin) {
+        this.admin = admin;
+    }
+
+    public Profesional getPro() {
+        return pro;
+    }
+
+    public void setPro(Profesional pro) {
+        this.pro = pro;
+    }
+
+    public boolean isIsLogged() {
+        return isLogged;
+    }
+
+    public void setIsLogged(boolean isLogged) {
+        this.isLogged = isLogged;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
   

@@ -52,10 +52,13 @@ public class LoginEJB {
             //create query
           TypedQuery<Administrativo> q2 = em.createQuery(ejbQL, Administrativo.class);
 
-           q.setParameter("name", user).setParameter("contrasenia", hashSHA256(password));
-           List<Administrativo> result2 = q2.getResultList();
+           q2.setParameter("name", user).setParameter("contrasenia", hashSHA256(password));
+           
+          
+           List<Administrativo> result2;
             // Comprobamos resultado Si no, no existe usuario
             result2 = q2.getResultList();
+           
             if(result2.isEmpty()) return false; // no existe usuario
             
             else{
@@ -84,6 +87,18 @@ public class LoginEJB {
          sb.append(Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1));
         }
         return sb.toString();
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;   
+    }
+
+    public Administrativo getAdmin() {
+        return admin;    
+    }
+
+    public Profesional getPro() {
+        return pro;
     }
     
 }
