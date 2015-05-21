@@ -8,6 +8,7 @@ package controller;
 import ejb.InfoCitaEJB;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
@@ -26,7 +27,7 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class ControladorCita {
     
-    @Inject
+    @EJB
     private InfoCitaEJB infoCitaBean;
     
     
