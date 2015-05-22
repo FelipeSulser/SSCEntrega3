@@ -125,6 +125,18 @@ public class Cita implements Serializable {
     public EstadoCita getEstado() {
         return estado;
     }
+    
+    public String getEstadoString() {
+        if(estado.equals(EstadoCita.citaPlanificada)){
+            return "Cita planificada";
+        }else if(estado.equals(EstadoCita.ausencia)){
+            return "Ausencia";
+        }else if(estado.equals(EstadoCita.noRealizada)){
+            return "No realizada";
+        }else{
+            return "Planificada por otro profesional";
+        }
+    }
 
     public void setEstado(EstadoCita estado) {
         this.estado = estado;

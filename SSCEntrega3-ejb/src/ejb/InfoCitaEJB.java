@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
+import model.jpa.ssc.EstadoCita;
 import model.jpa.ssc.Intervenciones;
 import model.jpa.ssc.Profesional;
 
@@ -81,4 +82,18 @@ public class InfoCitaEJB {
         }
     }
     
+    
+    public EstadoCita getEstado(Long id){
+        Cita cita = em.find(Cita.class, id);
+        if(cita==null){
+            return null;
+        }else{
+            return cita.getEstado();
+        }
+    }
+    
+    
+    public void setEstado(Long id, EstadoCita estado){
+        //Tiene que cambiar el estado de la cita id por el estado que recibe
+    }
 }

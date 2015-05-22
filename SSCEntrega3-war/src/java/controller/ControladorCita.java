@@ -15,8 +15,8 @@ import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Intervenciones;
 import model.jpa.ssc.Profesional;
 
-import javax.inject.Inject;
 import javax.enterprise.context.RequestScoped;
+import model.jpa.ssc.EstadoCita;
 
 /**
  *
@@ -28,7 +28,7 @@ import javax.enterprise.context.RequestScoped;
 public class ControladorCita {
     
     @EJB
-    private InfoCitaEJB infoCitaBean;
+    private InfoCitaEJB infoCitaEJB;
     
     
     //Datos de la cita
@@ -38,6 +38,7 @@ public class ControladorCita {
     private Ciudadano ciudadano;
     private Profesional profesional;
     private List<Intervenciones> intervenciones;
+    private EstadoCita estado;
     
     //Id obtenido al crear una cita o al pinchar en ver cita
     private Long id;
@@ -50,12 +51,13 @@ public class ControladorCita {
     public String browsePage(Long id){
         if(id == null) return "index.xhtml";
         this.id=id;
-        fecha = infoCitaBean.getFecha(id);
-        comentarios = infoCitaBean.getComentarios(id);
-        tipo_de_cita = infoCitaBean.getTipo_de_cita(id);
-        ciudadano = infoCitaBean.getCiudadano(id);
-        profesional = infoCitaBean.getProfesional(id);
-        intervenciones = infoCitaBean.getIntervenciones(id);
+        fecha = infoCitaEJB.getFecha(id);
+        comentarios = infoCitaEJB.getComentarios(id);
+        tipo_de_cita = infoCitaEJB.getTipo_de_cita(id);
+        ciudadano = infoCitaEJB.getCiudadano(id);
+        profesional = infoCitaEJB.getProfesional(id);
+        intervenciones = infoCitaEJB.getIntervenciones(id);
+        estado = infoCitaEJB.getEstado(id);
         
         return "info_cita.xhtml";
     }
@@ -69,59 +71,35 @@ public class ControladorCita {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Date getFecha() {
         return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public String getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(String comentarios) {
-        this.comentarios = comentarios;
-    }
-
     public String getTipo_de_cita() {
         return tipo_de_cita;
-    }
-
-    public void setTipo_de_cita(String tipo_de_cita) {
-        this.tipo_de_cita = tipo_de_cita;
     }
 
     public Ciudadano getCiudadano() {
         return ciudadano;
     }
 
-    public void setCiudadano(Ciudadano ciudadano) {
-        this.ciudadano = ciudadano;
-    }
-
     public Profesional getProfesional() {
         return profesional;
-    }
-
-    public void setProfesional(Profesional profesional) {
-        this.profesional = profesional;
     }
 
     public List<Intervenciones> getIntervenciones() {
         return intervenciones;
     }
 
-    public void setIntervenciones(List<Intervenciones> intervenciones) {
-        this.intervenciones = intervenciones;
+    public EstadoCita getEstado(){
+        return estado;
     }
-
     
-    
-    
+    public void setEstado(String est){
+        infoCitaEJB.setEstado(id, estado);
+    }
 }

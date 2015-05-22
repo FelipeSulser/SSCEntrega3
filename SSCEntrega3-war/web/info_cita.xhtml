@@ -28,8 +28,10 @@
                 <h:link id="ciudano2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.ciudadano.nombre} #{controladorCita.ciudadano.apellido1} #{controladorCita.ciudadano.apellido2}" outcome="#{expedienteView.browsePage(controladorCita.ciudadano.expediente_personal.id)}"/>
                 <h:outputLabel id="fecha1" style="padding-left: 10px;" value="Fecha" />
                 <h:outputLabel id="fecha2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.fecha}"/>
-                <h:outputLabel id="tipo1" style="padding-left: 10px;" value="Tipo de Cita:" />
+                <h:outputLabel id="tipo1" style="padding-left: 10px;" value="Tipo de cita:" />
                 <h:outputLabel id="tipo2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.tipo_de_cita}"/>
+                <h:outputLabel id="estado1" style="padding-left: 10px;" value="Estado de la cita:" />
+                <h:outputLabel id="estado2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.estado.toString()}"/>
                 <h:outputLabel id="comentarios1" style="padding-left: 10px;" value="Comentarios:" />
                 <h:outputLabel id="comentarios2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.comentarios}"/>
                 <h:outputLabel id="profesional1" style="padding-left: 10px;" value="Asistida por:" />

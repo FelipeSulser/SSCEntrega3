@@ -13,5 +13,21 @@ public enum EstadoCita {
     citaPlanificada,    //Verde
     ausencia,   //Rojo
     noRealizada,    //Naranja
-    planificadaPorOtroProfesional   //Violeta
+    planificadaPorOtroProfesional;   //Violeta
+    
+    @Override
+    public String toString(){
+        switch(this){
+            case citaPlanificada:
+                return "Cita planificada";
+            case ausencia:
+                return "Ausencia";
+            case noRealizada:
+                return "No realizada";
+            case planificadaPorOtroProfesional:
+                return "Planificada por otro profesional";
+     
+        }
+        return "";
+    }
 }
