@@ -152,11 +152,14 @@ public class ControllerNuevaCita implements Serializable {
             cita.setCiudadano(ciudadano);
             cita.setProfesional(profesional);
             cita.setComentarios(detalleGestion);
-            cita.setEstado(EstadoCita.citaPlanificada);
             cita.setFecha(date);
             cita.setTipo_de_cita(tipoCita);
-          
-        
+            //TODO ESTADO CITA
+            if(!login.isIsAdmin() && !login.getDni().equals(getDNIProfesional()))
+                cita.setEstado(EstadoCita.planificadaPorOtroProfesional);
+            else
+                cita.setEstado(EstadoCita.citaPlanificada);
+
             crearCitaBean.setCita(cita);
             return controladorCita.browsePage(crearCitaBean.getCitaId(cita));
         } catch (CiudadanoNotFoundException e) {
