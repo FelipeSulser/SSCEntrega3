@@ -53,7 +53,6 @@ insert into EXPEDIENTE values (8, 'Rey Juan', '12/12/1989', 'Christian Andersen'
 insert into EXPEDIENTE values (10, 'La Flauta Mágica', '09/05/1799', 'Aramejín', 10);
 
 --cita
-insert into CITA values (1, '',0, '11/03/1990', 'CHEQUEO', 3, 1);
 insert into CITA values (3, '',1, '01/03/1990', 'URGENCIA', 3, 1);
 insert into CITA values (5, '',3, '08/03/1990', 'SESION INFORMATIVA', 1, 5);
 insert into CITA values (7, 'solicitud y tramitación',1, '07/03/1990', 'TELEASISTENCIA', 5, 3);
