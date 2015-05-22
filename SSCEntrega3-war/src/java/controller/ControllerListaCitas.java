@@ -8,6 +8,7 @@ package controller;
 import ejb.ListaCitasEJB;
 import java.io.IOException;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -24,17 +25,11 @@ public class ControllerListaCitas {
     
     //Los admins pueden ver todas las citas y eliminar cualquier cita!!
    
-    @Inject
+    @EJB
     private ListaCitasEJB listaCitas;
-    
-    
-    
+        
     private List<Cita> citas;
-    
-    
-    
-    
-
+   
     public List<Cita> getCitas() {
         citas = listaCitas.getCitas();
         return citas;

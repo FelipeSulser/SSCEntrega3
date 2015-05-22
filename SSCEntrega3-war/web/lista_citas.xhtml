@@ -37,9 +37,14 @@
                         <h:outputText id="fecha2" value="#{cita.fecha}" />
                     </p:column>
 
-                    <p:column id="tipo1" headerText="Tipo de Cita">
+                    <p:column id="tipo1" headerText="Tipo de cita">
                         <h:outputText id="tipo2" value="#{cita.tipo_de_cita}" />
                     </p:column>
+                        
+                    <p:column id="estado1" headerText="Estado de la cita">
+                        <h:outputText id="estado2" value="#{cita.getEstadoString()}" />
+                    </p:column>
+                        
                      <p:column id="profesional1" headerText="Profesional Encargado">
                          <h:outputText id="profesional2" value="#{cita.profesional.nombre} #{cita.profesional.apellido1} #{cita.profesional.apellido2}" />
                     </p:column>
