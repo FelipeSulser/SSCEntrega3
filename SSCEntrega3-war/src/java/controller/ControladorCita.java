@@ -17,6 +17,7 @@ import model.jpa.ssc.Profesional;
 
 import javax.inject.Inject;
 import javax.enterprise.context.RequestScoped;
+import model.jpa.ssc.EstadoCita;
 
 /**
  *
@@ -38,6 +39,7 @@ public class ControladorCita {
     private Ciudadano ciudadano;
     private Profesional profesional;
     private List<Intervenciones> intervenciones;
+    private EstadoCita estado;
     
     //Id obtenido al crear una cita o al pinchar en ver cita
     private Long id;
@@ -56,6 +58,7 @@ public class ControladorCita {
         ciudadano = infoCitaBean.getCiudadano(id);
         profesional = infoCitaBean.getProfesional(id);
         intervenciones = infoCitaBean.getIntervenciones(id);
+        estado = infoCitaBean.getEstado(id);
         
         return "info_cita.xhtml";
     }
@@ -69,59 +72,43 @@ public class ControladorCita {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Date getFecha() {
         return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public String getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(String comentarios) {
-        this.comentarios = comentarios;
-    }
-
     public String getTipo_de_cita() {
         return tipo_de_cita;
-    }
-
-    public void setTipo_de_cita(String tipo_de_cita) {
-        this.tipo_de_cita = tipo_de_cita;
     }
 
     public Ciudadano getCiudadano() {
         return ciudadano;
     }
 
-    public void setCiudadano(Ciudadano ciudadano) {
-        this.ciudadano = ciudadano;
-    }
-
     public Profesional getProfesional() {
         return profesional;
-    }
-
-    public void setProfesional(Profesional profesional) {
-        this.profesional = profesional;
     }
 
     public List<Intervenciones> getIntervenciones() {
         return intervenciones;
     }
 
-    public void setIntervenciones(List<Intervenciones> intervenciones) {
-        this.intervenciones = intervenciones;
+    public EstadoCita getEstado(){
+        return estado;
     }
-
     
-    
-    
+    public String getEstadoString(){
+        if(estado.equals(EstadoCita.citaPlanificada)){
+            return "Cita planificada";
+        }else if(estado.equals(EstadoCita.ausencia)){
+            return "Ausencia";
+        }else if(estado.equals(EstadoCita.noRealizada)){
+            return "No realizada";
+        }else{
+            return "Planificada por otro profesional";
+        }
+    }
 }
