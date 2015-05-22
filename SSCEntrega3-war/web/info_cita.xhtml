@@ -31,7 +31,9 @@
                     <h:outputLabel id="tipo1" style="padding-left: 10px;" value="Tipo de cita:" />
                     <h:outputLabel id="tipo2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.tipo_de_cita}"/>
                     <h:outputLabel id="estado1" style="padding-left: 10px;" value="Estado de la cita:" />
+                    <h:form id="form_estado_cita">
                     <h:outputLabel id="estado2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.estado.toString()}"/>
+                    </h:form>
                     <h:outputLabel id="comentarios1" style="padding-left: 10px;" value="Comentarios:" />
                     <h:outputLabel id="comentarios2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.comentarios}"/>
                     <h:outputLabel id="profesional1" style="padding-left: 10px;" value="Asistida por:" />
@@ -49,12 +51,14 @@
                         <!-- end flash alert messages !-->
                         </c:if> 
                             <p:outputLabel for="estadoString" value="Nuevo estado cita: " />
-                            <p:selectOneMenu id="estadoString" value="#{controladorCita.estadoString}" onchange="submit()" style="width:125px">
+                            <p:selectOneMenu id="estadoString" value="#{controladorCita.estadoString}" style="width:125px">
                                 <f:selectItem itemLabel="Cita Planificada" itemValue="citaPlanificada" />
                                 <f:selectItem itemLabel="Ausencia" itemValue="ausencia" />
                                 <f:selectItem itemLabel="No realizada" itemValue="noRealizada" />
                                 <f:selectItem itemLabel="Planificada por otro profesional" itemValue="planificadaPorOtroProfesional" />
                             </p:selectOneMenu>
+                            <p:commandButton value="Submit" id="ajax" update="form_estado_cita"  icon="ui-icon-check" />
+                            
                     </h:form>
                 </h:panelGrid>
                 <p:separator />  
