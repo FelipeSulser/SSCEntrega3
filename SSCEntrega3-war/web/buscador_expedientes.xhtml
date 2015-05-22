@@ -20,22 +20,30 @@
                         <table id="tablaEstructurarCamposBusqueda" border="0">
                             <tr>
                                 <td><h:outputLabel id="labelCampoNombre" value="Nombre"/></td>
-                                <td><h:inputText id="inputCampoNombre" class="form-control" value="#{ctrExps.nombre}"></h:inputText></td>
+                               <td><p:inputText id="inputCampoNombre" value="#{ctrExps.nombre}" class="form-control">
+                                    <p:ajax event="keyup" update="tablaResultadoBusquedaExpedientes" listener="#{ctrExps.performSearch}"/>
+                                    </p:inputText></td>
                             </tr>
                             <tr><td><br></br></td></tr>
                             <tr>
                                 <td><h:outputLabel id="labelCampoApellido1" value="Primer Apellido"/></td>
-                                <td><h:inputText id="inputCampoApellido1" class="form-control" value="#{ctrExps.apellido1}"></h:inputText></td>
+                                <td><p:inputText id="inputCampoApellido1" value="#{ctrExps.apellido1}" class="form-control">
+                                    <p:ajax event="keyup" update="tablaResultadoBusquedaExpedientes" listener="#{ctrExps.performSearch}" />
+                                    </p:inputText></td>
                             </tr>
                             <tr><td><br></br></td></tr>
                             <tr>
                                 <td><h:outputLabel id="labelCampoApellido2" value="Segundo Apellido"/></td>
-                                <td><h:inputText id="inputCampoApellido2" class="form-control"  value="#{ctrExps.apellido2}"></h:inputText></td>
+                                <td><p:inputText id="inputCampoApellido2" value="#{ctrExps.apellido2}" class="form-control">
+                                    <p:ajax event="keyup" update="tablaResultadoBusquedaExpedientes" listener="#{ctrExps.performSearch}" />
+                                </p:inputText></td>
                             </tr>
                             <tr><td><br></br></td></tr>
                             <tr>
                                 <td><h:outputLabel id="labelCampoExpedienteNum" value="Número de Expediente"/></td>
-                                <td><h:inputText id="inputCampoExpedienteNum" class="form-control" value="#{ctrExps.exp_id}"></h:inputText></td>
+                                <td><p:inputText id="inputCampoExpedienteNum" value="#{ctrExps.exp_id}" class="form-control">
+                                    <p:ajax event="keyup" update="tablaResultadoBusquedaExpedientes" listener="#{ctrExps.performSearch}" />
+                                </p:inputText></td>
                             </tr>
                             <tr><td><br></br></td></tr>
                         </table>
@@ -43,12 +51,12 @@
                         <br></br>
                         <br></br>
                         <h:outputText id="labelFiltrosBusquedaUsados" value="#{ctrExps.filtrosDeBusqueda}"/>
-                    </h:form>
+                    
                     <br></br>
                     <br></br>
                     <h:outputLabel id="labelResultadosBusqueda" style="padding: 10px;" value="Resultado de la búsqueda:"/>
                     <br></br>
-                    <h:form id="formTablaResultadosBusqueda" rendered="#{ctrExps.searchDone == true}">
+                    
                                                 
                         <p:dataTable id="tablaResultadoBusquedaExpedientes" style="padding: 10px;" value="#{ctrExps.getConsultarExpedientes()}"  resizableColumns="true" scrollable = "true"   var="expediente">
                             
@@ -95,8 +103,8 @@
                                 <h:outputLabel id="outputCampoColumnaNombre" value="#{ctrExps.getNameFromId(expediente.id)}"/>
                             </p:column>
                         </p:dataTable>
+                   
                     </h:form>
-                    
                 </ui:define>
         </ui:composition>
           
