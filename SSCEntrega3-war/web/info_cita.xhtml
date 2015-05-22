@@ -20,25 +20,45 @@
                     
                     
                 <h:panelGrid id="panel" columns="2" border="0" cellpadding="10" cellspacing="1">
-                <f:facet name="header">
-                    <h2> <h:outputText id="head" value="Datos de la Cita" style="padding-left: 10px;"/></h2>
-                    <p:separator />  
-                </f:facet>
-                <h:outputLabel id="ciudano1" style="padding-left: 10px;" value="Ciudadano: " />
-                <h:link id="ciudano2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.ciudadano.nombre} #{controladorCita.ciudadano.apellido1} #{controladorCita.ciudadano.apellido2}" outcome="#{expedienteView.browsePage(controladorCita.ciudadano.expediente_personal.id)}"/>
-                <h:outputLabel id="fecha1" style="padding-left: 10px;" value="Fecha" />
-                <h:outputLabel id="fecha2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.fecha}"/>
-                <h:outputLabel id="tipo1" style="padding-left: 10px;" value="Tipo de cita:" />
-                <h:outputLabel id="tipo2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.tipo_de_cita}"/>
-                <h:outputLabel id="estado1" style="padding-left: 10px;" value="Estado de la cita:" />
-                <h:outputLabel id="estado2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.estado.toString()}"/>
-                <h:outputLabel id="comentarios1" style="padding-left: 10px;" value="Comentarios:" />
-                <h:outputLabel id="comentarios2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.comentarios}"/>
-                <h:outputLabel id="profesional1" style="padding-left: 10px;" value="Asistida por:" />
-                <h:outputLabel id="profesional2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.profesional.nombre} #{controladorCita.profesional.apellido1} #{controladorCita.profesional.apellido2}"/>
-                
-                    </h:panelGrid>
-                     <p:separator />  
+                    <f:facet name="header">
+                        <h2> <h:outputText id="head" value="Datos de la Cita" style="padding-left: 10px;"/></h2>
+                        <p:separator />  
+                    </f:facet>
+                    <h:outputLabel id="ciudano1" style="padding-left: 10px;" value="Ciudadano: " />
+                    <h:link id="ciudano2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.ciudadano.nombre} #{controladorCita.ciudadano.apellido1} #{controladorCita.ciudadano.apellido2}" outcome="#{expedienteView.browsePage(controladorCita.ciudadano.expediente_personal.id)}"/>
+                    <h:outputLabel id="fecha1" style="padding-left: 10px;" value="Fecha" />
+                    <h:outputLabel id="fecha2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.fecha}"/>
+                    <h:outputLabel id="tipo1" style="padding-left: 10px;" value="Tipo de cita:" />
+                    <h:outputLabel id="tipo2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.tipo_de_cita}"/>
+                    <h:outputLabel id="estado1" style="padding-left: 10px;" value="Estado de la cita:" />
+                    <h:outputLabel id="estado2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.estado.toString()}"/>
+                    <h:outputLabel id="comentarios1" style="padding-left: 10px;" value="Comentarios:" />
+                    <h:outputLabel id="comentarios2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.comentarios}"/>
+                    <h:outputLabel id="profesional1" style="padding-left: 10px;" value="Asistida por:" />
+                    <h:outputLabel id="profesional2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.profesional.nombre} #{controladorCita.profesional.apellido1} #{controladorCita.profesional.apellido2}"/>
+                    
+                </h:panelGrid>
+                    
+                <h:panelGrid id="panelUpdateEstado" columns="2" border="0" cellpadding="10" cellspacing="1">    
+                    <h:form>
+                        <c:if test="#{!empty facesContext.messageList}">
+                        <!-- flash alert messages !-->
+                        <div class="alert alert-warning" role="alert" style="margin-top:20px;">
+                            <h:messages/>
+                        </div>
+                        <!-- end flash alert messages !-->
+                        </c:if> 
+                            <p:outputLabel for="estadoString" value="Nuevo estado cita: " />
+                            <p:selectOneMenu id="estadoString" value="#{controladorCita.estadoString}" style="width:125px">
+                                <f:selectItem itemLabel="Cita Planificada" itemValue="citaPlanificada" />
+                                <f:selectItem itemLabel="Ausencia" itemValue="ausencia" />
+                                <f:selectItem itemLabel="No realizada" itemValue="noRealizada" />
+                                <f:selectItem itemLabel="Planificada por otro profesional" itemValue="planificadaPorOtroProfesional" />
+                            </p:selectOneMenu>
+                            <p:commandButton value="Submit" icon="ui-icon-check" />
+                    </h:form>
+                </h:panelGrid>
+                <p:separator />  
                 <table id="tabla">
                     <tr>
                         <td><h2><h:outputText id="intervenciones1" style="padding-left: 10px;" value="Intervenciones: "/></h2><br> </br>

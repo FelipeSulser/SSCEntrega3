@@ -29,16 +29,29 @@ public class ControladorCita {
     
     @EJB
     private InfoCitaEJB infoCitaEJB;
+
+    
     
     
     //Datos de la cita
     private Date fecha;
     private String comentarios;
+
+    
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     private String tipo_de_cita;
     private Ciudadano ciudadano;
     private Profesional profesional;
     private List<Intervenciones> intervenciones;
     private EstadoCita estado;
+    private String estadoString;
+
+    
+
+
     
     //Id obtenido al crear una cita o al pinchar en ver cita
     private Long id;
@@ -99,7 +112,62 @@ public class ControladorCita {
         return estado;
     }
     
-    public void setEstado(String est){
-        infoCitaEJB.setEstado(id, estado);
+    public void setEstado(EstadoCita estado) {
+        this.estado = estado;
     }
+    
+    public void updateEstado(String estado){
+        switch(estado){
+            case "citaPlanificada":
+                this.estado = EstadoCita.citaPlanificada;
+            case "ausencia":
+                this.estado = EstadoCita.ausencia;
+            case "noRealizada":
+                this.estado = EstadoCita.noRealizada;
+            case "planificadaPorOtroProfesional":
+                this.estado = EstadoCita.planificadaPorOtroProfesional;
+        }
+    }
+    
+    public String getEstadoString() {
+        return estadoString;
+    }
+
+    public void setEstadoString(String estadoString) {
+        this.estadoString = estadoString;
+        updateEstado(estadoString);
+    }
+    
+    public InfoCitaEJB getInfoCitaEJB() {
+        return infoCitaEJB;
+    }
+
+    public void setInfoCitaEJB(InfoCitaEJB infoCitaEJB) {
+        this.infoCitaEJB = infoCitaEJB;
+    }
+    
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setComentarios(String comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public void setTipo_de_cita(String tipo_de_cita) {
+        this.tipo_de_cita = tipo_de_cita;
+    }
+
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;
+    }
+
+    public void setIntervenciones(List<Intervenciones> intervenciones) {
+        this.intervenciones = intervenciones;
+    }
+    
 }
