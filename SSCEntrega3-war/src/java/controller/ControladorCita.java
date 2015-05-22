@@ -15,7 +15,6 @@ import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Intervenciones;
 import model.jpa.ssc.Profesional;
 
-import javax.inject.Inject;
 import javax.enterprise.context.RequestScoped;
 import model.jpa.ssc.EstadoCita;
 
@@ -98,18 +97,6 @@ public class ControladorCita {
 
     public EstadoCita getEstado(){
         return estado;
-    }
-    
-    public String getEstadoString(){
-        if(estado.equals(EstadoCita.citaPlanificada)){
-            return "Cita planificada";
-        }else if(estado.equals(EstadoCita.ausencia)){
-            return "Ausencia";
-        }else if(estado.equals(EstadoCita.noRealizada)){
-            return "No realizada";
-        }else{
-            return "Planificada por otro profesional";
-        }
     }
     
     public void setEstado(String est){
