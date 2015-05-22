@@ -11,8 +11,7 @@ import exceptions.ProfesionalNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -20,7 +19,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.EstadoCita;
@@ -39,7 +37,9 @@ public class ControllerNuevaCita implements Serializable {
 
     @Inject
     private ControladorCita controladorCita; //Para poder pasarle el id a ver cita.
-
+    
+    @Inject
+    private ControllerLogin login;
     
     private String DNICiudadano;
     private Ciudadano ciudadano;
@@ -53,6 +53,11 @@ public class ControllerNuevaCita implements Serializable {
     private String detalleGestion;
         
 
+    @PostConstruct
+    public void addDefaultValue(){
+        if(!login.isIsAdmin())
+            setDNIProfesional(login.getDni());
+    }
     
     public String getDNICiudadano() {
         return DNICiudadano;
@@ -125,7 +130,14 @@ public class ControllerNuevaCita implements Serializable {
     public void setProfesional(Profesional profesional) {
         this.profesional = profesional;
     }
+    
+    public ControllerLogin getLogin() {
+        return login;
+    }
 
+    public void setLogin(ControllerLogin login) {
+        this.login = login;
+    }
     
     
     public String persistCita() throws IOException{
@@ -140,11 +152,14 @@ public class ControllerNuevaCita implements Serializable {
             cita.setCiudadano(ciudadano);
             cita.setProfesional(profesional);
             cita.setComentarios(detalleGestion);
-            cita.setEstado(EstadoCita.citaPlanificada);
             cita.setFecha(date);
             cita.setTipo_de_cita(tipoCita);
-          
-        
+            //TODO ESTADO CITA
+            if(!login.isIsAdmin() && !login.getDni().equals(getDNIProfesional()))
+                cita.setEstado(EstadoCita.planificadaPorOtroProfesional);
+            else
+                cita.setEstado(EstadoCita.citaPlanificada);
+
             crearCitaBean.setCita(cita);
             return controladorCita.browsePage(crearCitaBean.getCitaId(cita));
         } catch (CiudadanoNotFoundException e) {
