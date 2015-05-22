@@ -29,7 +29,7 @@ import model.jpa.ssc.EstadoCita;
 public class ControladorCita {
     
     @EJB
-    private InfoCitaEJB infoCitaBean;
+    private InfoCitaEJB infoCitaEJB;
     
     
     //Datos de la cita
@@ -52,13 +52,13 @@ public class ControladorCita {
     public String browsePage(Long id){
         if(id == null) return "index.xhtml";
         this.id=id;
-        fecha = infoCitaBean.getFecha(id);
-        comentarios = infoCitaBean.getComentarios(id);
-        tipo_de_cita = infoCitaBean.getTipo_de_cita(id);
-        ciudadano = infoCitaBean.getCiudadano(id);
-        profesional = infoCitaBean.getProfesional(id);
-        intervenciones = infoCitaBean.getIntervenciones(id);
-        estado = infoCitaBean.getEstado(id);
+        fecha = infoCitaEJB.getFecha(id);
+        comentarios = infoCitaEJB.getComentarios(id);
+        tipo_de_cita = infoCitaEJB.getTipo_de_cita(id);
+        ciudadano = infoCitaEJB.getCiudadano(id);
+        profesional = infoCitaEJB.getProfesional(id);
+        intervenciones = infoCitaEJB.getIntervenciones(id);
+        estado = infoCitaEJB.getEstado(id);
         
         return "info_cita.xhtml";
     }
@@ -110,5 +110,9 @@ public class ControladorCita {
         }else{
             return "Planificada por otro profesional";
         }
+    }
+    
+    public void setEstado(String est){
+        infoCitaEJB.setEstado(id, estado);
     }
 }

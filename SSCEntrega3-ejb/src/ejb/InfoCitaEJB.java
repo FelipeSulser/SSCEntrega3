@@ -94,6 +94,6 @@ public class InfoCitaEJB {
     
     
     public void setEstado(Long id, EstadoCita estado){
-        
+        //Tiene que cambiar el estado de la cita id por el estado que recibe
     }
 }
