@@ -41,7 +41,7 @@ public class Buscador_ExpEJB {
       return exps;
                
       }else{
-         
+         if(apellido1 == null || apellido2 == null || nombre == null) return exps;
           //now do all queries by parameters
           if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
               return exps;
@@ -139,6 +139,7 @@ public class Buscador_ExpEJB {
                
       }else{
           //now do all queries by parameters
+          if(apellido1 == null || apellido2 == null || nombre == null) return myMap;
           if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
               return myMap;
           }
