@@ -28,6 +28,6 @@ public enum EstadoCita {
                 return "Planificada por otro profesional";
      
         }
-        return null;
+        return "";
     }
 }
