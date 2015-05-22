@@ -57,7 +57,12 @@
                                 <f:facet name="header" >
                                     <h:outputText id="labelColumnaEXPID" value="Exp.ID" />
                                 </f:facet>
-                                <h:commandButton id="linkToExpediente" value="#{expediente.id}" action="#{expedienteView.browsePage(expediente.id)}" />
+                                   <h:link id = "linkToExpediente" value="#{expediente.id}" outcome="expediente.xhtml" >
+                                       <f:param name="exp_id" value="#{expediente.id}"/>
+                                   </h:link>
+                                           
+                                           
+                            
                                
                                 <p:tooltip id="toolTipContent" for="linkToExpediente">
                                     <p:graphicImage id="cargaImagenPerfil" name="/images/#{expediente.ciudadano_exp.image}" />

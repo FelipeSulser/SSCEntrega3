@@ -95,9 +95,9 @@ public class ControllerVistaExp implements Serializable{
     
     
     
-    public String browsePage(Long id){
+    public void init(){
         
-        this.id = id;
+        
          expediente = expedienteBean.getExpediente(id);
         
         ciudadano = expedienteBean.getCiudadano(id);
@@ -110,7 +110,7 @@ public class ControllerVistaExp implements Serializable{
         
         intervenciones = expedienteBean.getIntervenciones(id);
         
-        return "expediente.xhtml";
+        
     }
     public void addFamiliar() throws IOException{
         addingFamiliar = true;
@@ -156,7 +156,9 @@ public class ControllerVistaExp implements Serializable{
     }
 
    
-
+    public void setId(Long id) {
+         this.id = id;
+    }
     public Long getId() {
         return id;
     }

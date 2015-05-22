@@ -5,7 +5,14 @@
      xmlns:p="http://primefaces.org/ui"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://java.sun.com/jsf/core">
- 
+ <f:metadata>
+     <f:viewParam name="exp_id" value="#{expedienteView.id}" />
+     <f:viewParam name ="add_fam" value ="#{expedienteView.addingFamiliar}" />
+     <f:viewParam name ="add_viv" value ="#{expedienteView.addingVivienda}" />
+     <f:viewParam name ="add_inter" value="#{expedienteView.addingIntervencion}" />
+    <!-- You would normally also convert/validate it here. -->
+    <f:event type="preRenderView" listener="#{expedienteView.init}" />
+</f:metadata>
     <h:body>
         <ui:composition template="WEB-INF/templates/plantilla.xhtml">
  
@@ -70,7 +77,12 @@
                 <h2>
                     <h:form rendered="#{ctrLogin.isAdmin == true}" >
                     <h:outputText value ="Familia  "/>   
-                    <h:commandButton id ="expediente_addFamiliar" class="btn btn-info" value="Añadir Familiar" action="#{expedienteView.setAddingFamiliar(true)}"/> 
+                    
+                    
+                     <h:link id = "expediente_addFamiliar" class="btn btn-info" value="Añadir Familiar" outcome="expediente.xhtml" >
+                              <f:param name="exp_id" value="#{expedienteView.id}"/>
+                               <f:param name="add_fam" value="true"/>
+                      </h:link>
                     </h:form>
                 </h2>
     
@@ -129,8 +141,11 @@
                   <h2> <h:outputText id="vivienda_output" rendered="#{ctrLogin.isIsAdmin() == false}" value="Vivienda" /></h2>
                   <h2>
                      <h:form id="formulario_boton_vivienda" rendered="#{ctrLogin.isAdmin == true}">
-                     <h:outputText id="vivienda" value ="Vivienda  "/>   
-                     <h:commandButton id="boton_add_vivienda"  class="btn btn-info"  value="Añadir Vivienda" action="#{expedienteView.setAddingVivienda(true)}"/> 
+                     <h:outputText id="vivienda" value ="Vivienda  "/>  
+                      <h:link id="boton_add_vivienda"  class="btn btn-info" value="Añadir Vivienda" outcome="expediente.xhtml" >
+                              <f:param name="exp_id" value="#{expedienteView.id}"/>
+                               <f:param name="add_viv" value="true"/>
+                      </h:link>
                       </h:form>
                  </h2>
                  <h:form id="formulario_vivienda" rendered="#{expedienteView.isAddingVivienda()  ==true }">
@@ -180,6 +195,10 @@
                      <h:form id="formulario_boton_intervenciones" rendered="#{ctrLogin.isAdmin ==  false}" >
                      <h:outputText id="intervenciones" value ="Intervenciones  "/>   
                      <h:commandButton  class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" action="#{expedienteView.setAddingIntervencion(true)}"/> 
+                     <h:link class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" outcome="expediente.xhtml" >
+                              <f:param name="exp_id" value="#{expedienteView.id}"/>
+                               <f:param name="add_inter" value="true"/>
+                      </h:link>
                       </h:form>
                  </h2>
                  
