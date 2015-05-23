@@ -57,10 +57,9 @@
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
                         </p:inputMask>
 
-                        
-
-                        <h:commandButton id="botonVerDetallesCita" class="btn btn-info" value="Acceder a la cita" action="info_cita.xhtml"/> 
-
+                        <h:link id = "botonVerDetallesCita" class="btn btn-info" value="Acceder a la cita" outcome="info_cita.xhtml" >
+                            <f:param name="cita_id" value="#{scheduleView.event.getCitaID()}"/>
+                        </h:link>
 
                     </h:panelGrid>
                 </p:dialog>    
