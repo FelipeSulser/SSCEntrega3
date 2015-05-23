@@ -116,16 +116,22 @@ public class ControladorCita {
         this.estado = estado;
     }
     
-    public void updateEstado(String estado){
-        switch(estado){
+    public void updateEstado(){
+        System.out.println("hola" + estadoString + " " + id);
+        switch(estadoString){
             case "citaPlanificada":
                 this.estado = EstadoCita.citaPlanificada;
+                infoCitaEJB.setEstado(id, EstadoCita.citaPlanificada);
             case "ausencia":
                 this.estado = EstadoCita.ausencia;
+                infoCitaEJB.setEstado(id, EstadoCita.ausencia);
             case "noRealizada":
                 this.estado = EstadoCita.noRealizada;
+                infoCitaEJB.setEstado(id, EstadoCita.noRealizada);
             case "planificadaPorOtroProfesional":
                 this.estado = EstadoCita.planificadaPorOtroProfesional;
+                infoCitaEJB.setEstado(id, EstadoCita.planificadaPorOtroProfesional);
+
         }
     }
     
@@ -135,7 +141,6 @@ public class ControladorCita {
 
     public void setEstadoString(String estadoString) {
         this.estadoString = estadoString;
-        updateEstado(estadoString);
     }
     
     public InfoCitaEJB getInfoCitaEJB() {
