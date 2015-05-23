@@ -65,22 +65,3 @@ public class AdvancedScheduleEvent extends DefaultScheduleEvent{
         this.ciudadano = ciudadano;
     }
 }
-/*
-private Long id;
-    
-    @Column(nullable=false)
-    private Date fecha;
-    
-    
-    private String comentarios;
-
-    @Column(nullable=false)
-    private String tipo_de_cita;
-
-    
-    
-    @ManyToOne
-    @JoinColumn(nullable=false)
-    private Ciudadano ciudadano;
-
-*/
