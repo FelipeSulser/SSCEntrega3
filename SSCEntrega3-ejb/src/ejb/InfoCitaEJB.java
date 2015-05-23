@@ -29,72 +29,108 @@ public class InfoCitaEJB {
     private EntityManager em;
     
     public Date getFecha(Long id){
-        Cita cita = em.find(Cita.class, id);
-        if(cita==null){
+        Cita cita;
+        
+        try{
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
             return null;
-        }else{
-            return cita.getFecha();
         }
+        
+        if(cita==null) return null;
+        else return cita.getFecha();
+        
     }
     
     public String getComentarios(Long id){
-        Cita cita = em.find(Cita.class, id);
-        if(cita==null){
+        Cita cita;
+        
+        try{
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
             return null;
-        }else{
-            return cita.getComentarios();
         }
+        
+        if(cita==null) return null;
+        else return cita.getComentarios();
     }
     
     public String getTipo_de_cita(Long id){
-        Cita cita = em.find(Cita.class, id);
-        if(cita==null){
+        Cita cita;
+        
+        try{
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
             return null;
-        }else{
-            return cita.getTipo_de_cita();
         }
+        
+        if(cita==null) return null;
+        return cita.getTipo_de_cita();
     }
     
     public Ciudadano getCiudadano(Long id){
-        Cita cita = em.find(Cita.class, id);
-        if(cita==null){
+        Cita cita;
+        
+        try{
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
             return null;
-        }else{
-            return cita.getCiudadano();
         }
+        
+        if(cita==null) return null;
+        else return cita.getCiudadano();
     }
     
     public Profesional getProfesional(Long id){
-        Cita cita = em.find(Cita.class, id);
-        if(cita==null){
+        Cita cita;
+        
+        try{
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
             return null;
-        }else{
-            return cita.getProfesional();
         }
+        
+        if(cita==null) return null;
+        else return cita.getProfesional();
     }
     
     public List<Intervenciones> getIntervenciones(Long id){
-        Cita cita = em.find(Cita.class, id);
-        if(cita==null){
+        Cita cita;
+        
+        try{
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
             return null;
-        }else{
-            return cita.getIntervenciones();
         }
+        
+        if(cita==null) return null;
+        else return cita.getIntervenciones();
     }
     
     
     public EstadoCita getEstado(Long id){
-        Cita cita = em.find(Cita.class, id);
-        if(cita==null){
+        Cita cita;
+        
+        try{
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
             return null;
-        }else{
-            return cita.getEstado();
         }
+        
+        if(cita==null) return null;
+        else return cita.getEstado();
     }
     
     
     public void setEstado(Long id, EstadoCita estado){
-        Cita cita = em.find(Cita.class, id);
+        Cita cita;
+        
+        try{
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
+            return;
+        }
+        
         if(cita != null){
             cita.setEstado(estado);
         }
