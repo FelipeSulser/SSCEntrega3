@@ -194,7 +194,7 @@
                   <h2>
                      <h:form id="formulario_boton_intervenciones" rendered="#{ctrLogin.isAdmin ==  false}" >
                      <h:outputText id="intervenciones" value ="Intervenciones  "/>   
-                     <h:commandButton  class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" action="#{expedienteView.setAddingIntervencion(true)}"/> 
+                    
                      <h:link class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" outcome="expediente.xhtml" >
                               <f:param name="exp_id" value="#{expedienteView.id}"/>
                                <f:param name="add_inter" value="true"/>
