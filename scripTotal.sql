@@ -49,17 +49,29 @@ INSERT INTO PROFESIONAL (ID, APELLIDO1, APELLIDO2, CONTRASENIA, DNI, IMAGE, NOMB
 
 
 --ciudadano
-insert into CIUDADANO values (1, 'Henrik', 'Abel' , '11223344C','04/03/1990',null, 1500, 'ESPAÑA', 'Niels');
-insert into CIUDADANO values (3, 'Sulser', 'Larraz' , '13223344D','07/04/1993',null,4000, 'SUIZA', 'Felipe');
-insert into CIUDADANO values (5, 'Pérez', 'Wohlfeil' , '77188676D','06/04/1993',null,500, 'ESPAÑA', 'Esteban');
-insert into CIUDADANO values (7, 'Fernández', 'Suárez' , '55223344K','01/12/1893',null,1500, 'RUSIA', 'Iván');
-insert into CIUDADANO values (9, 'García-Faure', 'Torres' , '35243342E','01/20/1994',null,4000, 'ESPAÑA', 'Álvaro');
-insert into CIUDADANO values (11, 'Puerto', 'San Román' , '24249942R','11/20/1994',null,1000, 'ESPAÑA', 'Haritz');
-insert into CIUDADANO values (2, 'Filopeña', 'Faríbico', '44553311A', '08/15/1978',null,1500, 'ESPAÑA', 'Fausto');
-insert into CIUDADANO values (4, 'Ónix', 'López', '22553311B', '03/01/1962', null,900,'ESPAÑA', 'Patrisano');
-insert into CIUDADANO values (6, 'Bab', '', '44553122C', '10/08/1992', null,1500,'TAILANDIA', 'Edorrica');
-insert into CIUDADANO values (8, 'Gandalfín', 'Ajonjolí', '41552319D', '02/17/1955',null,756, 'ESPAÑA', 'Lucrecia');
-insert into CIUDADANO values (10, 'Vingrede', 'Custodia', '12553771C', '11/09/1980',null,4520, 'ESPAÑA', 'Poncio Teobaldo');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (1, 'Sulser', 'Larraz', '78986342', '1992-05-15', 'profile.png', 2000.0, 'Suiza', 'Felipe');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (2, 'Pérez', 'Wohlfeil', '77188642K', '1975-05-15', 'profile.png', 19999.0, 'Española', 'Esteban');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (3, 'Henrik', 'Abel', '11223344C', '1990-04-03', 'profile.png', 1200.0, 'ESPAÑA', 'Niels');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (7, 'Fernández', 'Suárez', '55223344K', '1893-01-12', 'profile.png', 200.0, 'RUSIA', 'Iván');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (9, 'García-Faure', 'Torres', '35243342E', '1994-01-20', 'profile.png', 3000.0, 'ESPAÑA', 'Álvaro');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (4, 'Ónix', 'López', '22553311B', '1962-03-01', 'profile.png', 1222.0, 'ESPAÑA', 'Patrisano');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (6, 'Bab', '', '44553122C', '1992-10-08', 'profile.png', 500.0, 'TAILANDIA', 'Edorrica');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (5, 'Pérez', 'Wohlfeil', '77188676D', '1993-06-04', 'profile.png', 500.0, 'ESPAÑA', 'Esteban');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (11, 'Puerto', 'San Román', '24249942R', '1994-11-20', 'profile.png', 1000.0, 'ESPAÑA', 'Haritz');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (8, 'Gandalfín', 'Ajonjolí', '41552319D', '1955-02-17', 'profile.png', 756.0, 'ESPAÑA', 'Lucrecia');
+INSERT INTO CIUDADANO (ID, APELLIDO1, APELLIDO2, DNI, FECHA_NACIMIENTO, IMAGE, INGRESO_MEDIO, NACIONALIDAD, NOMBRE) 
+	VALUES (10, 'Vingrede', 'Custodia', '12553771C', '1980-11-09', 'profile.png', 4520.0, 'ESPAÑA', 'Poncio Teobaldo');
+
 
 
 --expedientes
