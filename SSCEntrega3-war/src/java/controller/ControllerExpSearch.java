@@ -7,6 +7,7 @@ package controller;
 
 import dao.DaoExpedientes;
 import ejb.Buscador_ExpEJB;
+import ejb.ImagenCiudadanoEJB;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,8 @@ public class ControllerExpSearch implements Serializable{
     private static final long serialVersionUID = 1L;
     @EJB
     private Buscador_ExpEJB EXP_INTERFACE;
+    @EJB
+    private ImagenCiudadanoEJB imageCitizen;
     private boolean searchDone = false;
     private String nombre;
     private String apellido1;
@@ -71,6 +74,10 @@ public class ControllerExpSearch implements Serializable{
         ciudadanos = EXP_INTERFACE.getCiudadanos(exp_id,apellido1,apellido2,nombre);
         if(ciudadanos.isEmpty()) return null;
         return EXP_INTERFACE.getExpedientes(exp_id, apellido1, apellido2, nombre);
+    }
+    
+    public String getImageOfCitizen(long id){
+        return imageCitizen.getImageFromCitizen(id);
     }
     
     public String getNombre() {
