@@ -18,7 +18,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 
 
 import javax.faces.context.FacesContext;
@@ -38,7 +37,7 @@ import model.jpa.ssc.Vivienda;
  * @author felipesulser
  */
 @Named(value="expedienteView")
-@SessionScoped
+@RequestScoped
 public class ControllerVistaExp implements Serializable{
     //Injected
     @Inject
