@@ -31,7 +31,12 @@
                         <p:separator />  
                     </f:facet>
                     <h:outputLabel id="ciudano1" style="padding-left: 10px;" value="Ciudadano: " />
-                    <h:link id="ciudano2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.ciudadano.nombre} #{controladorCita.ciudadano.apellido1} #{controladorCita.ciudadano.apellido2}" outcome="#{expedienteView.browsePage(controladorCita.ciudadano.expediente_personal.id)}"/>
+                    
+                    <h:link id="ciudano2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.ciudadano.nombre} #{controladorCita.ciudadano.apellido1} #{controladorCita.ciudadano.apellido2}" outcome="expediente.xhtml">
+                        <f:param name="exp_id" value="#{controladorCita.ciudadano.expediente_personal.id}"/>
+                        
+                    </h:link>
+                    
                     <h:outputLabel id="fecha1" style="padding-left: 10px;" value="Fecha" />
                     <h:outputLabel id="fecha2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.fecha}"/>
                     <h:outputLabel id="tipo1" style="padding-left: 10px;" value="Tipo de cita:" />
