@@ -28,77 +28,111 @@ public class InfoCitaEJB {
     @PersistenceContext(unitName="SSCPU")
     private EntityManager em;
     
-    public Date getFecha(Long id){        
+    public Date getFecha(Long id){
+        Cita cita;
+        
         try{
-            Cita cita = em.find(Cita.class, id);
-            return cita.getFecha();
+            cita = em.find(Cita.class, id);
         }catch(RuntimeException e){
             return null;
         }
+        
+        if(cita==null) return null;
+        else return cita.getFecha();
+        
     }
     
-    public String getComentarios(Long id){        
+    public String getComentarios(Long id){
+        Cita cita;
+        
         try{
-            Cita cita = em.find(Cita.class, id);
-            return cita.getComentarios();
+            cita = em.find(Cita.class, id);
         }catch(RuntimeException e){
             return null;
         }
+        
+        if(cita==null) return null;
+        else return cita.getComentarios();
     }
     
     public String getTipo_de_cita(Long id){
+        Cita cita;
+        
         try{
-            Cita cita = em.find(Cita.class, id);
-            return cita.getTipo_de_cita();
+            cita = em.find(Cita.class, id);
         }catch(RuntimeException e){
             return null;
         }
+        
+        if(cita==null) return null;
+        return cita.getTipo_de_cita();
     }
     
     public Ciudadano getCiudadano(Long id){
+        Cita cita;
+        
         try{
-            Cita cita = em.find(Cita.class, id);
-            return cita.getCiudadano();
+            cita = em.find(Cita.class, id);
         }catch(RuntimeException e){
             return null;
         }
+        
+        if(cita==null) return null;
+        else return cita.getCiudadano();
     }
     
     public Profesional getProfesional(Long id){
+        Cita cita;
+        
         try{
-            Cita cita = em.find(Cita.class, id);
-            return cita.getProfesional();
+            cita = em.find(Cita.class, id);
         }catch(RuntimeException e){
             return null;
         }
+        
+        if(cita==null) return null;
+        else return cita.getProfesional();
     }
     
     public List<Intervenciones> getIntervenciones(Long id){
+        Cita cita;
+        
         try{
-            Cita cita = em.find(Cita.class, id);
-            return cita.getIntervenciones();
+            cita = em.find(Cita.class, id);
         }catch(RuntimeException e){
             return null;
         }
+        
+        if(cita==null) return null;
+        else return cita.getIntervenciones();
     }
     
     
     public EstadoCita getEstado(Long id){
+        Cita cita;
+        
         try{
-            Cita cita = em.find(Cita.class, id);
-            return cita.getEstado();
+            cita = em.find(Cita.class, id);
         }catch(RuntimeException e){
             return null;
         }
+        
+        if(cita==null) return null;
+        else return cita.getEstado();
     }
     
     
     public void setEstado(Long id, EstadoCita estado){
-
+        Cita cita;
+        
         try{
-            Cita cita = em.find(Cita.class, id);
+            cita = em.find(Cita.class, id);
+        }catch(RuntimeException e){
+            return;
+        }
+        
+        if(cita != null){
             cita.setEstado(estado);
-        }catch(RuntimeException e){         
         }
     }
 }
