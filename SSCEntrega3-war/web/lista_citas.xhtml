@@ -54,7 +54,7 @@
                     <p:column id="verCita" headerText="Ver cita">
                        <!--<h:commandButton id="btn-ver-cita" value="Ver cita" 
                                         class="btn btn-info" action="#{controladorCita.browsePage(cita.id)}"/>-->
-                       <h:link id = "linkToCita" value="#{cita.id}" outcome="info_cita.xhtml" >
+                       <h:link id = "linkToCita" class="btn btn-info" value="Ver cita" outcome="info_cita.xhtml" >
                            <f:param name="cita_id" value="#{cita.id}"/>
                        </h:link>
 
