@@ -7,10 +7,13 @@ package controller;
 
 import ejb.CrearCitaEJB;
 import exceptions.CiudadanoNotFoundException;
+import exceptions.CrearCitaException;
 import exceptions.ProfesionalNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -177,9 +180,11 @@ public class ControllerNuevaCita implements Serializable {
                     + " en la base de datos. Es posible que esté mal escrito o"
                     + " no esté dado de alta aún.";
             FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(DNICiudadano, new FacesMessage(error));
-            //Logger.getLogger(ControllerNuevaCita.class.getName()).log(Level.SEVERE, null, ex);
-            
+            ctx.addMessage(DNIProfesional, new FacesMessage(error));            
+            return null;
+        } catch (CrearCitaException ex) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(ex.getMessage()));            
             return null;
         }
 
