@@ -29,44 +29,84 @@ public class ExpedienteEJB {
     
    
     public Expediente getExpediente(Long id) {
-       Expediente exp = em.find(Expediente.class, id);
+         Expediente exp;
+        try{
+            exp= em.find(Expediente.class, id);
+        }catch(RuntimeException e){
+            return null;
+        }
        
        return exp;
     }
     
     public Ciudadano getCiudadano(Long exp_id){
-        Expediente exp = em.find(Expediente.class, exp_id);
+        Expediente exp ;
+    
+        try{
+        exp= em.find(Expediente.class, exp_id);
+        }catch(RuntimeException e){
+            return null;
+        }
         if(exp == null) return null;
         return exp.getCiudadano_exp();
     }
     
     public List<Intervenciones> getIntervenciones(Long exp_id){
-        Expediente exp = em.find(Expediente.class, exp_id);
-        if(exp == null) return null;
+        Expediente exp;
+        try{
+            exp= em.find(Expediente.class, exp_id);
+        }catch(RuntimeException e){
+            return null;
+        }
+            if(exp == null) return null;
         return exp.getIntervenciones();
     }
     
     public List<Familiar> getFamilia(Long exp_id){
-     Expediente exp = em.find(Expediente.class, exp_id);
-     if(exp == null) return null;
+        
+     Expediente exp;
+     try{   
+        exp= em.find(Expediente.class, exp_id);
+     }catch(RuntimeException e){
+         return null;
+     }
+        if(exp == null) return null;
      return exp.getFamiliares();
     }
        
     public Vivienda getPrincipal(Long exp_id){
-          Expediente exp = em.find(Expediente.class, exp_id);
+          Expediente exp;
+          try{
+            exp= em.find(Expediente.class, exp_id);
+          }catch(RuntimeException e){
+              return null;
+          }
           if(exp == null) return null;
           return exp.getResidencia();
     }
         public List<Vivienda> getSecundarias(Long exp_id){
-          Expediente exp = em.find(Expediente.class, exp_id);
-          if(exp == null) return null;
+          Expediente exp;
+            try{
+            
+                exp= em.find(Expediente.class, exp_id);
+            }catch(RuntimeException e){
+                return null;
+            }
+                if(exp == null) return null;
           return exp.getViviendas();
     }
        
        
     public void setFamiliar(Long exp_id,Familiar f){
-        Expediente exp = em.find(Expediente.class,exp_id);
-        if(exp == null) return;
+        
+        Expediente exp;
+        try{
+            
+            exp= em.find(Expediente.class,exp_id);
+        }        catch(RuntimeException e){
+            return;
+        }
+            if(exp == null) return;
         
         f.setExpediente(exp);
         
@@ -76,7 +116,12 @@ public class ExpedienteEJB {
     
   
     public void setVivienda(Long exp_id, Vivienda v){
-        Expediente exp = em.find(Expediente.class, exp_id);
+        Expediente exp;
+        try{
+            exp= em.find(Expediente.class, exp_id);
+        }catch(RuntimeException e){
+            return;
+        }
         if(exp == null) return;
         v.setExpediente_residencia(exp);
         
@@ -85,10 +130,21 @@ public class ExpedienteEJB {
     
     public void setIntervencion(Long exp_id, Long cita_id, Intervenciones inter){
         if(exp_id == null)return;
-        Expediente exp = em.find(Expediente.class,exp_id);
+        
+        Expediente exp;
+        try{
+            exp= em.find(Expediente.class,exp_id);
+        }catch(RuntimeException e){
+            return;
+        }
         if(exp == null) return;
         if(cita_id == null) return;
-        Cita c = em.find(Cita.class, cita_id);
+        Cita c;
+        try{
+            c= em.find(Cita.class, cita_id);
+        }catch(RuntimeException e){
+            return;
+        }
         if(c == null) return;
         
         inter.setExpediente(exp);

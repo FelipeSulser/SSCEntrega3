@@ -71,7 +71,7 @@ public class ControllerVistaExp implements Serializable{
    
     /* FOR THE NEW INTERVENTION */
     private Intervenciones newIntervencion = new Intervenciones();
-    private Long newInterCitaId;
+    private String newInterCitaId;
     private java.util.Date intervencionDate;
     
     
@@ -226,7 +226,7 @@ public class ControllerVistaExp implements Serializable{
         FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml");
     }
      public void persistVivienda() throws IOException{
-       
+         
         expedienteBean.setVivienda(id, newVivienda);
         
         newVivienda = new Vivienda();
@@ -238,12 +238,17 @@ public class ControllerVistaExp implements Serializable{
          
          
         //AQUI DEBERIA COMUNICARME CON EL EJB PARA AÑADIR EL FAMILIAR EN DB
-         
+       
          //NOTA: he de usar el campo de newInterCitaId y hallar la cita, y asociarla a la intervencion
         java.sql.Date dat = new Date(intervencionDate.getTime());
         newIntervencion.setFecha(dat);
-        
-        expedienteBean.setIntervencion(this.id, newInterCitaId, newIntervencion);
+        Long id_cita;
+        try{
+         id_cita= Long.parseLong(newInterCitaId);
+                }catch(RuntimeException e){
+                    return null;
+                }
+        expedienteBean.setIntervencion(this.id, id_cita, newIntervencion);
         
         newIntervencion = new Intervenciones();
         addingIntervencion = false;
@@ -266,11 +271,11 @@ public class ControllerVistaExp implements Serializable{
         this.intervencionDate = intervencionDate;
     }
 
-    public Long getNewInterCitaId() {
+    public String getNewInterCitaId() {
         return newInterCitaId;
     }
 
-    public void setNewInterCitaId(Long newInterCitaId) {
+    public void setNewInterCitaId(String newInterCitaId) {
         this.newInterCitaId = newInterCitaId;
     }
      
