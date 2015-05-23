@@ -61,6 +61,24 @@ public class ControladorCita {
         
     }
     
+    public void init(){
+        if(this.id != null){
+            fecha = infoCitaEJB.getFecha(id);
+            comentarios = infoCitaEJB.getComentarios(id);
+            tipo_de_cita = infoCitaEJB.getTipo_de_cita(id);
+            ciudadano = infoCitaEJB.getCiudadano(id);
+            profesional = infoCitaEJB.getProfesional(id);
+            intervenciones = infoCitaEJB.getIntervenciones(id);
+            estado = infoCitaEJB.getEstado(id);
+        }
+                
+    }
+    
+    /**
+     * DEPRECATED. Use init()
+     * @param id de la cita
+     * @return info_cita.xhtml con todos los datos cargados
+     */
     public String browsePage(Long id){
         if(id == null) return "index.xhtml";
         this.id=id;
@@ -117,21 +135,23 @@ public class ControladorCita {
     }
     
     public void updateEstado(){
-        System.out.println("hola" + estadoString + " " + id);
         switch(estadoString){
             case "citaPlanificada":
                 this.estado = EstadoCita.citaPlanificada;
                 infoCitaEJB.setEstado(id, EstadoCita.citaPlanificada);
+                break;
             case "ausencia":
                 this.estado = EstadoCita.ausencia;
                 infoCitaEJB.setEstado(id, EstadoCita.ausencia);
+                break;
             case "noRealizada":
                 this.estado = EstadoCita.noRealizada;
                 infoCitaEJB.setEstado(id, EstadoCita.noRealizada);
+                break;
             case "planificadaPorOtroProfesional":
                 this.estado = EstadoCita.planificadaPorOtroProfesional;
                 infoCitaEJB.setEstado(id, EstadoCita.planificadaPorOtroProfesional);
-
+                break;
         }
     }
     
