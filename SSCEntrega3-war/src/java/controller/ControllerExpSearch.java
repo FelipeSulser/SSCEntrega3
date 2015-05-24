@@ -5,7 +5,6 @@
  */
 package controller;
 
-import dao.DaoExpedientes;
 import ejb.Buscador_ExpEJB;
 import ejb.ImagenCiudadanoEJB;
 import java.io.Serializable;
