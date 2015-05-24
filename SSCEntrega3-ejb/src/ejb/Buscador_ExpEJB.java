@@ -40,7 +40,7 @@ public class Buscador_ExpEJB {
       exps.add(onlyOne);
       return exps;
                
-      }else{
+      }else if (apellido1 != null && apellido2 != null && nombre!= null){
          
           //now do all queries by parameters
           if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
@@ -94,6 +94,8 @@ public class Buscador_ExpEJB {
               }
               return exps;
           }
+      }else{
+              return exps;
       }
      
     }
@@ -137,7 +139,7 @@ public class Buscador_ExpEJB {
        myMap.put(ciu.getExpediente_personal().getId(), ciu);
       return myMap;
                
-      }else{
+      }else if (apellido1 != null && apellido2 != null && nombre!= null){
           //now do all queries by parameters
           if(apellido1.equals("") && apellido2.equals("") && nombre.equals("")){
               return myMap;
@@ -200,6 +202,8 @@ public class Buscador_ExpEJB {
               }
               return myMap;
           }
+      }else{
+          return myMap;
       }
      
     }

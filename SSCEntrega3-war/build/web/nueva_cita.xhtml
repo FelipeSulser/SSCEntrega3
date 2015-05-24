@@ -15,17 +15,22 @@
                     window.location = "login.xhtml";
                 </script>
             </c:if>
-        <h:messages style="color:red" />      
+        <c:if test="#{!empty facesContext.messageList}">
+            <!-- flash alert messages !-->
+            <div class="alert alert-warning" role="alert" style="margin-top:20px;">
+                <h:messages/>
+            </div>
+            <!-- end flash alert messages !-->
+        </c:if>      
         <h1>Crear cita</h1>
-            <h:form style="padding: 10px;" rendered="#{ctrLogin.isLoggedIn() == true}">
+            <h:form id="formulario_crer_cita" style="padding: 10px;" rendered="#{ctrLogin.isLoggedIn() == true}">
                 <h:panelGrid columns="2">
-                    DNI del ciudadano: <h:inputText size="9" maxlength="9" value="#{ctrNuevaCita.DNICiudadano}"/>
-                    DNI del profesional: <h:inputText size="9" maxlength ="9" value="#{ctrNuevaCita.DNIProfesional}" />
-                    Fecha: <p:calendar  pattern="dd/MM/yyyy" value="#{ctrNuevaCita.fecha}" />
-                    Número de intervención: <h:inputText value="#{ctrNuevaCita.numIntervencion}" /> 
-                    Tipo de cita: <h:inputText value="#{ctrNuevaCita.tipoCita}"/>
-                    Detalle de la gestión : <h:inputText value="#{ctrNuevaCita.detalleGestion}" /> 
-                    <h:link value="Enviar" outcome="#{ctrNuevaCita.crearCita()}" > </h:link>
+                    DNI del ciudadano: <h:inputText id="dni_ciudadano" size="9" maxlength="9" value="#{ctrNuevaCita.DNICiudadano}"/>
+                    DNI del profesional: <h:inputText id="dni_profesional" size="9" maxlength ="9" value="#{ctrNuevaCita.DNIProfesional}" />
+                    Fecha: <p:calendar id="calendario" pattern="dd/MM/yyyy" value="#{ctrNuevaCita.fecha}" />
+                    Tipo de cita: <h:inputText id="tipo_cita" value="#{ctrNuevaCita.tipoCita}"/>   
+                    Detalle de la gestión : <h:inputText id="detalle_gestion" value="#{ctrNuevaCita.detalleGestion}" /> 
+                    <h:commandButton id="enviar" value="Enviar" action="#{ctrNuevaCita.persistCita()}" > </h:commandButton>
                     
                 </h:panelGrid>
 	    </h:form>  

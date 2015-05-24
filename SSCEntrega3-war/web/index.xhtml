@@ -57,7 +57,7 @@
                 </div>
                 
        <p:growl id="msgs" showDetail="true" />
-        <p:panel collapsed="true" id="toggleable" header="El País Noticias" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+        <p:panel collapsed="true" id="toggleable" class="msgs" header="El País Noticias" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
  
         <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
         <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
@@ -70,7 +70,7 @@
                 <p:separator/>
                   </p:feedReader> 
         </h:panelGrid>
- 
+        
         <f:facet name="options">
             <p:menu>
                 <p:submenu label="Settings">
@@ -83,6 +83,17 @@
                       
     
             </h:form>
+            <button id="slow" onclick="$('.msgs').detach()" style="visibility: hidden">¿Conexión lenta?</button>
+        <script type="text/javascript">
+            var slowLoad = window.setTimeout( function() {
+                $(document.getElementById("#slow")).css('visibility','visible');
+            }, 0 );
+
+            document.addEventListener( 'load', function() {
+                window.clearTimeout( slowLoad );
+                $(document.getElementById("#slow")).css('visibility','hidden');
+            }, false );
+        </script>
             <h:form rendered="#{ctrLogin.isLoggedIn() == true}">
                 
                 <p:layout  style="min-width:500px;min-height:550px;" >

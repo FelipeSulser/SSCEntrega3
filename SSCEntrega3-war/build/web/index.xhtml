@@ -57,7 +57,7 @@
                 </div>
                 
        <p:growl id="msgs" showDetail="true" />
-        <p:panel collapsed="true" id="toggleable" header="El País Noticias" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+        <p:panel collapsed="true" id="toggleable" class="msgs" header="El País Noticias" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
  
         <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
         <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
@@ -70,7 +70,7 @@
                 <p:separator/>
                   </p:feedReader> 
         </h:panelGrid>
- 
+        
         <f:facet name="options">
             <p:menu>
                 <p:submenu label="Settings">
@@ -83,6 +83,17 @@
                       
     
             </h:form>
+            <button id="slow" onclick="$('.msgs').detach()" style="visibility: hidden">¿Conexión lenta?</button>
+        <script type="text/javascript">
+            var slowLoad = window.setTimeout( function() {
+                $(document.getElementById("#slow")).css('visibility','visible');
+            }, 0 );
+
+            document.addEventListener( 'load', function() {
+                window.clearTimeout( slowLoad );
+                $(document.getElementById("#slow")).css('visibility','hidden');
+            }, false );
+        </script>
             <h:form rendered="#{ctrLogin.isLoggedIn() == true}">
                 
                 <p:layout  style="min-width:500px;min-height:550px;" >
@@ -111,11 +122,11 @@
                         <p class="estilo2"><h:outputText value="Mi perfil"/></p>
                         <p:toolbar></p:toolbar>
                         <br></br>
-                        <img src="./resources/images/#{sesionBean.user.image}"/>
-                        <p>Su usuario es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{sesionBean.user.usuario}"></h:outputText></p>
-                        <p>Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{sesionBean.user.dni}"></h:outputText></p>
-                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{sesionBean.citasHoy}"></h:outputText></p>
-                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{sesionBean.totalIntervenciones}"></h:outputText> </p>
+                        <img src="./resources/images/#{ctrLogin.image}"/>
+                        <p>Su usuario es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
+                        <p>Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.dni}"></h:outputText></p>
+                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{ctrLogin.citasHoy}"></h:outputText></p>
+                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{ctrLogin.totalIntervenciones}"></h:outputText> </p>
                         <p:separator/>
 
                     </p:layoutUnit>

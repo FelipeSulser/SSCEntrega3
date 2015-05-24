@@ -44,7 +44,7 @@ public class LoginEJB {
         String ejbQL = "Select p from Profesional p where p.usuario = :name and p.contrasenia = :contrasenia";
         //create query
         TypedQuery<Profesional> q = em.createQuery(ejbQL, Profesional.class);
-        q.setParameter("name",user).setParameter("contrasenia", hashSHA256(password));
+        q.setParameter("name",user).setParameter("contrasenia", password);
 
         //execute the query and check result
         List<Profesional> result = q.getResultList();

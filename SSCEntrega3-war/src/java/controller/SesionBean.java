@@ -104,6 +104,8 @@ public class SesionBean implements Serializable{
     public void setPro(Profesional pro) {
         this.pro = pro;
     }
+}
+    
 
 
     
