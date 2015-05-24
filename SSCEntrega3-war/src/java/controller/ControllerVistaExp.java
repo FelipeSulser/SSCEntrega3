@@ -195,7 +195,8 @@ public class ControllerVistaExp implements Serializable{
         newFamiliar = new Familiar();
         
         addingFamiliar = false;
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml");
+        //si, añadimos la query string a mano 
+        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml?exp_id="+id);
     }
      public void persistVivienda() throws IOException{
          
@@ -203,7 +204,8 @@ public class ControllerVistaExp implements Serializable{
         
         newVivienda = new Vivienda();
         addingVivienda = false;
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml");
+        
+        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml?exp_id="+id);
     }
 
     public java.util.Date getFamiliarDate() {
