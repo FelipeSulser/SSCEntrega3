@@ -123,7 +123,7 @@ public class ExpedienteEJB {
             return;
         }
         if(exp == null) return;
-        v.setExpediente_residencia(exp);
+        v.setPropietario(exp);
         
         em.persist(v);
     }   
