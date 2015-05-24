@@ -5,20 +5,13 @@
  */
 package controller;
 
-import dao.DaoExpedienteView;
 import ejb.ExpedienteEJB;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 
 import javax.enterprise.context.RequestScoped;
-
 
 import javax.faces.context.FacesContext;
 
@@ -61,7 +54,6 @@ public class ControllerVistaExp implements Serializable{
     /****************Logica de introduccion de datos******************/
     private boolean addingFamiliar;
     private boolean addingVivienda;
-    private boolean addingIntervencion;
     
     
     /* FOR THE NEW FAMILIAR */
@@ -69,10 +61,6 @@ public class ControllerVistaExp implements Serializable{
     private java.util.Date familiarDate ;
     
    
-    /* FOR THE NEW INTERVENTION */
-    private Intervenciones newIntervencion = new Intervenciones();
-    private String newInterCitaId;
-    private java.util.Date intervencionDate;
     
     
     /* FOR THE NEW VIVIENDA */
@@ -177,28 +165,12 @@ public class ControllerVistaExp implements Serializable{
         this.addingVivienda = addingVivienda;
     }
 
-    public boolean isAddingIntervencion() {
-        return addingIntervencion;
-    }
-
-    public void setAddingIntervencion(boolean addingIntervencion) {
-        this.addingIntervencion = addingIntervencion;
-    }
-
     public Familiar getNewFamiliar() {
         return newFamiliar;
     }
 
     public void setNewFamiliar(Familiar newFamiliar) {
         this.newFamiliar = newFamiliar;
-    }
-
-    public Intervenciones getNewIntervencion() {
-        return newIntervencion;
-    }
-
-    public void setNewIntervencion(Intervenciones newIntervencion) {
-        this.newIntervencion = newIntervencion;
     }
 
     public Vivienda getNewVivienda() {
@@ -233,27 +205,6 @@ public class ControllerVistaExp implements Serializable{
         addingVivienda = false;
         FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml");
     }
-     public String persistIntervencion() throws IOException{
-        
-         
-         
-        //AQUI DEBERIA COMUNICARME CON EL EJB PARA AÑADIR EL FAMILIAR EN DB
-       
-         //NOTA: he de usar el campo de newInterCitaId y hallar la cita, y asociarla a la intervencion
-        java.sql.Date dat = new Date(intervencionDate.getTime());
-        newIntervencion.setFecha(dat);
-        Long id_cita;
-        try{
-         id_cita= Long.parseLong(newInterCitaId);
-                }catch(RuntimeException e){
-                    return null;
-                }
-        expedienteBean.setIntervencion(this.id, id_cita, newIntervencion);
-        
-        newIntervencion = new Intervenciones();
-        addingIntervencion = false;
-        return null;
-    }
 
     public java.util.Date getFamiliarDate() {
         return familiarDate;
@@ -262,26 +213,5 @@ public class ControllerVistaExp implements Serializable{
     public void setFamiliarDate(java.util.Date familiarDate) {
         this.familiarDate = familiarDate;
     }
-
-    public java.util.Date getIntervencionDate() {
-        return intervencionDate;
-    }
-
-    public void setIntervencionDate(java.util.Date intervencionDate) {
-        this.intervencionDate = intervencionDate;
-    }
-
-    public String getNewInterCitaId() {
-        return newInterCitaId;
-    }
-
-    public void setNewInterCitaId(String newInterCitaId) {
-        this.newInterCitaId = newInterCitaId;
-    }
-     
-     
-     
-    
-    
     
 }

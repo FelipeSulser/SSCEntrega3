@@ -126,35 +126,6 @@ public class ExpedienteEJB {
         v.setExpediente_residencia(exp);
         
         em.persist(v);
-    }
-    
-    public void setIntervencion(Long exp_id, Long cita_id, Intervenciones inter){
-        if(exp_id == null)return;
-        
-        Expediente exp;
-        try{
-            exp= em.find(Expediente.class,exp_id);
-        }catch(RuntimeException e){
-            return;
-        }
-        if(exp == null) return;
-        if(cita_id == null) return;
-        Cita c;
-        try{
-            c= em.find(Cita.class, cita_id);
-        }catch(RuntimeException e){
-            return;
-        }
-        if(c == null) return;
-        
-        inter.setExpediente(exp);
-        inter.setId_cita(c);
-        
-        em.persist(inter);
-    }
-       
-    
-    
-    
+    }   
   
 }
