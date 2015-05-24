@@ -154,7 +154,6 @@ public class ControladorCita {
                 infoCitaEJB.setEstado(idCitaFromView, EstadoCita.citaPlanificada);
                 break;
             case "ausencia":
-                System.out.println("Entra aqui");
                 this.estado = EstadoCita.ausencia;
                 infoCitaEJB.setEstado(idCitaFromView, EstadoCita.ausencia);
                 break;

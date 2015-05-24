@@ -83,9 +83,7 @@ public class ControllerVistaExp implements Serializable{
     
     
     public void init(){
-        
-        
-         expediente = expedienteBean.getExpediente(id);
+        expediente = expedienteBean.getExpediente(id);
         
         ciudadano = expedienteBean.getCiudadano(id);
         
@@ -97,14 +95,39 @@ public class ControllerVistaExp implements Serializable{
         
         intervenciones = expedienteBean.getIntervenciones(id);
         
-        
+        System.out.println("Estoy en init");
+        for(Familiar f : familia){
+            System.out.println(f.getNombre());
+        }
     }
-    public void addFamiliar() throws IOException{
+    
+    /**
+     * Redirecciona a la página del expediente id
+     * @param id del expediente
+     * @return 
+     */
+    public String browsePage(Long id){
+        this.id = id;
+        expediente = expedienteBean.getExpediente(id);
+        ciudadano = expedienteBean.getCiudadano(id); 
+        principal = expedienteBean.getPrincipal(id);
+        secundarias = expedienteBean.getSecundarias(id);
+        familia = expedienteBean.getFamilia(id);
+        intervenciones = expedienteBean.getIntervenciones(id);
+        System.out.println("Estoy en browse");
+        for(Familiar f : familia){
+            System.out.println(f.getNombre());
+        }
+        return "expediente.xhtml";
+    }
+    /*
+    public String addFamiliar() throws IOException{
         addingFamiliar = true;
-        
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml");
+        return browsePage(this.id);
+        //FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml");
         
     }
+    */
     
   
     
@@ -182,22 +205,27 @@ public class ControllerVistaExp implements Serializable{
     }
     
     
-    public void persistFamiliar() throws IOException{
-        
+    public String persistFamiliar() throws IOException{
         //Debido a que p:calendar usa util.Date hemos de convertirlo a sql Date
-
-        
         java.sql.Date dat = new Date(familiarDate.getTime());
         newFamiliar.setFecha_nacimiento(dat);
+        familia = expedienteBean.getFamilia(id);
+        System.out.println(newFamiliar.getNombre());
         expedienteBean.setFamiliar(id, newFamiliar);
-        
-        //as familiar is already persisted, just add it
+        System.out.println(newFamiliar.getNombre());
+        familia.add(newFamiliar);
+        familia = expedienteBean.getFamilia(id);
+        for(Familiar f : familia){
+            System.out.println("persistFamiliar2" + f.getNombre());
+        }
         newFamiliar = new Familiar();
         
         addingFamiliar = false;
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml");
+        return browsePage(this.id);
     }
-     public void persistVivienda() throws IOException{
+    
+    
+    public void persistVivienda() throws IOException{
          
         expedienteBean.setVivienda(id, newVivienda);
         

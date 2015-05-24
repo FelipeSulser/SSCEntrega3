@@ -10,7 +10,6 @@ import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Expediente;
 import model.jpa.ssc.Familiar;
@@ -63,15 +62,18 @@ public class ExpedienteEJB {
     }
     
     public List<Familiar> getFamilia(Long exp_id){
-        
-     Expediente exp;
-     try{   
-        exp= em.find(Expediente.class, exp_id);
-     }catch(RuntimeException e){
-         return null;
-     }
+        System.out.println("estoy en EJB.getFamilia() con id " + exp_id);
+        Expediente exp;
+        try{   
+            exp= em.find(Expediente.class, exp_id);
+        }catch(RuntimeException e){
+            return null;
+        }
         if(exp == null) return null;
-     return exp.getFamiliares();
+        for(Familiar f : exp.getFamiliares()){
+            System.out.println(f.getNombre());
+        }
+        return exp.getFamiliares();
     }
        
     public Vivienda getPrincipal(Long exp_id){
@@ -108,9 +110,10 @@ public class ExpedienteEJB {
         }
             if(exp == null) return;
         
-        f.setExpediente(exp);
+        f.setExpediente_fam(exp);
         
         em.persist(f);
+        System.out.println(f.getNombre() + " insertado");
         
     }
     
