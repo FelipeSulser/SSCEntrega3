@@ -10,6 +10,7 @@
     
     <f:metadata>
         <f:viewParam name="cita_id" value="#{controladorCita.id}" />
+        <f:viewParam name ="add_inter" value="#{controladorCita.addingIntervencion}" />
         <!-- You would normally also convert/validate it here. -->
         <f:event type="preRenderView" listener="#{controladorCita.init}" />
     </f:metadata>
@@ -23,7 +24,13 @@
                 </c:if>
                 <p:scrollPanel id="scrollPanelInfoCita" style="border-color: transparent;">
                    
-                    
+                <c:if test="#{!empty facesContext.messageList}">
+                    <!-- flash alert messages !-->
+                    <div class="alert alert-warning" role="alert" style="margin-top:20px;">
+                         <h:messages/>
+                    </div>
+                    <!-- end flash alert messages !-->
+                </c:if>  
                     
                 <h:panelGrid id="panel" columns="2" border="0" cellpadding="10" cellspacing="1">
                     <f:facet name="header">
@@ -52,21 +59,15 @@
                     
                 <h:panelGrid id="panelUpdateEstado" columns="2" border="0" cellpadding="10" cellspacing="1">    
                     <h:form>
-                        <c:if test="#{!empty facesContext.messageList}">
-                        <!-- flash alert messages !-->
-                        <div class="alert alert-warning" role="alert" style="margin-top:20px;">
-                            <h:messages/>
-                        </div>
-                        <!-- end flash alert messages !-->
-                        </c:if> 
-                            <p:outputLabel for="estadoString" value="Nuevo estado cita: " />
-                            <p:selectOneMenu id="estadoString" value="#{controladorCita.estadoString}" style="width:125px">
-                                <p:ajax listener="#{controladorCita.updateEstado}" update="estado2"/>
-                                <f:selectItem itemLabel="Cita Planificada" itemValue="citaPlanificada" />
-                                <f:selectItem itemLabel="Ausencia" itemValue="ausencia" />
-                                <f:selectItem itemLabel="No realizada" itemValue="noRealizada" />
-                                <f:selectItem itemLabel="Planificada por otro profesional" itemValue="planificadaPorOtroProfesional" />
-                            </p:selectOneMenu>
+                        
+                        <p:outputLabel for="estadoString" value="Nuevo estado cita: " />
+                        <p:selectOneMenu id="estadoString" value="#{controladorCita.estadoString}" style="width:125px">
+                            <p:ajax listener="#{controladorCita.updateEstado}" update="estado2"/>
+                            <f:selectItem itemLabel="Cita Planificada" itemValue="citaPlanificada" />
+                            <f:selectItem itemLabel="Ausencia" itemValue="ausencia" />
+                            <f:selectItem itemLabel="No realizada" itemValue="noRealizada" />
+                            <f:selectItem itemLabel="Planificada por otro profesional" itemValue="planificadaPorOtroProfesional" />
+                        </p:selectOneMenu>
                     </h:form>
                 </h:panelGrid>
                 <p:separator />  
@@ -87,6 +88,28 @@
                     </tr>
                    
                 </table>
+                
+                <h2>
+                    <h:form id="formulario_boton_intervenciones" rendered="#{!ctrLogin.isAdmin}" >
+                        <h:outputText id="intervenciones" value ="Intervenciones  "/>   
+                    
+                        <h:link class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" outcome="info_cita.xhtml" >
+                            <f:param name="cita_id" value="#{controladorCita.id}"/>
+                            <f:param name="add_inter" value="true"/>
+                        </h:link>
+                     </h:form>
+                </h2>
+                 
+                <h:form id="formulario_add_intervenciones" rendered="#{controladorCita.addingIntervencion}">                     
+                    <h:panelGrid columns="2">
+                        <h:outputText id="fecha" value="Fecha: " />
+                        <p:calendar id="calendario"  pattern="dd/MM/yyyy" value="#{controladorCita.intervencionDate}"></p:calendar>
+                        <h:outputText value="Anotaciones " />
+                        <h:inputTextarea id="expediente_intervenciones_anotaciones" value="#{controladorCita.newIntervencion.anotaciones}" cols="30" rows="10" />
+                        <h:commandButton id="btn-intervencion" value="Enviar" 
+                                        class="btn btn-info" action="#{controladorCita.persistIntervencion()}"/>
+                    </h:panelGrid>
+                </h:form>
 
                 </p:scrollPanel>  
             </ui:define>     

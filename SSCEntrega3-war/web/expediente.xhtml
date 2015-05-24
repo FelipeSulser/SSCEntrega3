@@ -9,7 +9,6 @@
      <f:viewParam name="exp_id" value="#{expedienteView.id}" />
      <f:viewParam name ="add_fam" value ="#{expedienteView.addingFamiliar}" />
      <f:viewParam name ="add_viv" value ="#{expedienteView.addingVivienda}" />
-     <f:viewParam name ="add_inter" value="#{expedienteView.addingIntervencion}" />
     <!-- You would normally also convert/validate it here. -->
     <f:event type="preRenderView" listener="#{expedienteView.init}" />
 </f:metadata>
@@ -191,35 +190,11 @@
                           <h:outputText id="valor_estado" value="#{viviendas.condiciones}" />
                     </p:column>
                 </p:dataTable>
-                  <h2>
-                     <h:form id="formulario_boton_intervenciones" rendered="#{ctrLogin.isAdmin ==  false}" >
-                     <h:outputText id="intervenciones" value ="Intervenciones  "/>   
-                    
-                     <h:link class="btn btn-info" id ="expediente_addIntervencion" value="Añadir Intervención" outcome="expediente.xhtml" >
-                              <f:param name="exp_id" value="#{expedienteView.id}"/>
-                               <f:param name="add_inter" value="true"/>
-                      </h:link>
-                      </h:form>
-                 </h2>
-                 
-                 <h:form id="formulario_add_intervenciones" rendered="#{expedienteView.isAddingIntervencion()  ==true }">
-                         
-
-                     <h:panelGrid columns="2">
-
-                        <h:outputText id="fecha" value="Fecha: " />
-                        <p:calendar id="calendario"  pattern="dd/MM/yyyy" value="#{expedienteView.intervencionDate}"></p:calendar>
-
-                        <h:outputText value="Anotaciones " />
-                        <h:inputTextarea id="expediente_intervenciones_anotaciones" value="#{expedienteView.newIntervencion.anotaciones}" cols="30" rows="10" />
-                         <h:outputText value="ID de la cita" />
-                         <h:inputText id="expediente_intervenciones_citaid" value="#{expedienteView.newInterCitaId}" />
-                        <h:commandButton id="btn-intervencion" value="Enviar" 
-                                        class="btn btn-info" action="#{expedienteView.persistIntervencion()}"/>
-                     </h:panelGrid>
-                  </h:form>
-                 
-                 <p:dataTable id="expediente_intervenciones_tabla" style="width:1000px;" var="intervencion" value="#{expedienteView.intervenciones}">
+                
+                <h2>
+                    <h:outputText id="intervenciones" value ="Intervenciones  "/>   
+                </h2>
+                <p:dataTable id="expediente_intervenciones_tabla" style="width:1000px;" var="intervencion" value="#{expedienteView.intervenciones}">
                     <p:column style="width:100px;" headerText="Fecha">
                         <h:outputText id="intervencion" value="#{intervencion.fecha}" />
                     </p:column>

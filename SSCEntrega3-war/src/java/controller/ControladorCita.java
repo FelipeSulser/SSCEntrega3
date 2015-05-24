@@ -6,8 +6,12 @@
 package controller;
 
 import ejb.InfoCitaEJB;
+import exceptions.CrearIntervencionException;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import model.jpa.ssc.Cita;
@@ -16,6 +20,8 @@ import model.jpa.ssc.Intervenciones;
 import model.jpa.ssc.Profesional;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import model.jpa.ssc.EstadoCita;
 
 /**
@@ -49,9 +55,11 @@ public class ControladorCita {
     private EstadoCita estado;
     private String estadoString;
 
-    
+    private boolean addingIntervencion;
+    private java.util.Date intervencionDate;
+    private Intervenciones newIntervencion = new Intervenciones();
 
-
+ 
     
     //Id obtenido al crear una cita o al pinchar en ver cita
     private Long id;
@@ -75,7 +83,7 @@ public class ControladorCita {
     }
     
     /**
-     * DEPRECATED. Use init()
+     * Mejor usar init()
      * @param id de la cita
      * @return info_cita.xhtml con todos los datos cargados
      */
@@ -193,6 +201,64 @@ public class ControladorCita {
 
     public void setIntervenciones(List<Intervenciones> intervenciones) {
         this.intervenciones = intervenciones;
+    }
+    
+    public boolean isAddingIntervencion() {
+        return addingIntervencion;
+    }
+
+    public void setAddingIntervencion(boolean addingIntervencion) {
+        this.addingIntervencion = addingIntervencion;
+    }
+    
+    public Date getIntervencionDate() {
+        return intervencionDate;
+    }
+
+    public void setIntervencionDate(Date intervencionDate) {
+        this.intervencionDate = intervencionDate;
+    }
+
+    public Intervenciones getNewIntervencion() {
+        return newIntervencion;
+    }
+
+    public void setNewIntervencion(Intervenciones newIntervencion) {
+        this.newIntervencion = newIntervencion;
+    }
+    
+    public String persistIntervencion() throws IOException{
+        ciudadano = infoCitaEJB.getCiudadano(id); //En este punto ciudadano es null por algún motivo desconocido
+        if(intervencionDate == null){
+            FacesContext.getCurrentInstance().addMessage("formulario_add_intervenciones", new FacesMessage("No se ha podido crear la intervencón. Introduzca la fecha por favor."));
+            newIntervencion = new Intervenciones();
+            addingIntervencion = false;
+            return browsePage(id);
+        }
+        if(newIntervencion.getAnotaciones().isEmpty()){
+            FacesContext.getCurrentInstance().addMessage("formulario_add_intervenciones", new FacesMessage("No se ha podido crear la intervención. Introduzca alguna anotación por favor."));
+            newIntervencion = new Intervenciones();
+            addingIntervencion = false;
+            return browsePage(id);
+        }
+        java.sql.Date dat = new java.sql.Date(intervencionDate.getTime());
+        newIntervencion.setFecha(dat);
+        if(ciudadano == null){
+            FacesContext.getCurrentInstance().addMessage("formulario_add_intervenciones", new FacesMessage("No se ha podido crear la intervencón"));
+            newIntervencion = new Intervenciones();
+            addingIntervencion = false;
+            return browsePage(id);
+        }
+        Long exp_id = ciudadano.getExpediente_personal().getId();
+        try {
+            infoCitaEJB.setIntervencion(exp_id, this.id, newIntervencion);
+        } catch (CrearIntervencionException ex) {
+            FacesContext.getCurrentInstance().addMessage("formulario_add_intervenciones", new FacesMessage("No se ha podido crear la intervencón"));
+        }
+        
+        newIntervencion = new Intervenciones();
+        addingIntervencion = false;
+        return browsePage(id);
     }
     
 }

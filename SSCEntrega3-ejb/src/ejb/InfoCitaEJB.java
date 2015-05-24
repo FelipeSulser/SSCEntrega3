@@ -5,6 +5,8 @@
  */
 package ejb;
 
+import exceptions.CrearIntervencionException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -14,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.EstadoCita;
+import model.jpa.ssc.Expediente;
 import model.jpa.ssc.Intervenciones;
 import model.jpa.ssc.Profesional;
 
@@ -133,6 +136,39 @@ public class InfoCitaEJB {
         
         if(cita != null){
             cita.setEstado(estado);
+        }
+    }
+
+    public void setIntervencion(Long exp_id, Long cita_id, Intervenciones inter) throws CrearIntervencionException{
+        if(exp_id == null) throw new CrearIntervencionException();
+        
+        Expediente exp;
+        try{
+            exp= em.find(Expediente.class,exp_id);
+        }catch(RuntimeException e){
+            throw new CrearIntervencionException();
+        }
+        if(exp == null || cita_id == null) return;
+        Cita c;
+        try{
+            c= em.find(Cita.class, cita_id);
+        }catch(RuntimeException e){
+            throw new CrearIntervencionException();
+        }
+        if(c == null) return;
+        
+        inter.setExpediente(exp);
+        inter.setId_cita(c);
+        try{
+            em.persist(inter);
+            List<Intervenciones> listaInter = c.getIntervenciones();
+            if(listaInter == null){
+                listaInter = new ArrayList<Intervenciones>();
+            }
+            listaInter.add(inter);
+            c.setIntervenciones(listaInter);
+        } catch (RuntimeException e){
+            throw new CrearIntervencionException();
         }
     }
 }
