@@ -21,7 +21,10 @@ import model.jpa.ssc.Profesional;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import model.jpa.ssc.EstadoCita;
 
 /**
@@ -142,26 +145,30 @@ public class ControladorCita {
         this.estado = estado;
     }
     
-    public void updateEstado(){
-        switch(estadoString){
+    public void updateEstado(ValueChangeEvent e){
+        UIComponent menu = (UIInput) e.getComponent();
+        long idCitaFromView = (Long)menu.getAttributes().get("atributoIdCita");
+        switch((String)e.getNewValue()){
             case "citaPlanificada":
                 this.estado = EstadoCita.citaPlanificada;
-                infoCitaEJB.setEstado(id, EstadoCita.citaPlanificada);
+                infoCitaEJB.setEstado(idCitaFromView, EstadoCita.citaPlanificada);
                 break;
             case "ausencia":
+                System.out.println("Entra aqui");
                 this.estado = EstadoCita.ausencia;
-                infoCitaEJB.setEstado(id, EstadoCita.ausencia);
+                infoCitaEJB.setEstado(idCitaFromView, EstadoCita.ausencia);
                 break;
             case "noRealizada":
                 this.estado = EstadoCita.noRealizada;
-                infoCitaEJB.setEstado(id, EstadoCita.noRealizada);
+                infoCitaEJB.setEstado(idCitaFromView, EstadoCita.noRealizada);
                 break;
             case "planificadaPorOtroProfesional":
                 this.estado = EstadoCita.planificadaPorOtroProfesional;
-                infoCitaEJB.setEstado(id, EstadoCita.planificadaPorOtroProfesional);
+                infoCitaEJB.setEstado(idCitaFromView, EstadoCita.planificadaPorOtroProfesional);
                 break;
         }
     }
+    
     
     public String getEstadoString() {
         return estadoString;
