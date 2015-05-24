@@ -32,6 +32,7 @@
                     <!-- end flash alert messages !-->
                 </c:if>  
                     
+                <h:form>      
                 <h:panelGrid id="panel" columns="2" border="0" cellpadding="10" cellspacing="1">
                     <f:facet name="header">
                         <h2> <h:outputText id="head" value="Datos de la Cita" style="padding-left: 10px;"/></h2>
@@ -43,7 +44,8 @@
                         <f:param name="exp_id" value="#{controladorCita.ciudadano.expediente_personal.id}"/>
                         
                     </h:link>
-                    
+                    <h:inputHidden id="NoBorrarMantieneElFormato"/>
+                    <h:inputHidden id="idCitaFormEnvia"  value="#{controladorCita.id}" immediate="true" binding="#{urs}"/>
                     <h:outputLabel id="fecha1" style="padding-left: 10px;" value="Fecha" />
                     <h:outputLabel id="fecha2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.fecha}"/>
                     <h:outputLabel id="tipo1" style="padding-left: 10px;" value="Tipo de cita:" />
@@ -56,20 +58,26 @@
                     <h:outputLabel id="profesional2" style="font-weight:normal; padding-left: 10px;" value ="#{controladorCita.profesional.nombre} #{controladorCita.profesional.apellido1} #{controladorCita.profesional.apellido2}"/>
                     
                 </h:panelGrid>
-                    
+                 
                 <h:panelGrid id="panelUpdateEstado" columns="2" border="0" cellpadding="10" cellspacing="1">    
-                    <h:form>
-                        
-                        <p:outputLabel for="estadoString" value="Nuevo estado cita: " />
-                        <p:selectOneMenu id="estadoString" value="#{controladorCita.estadoString}" style="width:125px">
-                            <p:ajax listener="#{controladorCita.updateEstado}" update="estado2"/>
-                            <f:selectItem itemLabel="Cita Planificada" itemValue="citaPlanificada" />
-                            <f:selectItem itemLabel="Ausencia" itemValue="ausencia" />
-                            <f:selectItem itemLabel="No realizada" itemValue="noRealizada" />
-                            <f:selectItem itemLabel="Planificada por otro profesional" itemValue="planificadaPorOtroProfesional" />
-                        </p:selectOneMenu>
-                    </h:form>
+                        <c:if test="#{!empty facesContext.messageList}">
+                        <!-- flash alert messages !-->
+                        <div class="alert alert-warning" role="alert" style="margin-top:20px;">
+                            <h:messages/>
+                        </div>
+                        <!-- end flash alert messages !-->
+                        </c:if> 
+                    <h:outputLabel id="labelCambiarEstado" for="estadoString" style="padding-left: 10px;" value="Cambiar estado: "/>
+                    <h:selectOneMenu id="estadoString"  value="#{controladorCita.estadoString}" onchange="submit()" valueChangeListener="#{controladorCita.updateEstado}"  style="width:125px">
+                        <f:attribute name="atributoIdCita" value="#{urs.value}" />
+                                <f:selectItem itemLabel="--Seleccione uno--" itemValue="#{null}" />
+                                <f:selectItem itemLabel="Cita Planificada" itemValue="citaPlanificada" />
+                                <f:selectItem itemLabel="Ausencia" itemValue="ausencia" />
+                                <f:selectItem itemLabel="No realizada" itemValue="noRealizada" />
+                                <f:selectItem itemLabel="Planificada por otro profesional" itemValue="planificadaPorOtroProfesional" />
+                            </h:selectOneMenu>
                 </h:panelGrid>
+                </h:form>
                 <p:separator />  
                 <table id="tabla">
                     <tr>
