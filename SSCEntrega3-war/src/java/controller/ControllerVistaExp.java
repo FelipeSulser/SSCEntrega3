@@ -5,21 +5,14 @@
  */
 package controller;
 
-import dao.DaoExpedienteView;
 import ejb.ExpedienteEJB;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.List;
-import java.util.Map;
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 
 import javax.enterprise.context.RequestScoped;
-
-
 import javax.faces.context.FacesContext;
 
 
