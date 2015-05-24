@@ -190,11 +190,10 @@
                           <h:outputText id="valor_estado" value="#{viviendas.condiciones}" />
                     </p:column>
                 </p:dataTable>
-                  <h2>
-                     <h:form id="formulario_boton_intervenciones" rendered="#{ctrLogin.isAdmin ==  false}" >
-                     <h:outputText id="intervenciones" value ="Intervenciones  "/>   
-                    
-                 
+                
+                <h2>
+                    <h:outputText id="intervenciones" value ="Intervenciones  "/>   
+                </h2>
                 <p:dataTable id="expediente_intervenciones_tabla" style="width:1000px;" var="intervencion" value="#{expedienteView.intervenciones}">
                     <p:column style="width:100px;" headerText="Fecha">
                         <h:outputText id="intervencion" value="#{intervencion.fecha}" />
