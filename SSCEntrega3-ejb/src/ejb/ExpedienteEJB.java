@@ -13,6 +13,7 @@ import javax.ejb.LocalBean;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.TransactionRequiredException;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
@@ -117,10 +118,11 @@ public class ExpedienteEJB {
         f.setExpediente(exp);
         
         em.persist(f);
+        em.flush();
         
-         }catch(EntityExistsException e){
+        }catch(PersistenceException e){
             throw new ExpedienteException("Ya existe esa cita.");
-        }catch(IllegalArgumentException | TransactionRequiredException e ){
+        }catch(IllegalArgumentException e ){
             throw new ExpedienteException("Error al crear la cita.");
         }
         
