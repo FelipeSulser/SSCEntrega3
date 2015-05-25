@@ -237,6 +237,12 @@ public class ControllerVistaExp implements Serializable{
                 addingFamiliar = false;
                 return browsePage(id);
             }
+            if(familiarDate == null){
+                  FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
             java.sql.Date dat = new Date(familiarDate.getTime());
             newFamiliar.setFecha_nacimiento(dat);
 
@@ -252,7 +258,7 @@ public class ControllerVistaExp implements Serializable{
             FacesContext ctx = FacesContext.getCurrentInstance();
             String error = "No se ha podido crear el familiar";
             ctx.addMessage("form_add_familiar", new FacesMessage(error));
-            return null;
+           
         }
         return browsePage(id);
     }
