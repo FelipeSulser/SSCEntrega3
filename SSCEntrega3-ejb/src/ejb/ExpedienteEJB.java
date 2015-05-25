@@ -5,12 +5,15 @@
  */
 package ejb;
 
+import exceptions.CrearCitaException;
 import exceptions.ExpedienteException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TransactionRequiredException;
 import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Expediente;
@@ -109,25 +112,40 @@ public class ExpedienteEJB {
             
         }
             if(exp == null) return;
-        
+        try{
+            
         f.setExpediente(exp);
         
         em.persist(f);
         
+         }catch(EntityExistsException e){
+            throw new ExpedienteException("Ya existe esa cita.");
+        }catch(IllegalArgumentException | TransactionRequiredException e ){
+            throw new ExpedienteException("Error al crear la cita.");
+        }
+        
     }
     
   
-    public void setVivienda(Long exp_id, Vivienda v){
+    public void setVivienda(Long exp_id, Vivienda v) throws ExpedienteException{
         Expediente exp;
         try{
             exp= em.find(Expediente.class, exp_id);
         }catch(RuntimeException e){
-            return;
+            throw new ExpedienteException();
         }
         if(exp == null) return;
+        try{
+           
+       
         v.setPropietario(exp);
         
         em.persist(v);
+         }catch(EntityExistsException e){
+            throw new ExpedienteException("Ya existe esa cita.");
+        }catch(IllegalArgumentException | TransactionRequiredException e ){
+            throw new ExpedienteException("Error al crear la cita.");
+        }
     }   
   
 }

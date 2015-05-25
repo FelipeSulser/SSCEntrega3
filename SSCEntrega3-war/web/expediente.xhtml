@@ -95,23 +95,23 @@
                  <h:form id="form_add_familiar" rendered="#{expedienteView.isAddingFamiliar()  ==true }">
                      <h:panelGrid columns="2">
                         <h:outputText value="*DNI: " />
-                        <h:inputText id="dni_del_familiar" a:placeholder="DNI" value="#{expedienteView.newFamiliar.dni}" required="true">
+                        <h:inputText id="dni_del_familiar" a:placeholder="DNI" value="#{expedienteView.newFamiliar.dni}" >
                             	
                         </h:inputText>
                         <h:outputText value="*Nombre: " />
-                        <h:inputText id="nombre_familiar" a:placeholder="Nombre" value="#{expedienteView.newFamiliar.nombre}" required="true"> </h:inputText>
+                        <h:inputText id="nombre_familiar" a:placeholder="Nombre" value="#{expedienteView.newFamiliar.nombre}" > </h:inputText>
                         <h:outputText value="*Apellido1: " />
-                        <h:inputText id="appelido_1_familiar" a:placeholder="Apellido1" value="#{expedienteView.newFamiliar.apellido1}" required="true">	 </h:inputText>
+                        <h:inputText id="appelido_1_familiar" a:placeholder="Apellido1" value="#{expedienteView.newFamiliar.apellido1}" >	 </h:inputText>
                         <h:outputText value="Apellido2: " />
                         <h:inputText id="appelido_s_familiar" a:placeholder="Apellido2" value="#{expedienteView.newFamiliar.apellido2}"> </h:inputText>
                         <h:outputText value="*Parentesco " />
-                        <h:inputText id="parentesco" a:placeholder="Parentesco" value="#{expedienteView.newFamiliar.parentesco}" required="true"> </h:inputText>
+                        <h:inputText id="parentesco" a:placeholder="Parentesco" value="#{expedienteView.newFamiliar.parentesco}" > </h:inputText>
                         <h:outputText value="MU " />
                         <h:inputText id="MU" a:placeholder="Mu" value="#{expedienteView.newFamiliar.mu}"> </h:inputText>
                         <h:outputText value="Ingresos " />
                         <h:inputText id="ingresos_familiar" a:placeholder="Ingresos" value="#{expedienteView.newFamiliar.ingreso_medio}"> </h:inputText>
                         <h:outputText value="*Fecha Nacimiento: " />
-                        <p:calendar id="fecha_nacimiento_familiar" pattern="dd/MM/yyyy" a:placeholder="Fecha" value="#{expedienteView.familiarDate}" required="true" />  
+                        <p:calendar id="fecha_nacimiento_familiar" pattern="dd/MM/yyyy" a:placeholder="Fecha" value="#{expedienteView.familiarDate}" />  
 
                         <h:commandButton id="btn-famiiar" value="Enviar" 
                                         class="btn btn-info" action="#{expedienteView.persistFamiliar()}"/>
