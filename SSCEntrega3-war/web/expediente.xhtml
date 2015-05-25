@@ -79,10 +79,10 @@
                  
                 <p:separator/>  
                 <h:messages style="color:red;" />
-                <h2> <h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" value="Familia" /></h2>
+                <h2> <h:outputText id="campoTextoFamiliaNoAdmin" rendered="#{ctrLogin.isIsAdmin() == false}" value="Familia" /></h2>
                 <h2>
                     <h:form id="form_boton_add_familiar" rendered="#{ctrLogin.isAdmin == true}" >
-                    <h:outputText value ="Familia  "/>   
+                    <h:outputText id="campoTextoFamiliaTodos" value ="Familia  "/>   
                     
                     
                      <h:link id = "expediente_addFamiliar" class="btn btn-info" value="Añadir Familiar" outcome="expediente.xhtml" >
@@ -93,29 +93,29 @@
                 </h2>
     
                  <h:form id="form_add_familiar" rendered="#{expedienteView.isAddingFamiliar()  ==true }">
-                     <h:panelGrid columns="2">
-                        <h:outputText value="*DNI: " />
+                     <h:panelGrid id="panelFormularioAddFamiliar" columns="2">
+                        <h:outputText id="campoTextoDNIFormularioFamilia" value="*DNI: " />
                         <h:inputText id="dni_del_familiar" a:placeholder="DNI" value="#{expedienteView.newFamiliar.dni}" >
                             	
                         </h:inputText>
-                        <h:outputText value="*Nombre: " />
+                        <h:outputText id="campoTextoDNIFormularioNombre" value="*Nombre: " />
                         <h:inputText id="nombre_familiar" a:placeholder="Nombre" value="#{expedienteView.newFamiliar.nombre}" > </h:inputText>
-                        <h:outputText value="*Apellido1: " />
+                        <h:outputText id="campoTextoDNIFormularioApellido1" value="*Apellido1: " />
                         <h:inputText id="appelido_1_familiar" a:placeholder="Apellido1" value="#{expedienteView.newFamiliar.apellido1}" >	 </h:inputText>
-                        <h:outputText value="Apellido2: " />
+                        <h:outputText id="campoTextoDNIFormularioApellido2" value="Apellido2: " />
                         <h:inputText id="appelido_s_familiar" a:placeholder="Apellido2" value="#{expedienteView.newFamiliar.apellido2}"> </h:inputText>
-                        <h:outputText value="*Parentesco " />
+                        <h:outputText id="campoTextoDNIFormularioParentesco" value="*Parentesco " />
                         <h:inputText id="parentesco" a:placeholder="Parentesco" value="#{expedienteView.newFamiliar.parentesco}" > </h:inputText>
-                        <h:outputText value="MU " />
+                        <h:outputText id="campoTextoDNIFormularioMU" value="MU " />
                         <h:inputText id="MU" a:placeholder="Mu" value="#{expedienteView.newFamiliar.mu}"> </h:inputText>
-                        <h:outputText value="Ingresos " />
+                        <h:outputText id="campoTextoDNIFormularioIngresos" value="Ingresos " />
                         <h:inputText id="ingresos_familiar" a:placeholder="Ingresos" value="#{expedienteView.newFamiliar.ingreso_medio}"> </h:inputText>
-                        <h:outputText value="*Fecha Nacimiento: " />
+                        <h:outputText id="campoTextoDNIFormularioFecha" value="*Fecha Nacimiento: " />
                         <p:calendar id="fecha_nacimiento_familiar" pattern="dd/MM/yyyy" a:placeholder="Fecha" value="#{expedienteView.familiarDate}" />  
 
                         <h:commandButton id="btn-famiiar" value="Enviar" 
                                         class="btn btn-info" action="#{expedienteView.persistFamiliar()}"/>
-                        <h:outputText style="color: red" value="Los campos marcados con * son obligatorios."/>
+                        <h:outputText id="formularioFamiliarObligatorio" style="color: red" value="Los campos marcados con * son obligatorios."/>
                      </h:panelGrid>
                   </h:form>
 
@@ -155,7 +155,7 @@
                       </h:form>
                  </h2>
                  <h:form id="formulario_vivienda" rendered="#{expedienteView.isAddingVivienda()  ==true }">
-                     <h:panelGrid columns="2">
+                     <h:panelGrid id="formularioViviendaPanel" columns="2">
                         <h:outputText id="direccion" value="*Dirección: " />
                         <h:inputText id="valor_direccion" a:placeholder="Dirección" value="#{expedienteView.newVivienda.calle}">
                         </h:inputText>
@@ -167,11 +167,11 @@
                         <h:inputText id="valor_regimen_vivienda" a:placeholder="Régimen" value="#{expedienteView.newVivienda.regimen_tenencia}"></h:inputText>
                         <h:outputText id="m2" value="Metros Cuadrados " />
                         <h:inputText id="valor_m2" a:placeholder="M2" value="#{expedienteView.newVivienda.metros_cuadrados}"> </h:inputText>
-                        <h:outputText value="Estado " />
+                        <h:outputText id="estado_formulario_Vivienda" value="Estado " />
                         <h:inputText id="estado_vivienda" a:placeholder="Estado" value="#{expedienteView.newVivienda.condiciones}"></h:inputText>
                         <h:commandButton id="btn-vivienda" value="Enviar" 
                                         class="btn btn-info" action="#{expedienteView.persistVivienda()}"/>
-                        <h:outputText style="color: red" value="Los campos marcados con * son obligatorios."/>
+                        <h:outputText id="formularioViviendaObligatorio" style="color: red" value="Los campos marcados con * son obligatorios."/>
                      </h:panelGrid>
                   </h:form>
                  <p:dataTable id="expediente_viviendas_tabla" style="width:1000px;" var="viviendas" value="#{expedienteView.secundarias}">
