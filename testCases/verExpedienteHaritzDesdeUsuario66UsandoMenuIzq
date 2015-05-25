@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>verExpedienteHaritzDesdeUsuario66UsandoMenuIzq</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">verExpedienteHaritzDesdeUsuario66UsandoMenuIzq</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/SSCEntrega3-war/faces/index.xhtml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_iniciar_sesion:index_entrar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_iniciar_sesion:index_entrar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=loginform:btn-login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginform:lbl_username</td>
+	<td>usuario66</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginform:campo_introducir_pass</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=loginform:btn-login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Cerrar sesión</td>
+	<td>Cerrar sesión</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=bienvenida</td>
+	<td>Bienvenido, Franchesco López García</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=usuario</td>
+	<td>Su usuario es usuario66</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=dni</td>
+	<td>Su DNI es 11223344Z</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_datos_usuario:index_consultar_exp</td>
+	<td>Consultar y modificar expedientes</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_datos_usuario:index_ver_todas</td>
+	<td>Ver todas las citas</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_datos_usuario:index_crear_nueva_cita</td>
+	<td>Crear nueva cita</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_datos_usuario:index_consultar_exp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=labelCabeceraInformacion</td>
+	<td>Búsqueda de Expedientes. Escriba los datos con los que desee filtrar:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=formularioSeleccionExpedientes:inputCampoNombre</td>
+	<td>haritz</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=formularioSeleccionExpedientes:botonEnviarQueryExpedientes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=formularioSeleccionExpedientes:botonEnviarQueryExpedientes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=formularioSeleccionExpedientes:labelFiltrosBusquedaUsados</td>
+	<td>Se aplicaron los siguientes filtros: haritz - - - 0</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=formularioSeleccionExpedientes:tablaResultadoBusquedaExpedientes:0:outputCampoColumnaNombre</td>
+	<td>Haritz Puerto San Román</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=formularioSeleccionExpedientes:tablaResultadoBusquedaExpedientes:0:linkToExpediente</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=expediente_ciudadano_nombre_out</td>
+	<td>Haritz Puerto San Román</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=expediente_datos_personales</td>
+	<td>Datos Personales</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=intervenciones</td>
+	<td>Intervenciones</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=formulario_boton_vivienda:vivienda</td>
+	<td>Vivienda</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=formulario_boton_vivienda:boton_add_vivienda</td>
+	<td>Añadir Vivienda</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=SSCEntrega3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=addUltimosId</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=li.commits &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Compare &amp; pull request</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=SSCEntrega3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_boton_add_familiar</td>
+	<td>Familia Añadir Familiar</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_boton_add_familiar:expediente_addFamiliar</td>
+	<td>Añadir Familiar</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Cerrar sesión</td>
+	<td>Cerrar sesión</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Cerrar sesión</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_iniciar_sesion:index_entrar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Iniciar sesión</td>
+	<td>Iniciar sesión</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
