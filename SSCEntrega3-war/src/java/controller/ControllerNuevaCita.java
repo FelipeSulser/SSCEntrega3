@@ -147,7 +147,12 @@ public class ControllerNuevaCita implements Serializable {
         try {
             ciudadano = crearCitaBean.getCiudadano(DNICiudadano);
             profesional = crearCitaBean.getProfesional(DNIProfesional);       
-           //COnvierto aquí la fecha a sql.date
+           //Convierto aquí la fecha a sql.date
+            if(fecha == null){
+                FacesContext ctx = FacesContext.getCurrentInstance();
+                ctx.addMessage("calendario", new FacesMessage("Introduzca una fecha."));
+                return null;
+            }
             java.sql.Date date = new java.sql.Date(fecha.getTime());
 
             Cita cita = new Cita();
