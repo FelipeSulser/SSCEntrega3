@@ -12,7 +12,7 @@
         <ui:define name="content">
             
             <h:outputStylesheet library="css" name="index.css"  />
-            <p class="estilo1">Sistema Malagueño de Servicios Sociales Comunitarios </p>
+            <p id ="titulo_web" class="estilo1">Sistema Malagueño de Servicios Sociales Comunitarios </p>
             <p:toolbar></p:toolbar>
             <br></br>
             <br></br>
@@ -27,7 +27,7 @@
                       <h4 class="modal-title">¿Necesita ayuda?</h4>
                     </div>
                     <div class="modal-body">
-                      <p>Para utilizar el sistema es necesario disponer de una cuenta.
+                      <p id="ayuda">Para utilizar el sistema es necesario disponer de una cuenta.
                             <br></br>
                             Consulte con su Centro Social más cercano o llame al 951 92 60 93.
                       </p>
@@ -41,7 +41,7 @@
               </div><!-- /.modal -->
                 <div id="panel_index_boton" class="fixed-size-square">
                     <span>
-                        <p class="estilo2">En este momento no se encuentra conectado. Por favor, conéctese.</p>
+                        <p id="no_estas_conectado" class="estilo2">En este momento no se encuentra conectado. Por favor, conéctese.</p>
                         <br></br>
                         <div align="center" draggable="false" >
                             <h:commandButton id="index_entrar" class="btn btn-info" value="Entrar en el Sistema" action="login.xhtml"/> 
