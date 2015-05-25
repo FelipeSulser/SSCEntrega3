@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import model.jpa.ssc.Cita;
-import model.jpa.ssc.Ciudadano;
 
 /**
  *
