@@ -5,7 +5,6 @@
  */
 package ejb;
 
-import exceptions.CrearCitaException;
 import exceptions.ExpedienteException;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -15,7 +14,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TransactionRequiredException;
-import model.jpa.ssc.Cita;
 import model.jpa.ssc.Ciudadano;
 import model.jpa.ssc.Expediente;
 import model.jpa.ssc.Familiar;
