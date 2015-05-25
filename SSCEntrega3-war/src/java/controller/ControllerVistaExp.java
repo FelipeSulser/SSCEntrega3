@@ -6,12 +6,14 @@
 package controller;
 
 import ejb.ExpedienteEJB;
+import exceptions.ExpedienteException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 
 import javax.faces.context.FacesContext;
 
@@ -99,6 +101,24 @@ public class ControllerVistaExp implements Serializable{
         
         
     }
+    
+    public String browsePage(Long id){
+        if(id == null) return "index.xhtml";
+        this.id= id;
+           expediente = expedienteBean.getExpediente(id);
+        
+        ciudadano = expedienteBean.getCiudadano(id);
+        
+        principal = expedienteBean.getPrincipal(id);
+        
+        secundarias = expedienteBean.getSecundarias(id);
+        
+        familia = expedienteBean.getFamilia(id);
+        
+        intervenciones = expedienteBean.getIntervenciones(id);
+        return "expediente.xhtml";
+        
+    }
     public void addFamiliar() throws IOException{
         addingFamiliar = true;
         
@@ -182,11 +202,11 @@ public class ControllerVistaExp implements Serializable{
     }
     
     
-    public void persistFamiliar() throws IOException{
+    public String persistFamiliar() throws IOException{
         
         //Debido a que p:calendar usa util.Date hemos de convertirlo a sql Date
 
-        
+        try{
         java.sql.Date dat = new Date(familiarDate.getTime());
         newFamiliar.setFecha_nacimiento(dat);
         expedienteBean.setFamiliar(id, newFamiliar);
@@ -196,16 +216,24 @@ public class ControllerVistaExp implements Serializable{
         
         addingFamiliar = false;
         //si, añadimos la query string a mano 
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml?exp_id="+id);
+        }catch(ExpedienteException e){
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            String error = "No se encuentra al ciudadano con DNI " +
+                    " en la base de datos. Es posible que esté mal escrito o"
+                    + " que no se haya dado de alta aún";
+            ctx.addMessage("form_add_familiar", new FacesMessage(error));
+            return null;
+        }
+        return browsePage(id);
     }
-     public void persistVivienda() throws IOException{
+     public String persistVivienda() throws IOException{
          
         expedienteBean.setVivienda(id, newVivienda);
         
         newVivienda = new Vivienda();
         addingVivienda = false;
-        
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml?exp_id="+id);
+        return browsePage(id);
+        //FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml?exp_id="+id);
     }
 
     public java.util.Date getFamiliarDate() {

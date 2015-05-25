@@ -5,6 +5,7 @@
  */
 package ejb;
 
+import exceptions.ExpedienteException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -97,14 +98,15 @@ public class ExpedienteEJB {
     }
        
        
-    public void setFamiliar(Long exp_id,Familiar f){
+    public void setFamiliar(Long exp_id,Familiar f) throws ExpedienteException{
         
         Expediente exp;
         try{
             
             exp= em.find(Expediente.class,exp_id);
         }        catch(RuntimeException e){
-            return;
+            throw new ExpedienteException();
+            
         }
             if(exp == null) return;
         
