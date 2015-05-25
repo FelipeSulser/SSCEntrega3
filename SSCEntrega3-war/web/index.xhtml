@@ -83,11 +83,11 @@
                       
     
             </h:form>
-            <h:form rendered="#{ctrLogin.isLoggedIn() == true}">
+            <h:form id="form_datos_usuario" rendered="#{ctrLogin.isLoggedIn() == true}">
                 
                 <p:layout  style="min-width:500px;min-height:550px;" >
                     <p:layoutUnit position="north" resizable="true">
-                        <p class="estilo2">Bienvenido, <h:outputText value="#{ctrLogin.getNombreDeUsuario()}"></h:outputText> </p>
+                        <p id="bienvenida" class="estilo2">Bienvenido, <h:outputText value="#{ctrLogin.getNombreDeUsuario()}"></h:outputText> </p>
                     </p:layoutUnit>
                     
                     <p:layoutUnit position="west" resizable="true" size="350" minSize="250" maxSize="550">
@@ -108,14 +108,14 @@
                     
                     
                     <p:layoutUnit position="center" resizable="true">
-                        <p class="estilo2"><h:outputText value="Mi perfil"/></p>
+                        <p id="mi_perfil" class="estilo2"><h:outputText value="Mi perfil"/></p>
                         <p:toolbar></p:toolbar>
                         <br></br>
                         <img src="./resources/images/#{ctrLogin.image}"/>
-                        <p>Su usuario es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
-                        <p>Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.dni}"></h:outputText></p>
-                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{ctrLogin.citasHoy}"></h:outputText></p>
-                        <p><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{ctrLogin.totalIntervenciones}"></h:outputText> </p>
+                        <p id="usuario" >Su usuario es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
+                        <p id="dni" >Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.dni}"></h:outputText></p>
+                        <p id="citas_pendientes"><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{ctrLogin.citasHoy}"></h:outputText></p>
+                        <p id="total_intervenciones"><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{ctrLogin.totalIntervenciones}"></h:outputText> </p>
                         <p:separator/>
 
                     </p:layoutUnit>
