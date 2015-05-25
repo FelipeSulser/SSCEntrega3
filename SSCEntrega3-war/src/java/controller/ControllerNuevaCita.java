@@ -164,7 +164,7 @@ public class ControllerNuevaCita implements Serializable {
                 cita.setEstado(EstadoCita.citaPlanificada);
 
             crearCitaBean.setCita(cita);
-            return controladorCita.browsePage(crearCitaBean.getCitaId(cita));
+            return controladorCita.browsePage(cita.getId());
         } catch (CiudadanoNotFoundException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
             String error = "No se encuentra al ciudadano con DNI " + e.getMessage() +

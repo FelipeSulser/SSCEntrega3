@@ -68,16 +68,6 @@ public class CrearCitaEJB {
         }catch(IllegalArgumentException | TransactionRequiredException e ){
             throw new CrearCitaException("Error al crear la cita.");
         }
-    }
-
-    public Long getCitaId(Cita cita) throws CrearCitaException {
-        try{
-            cita = em.merge(cita);
-            return cita.getId();
-        }catch(IllegalArgumentException | TransactionRequiredException e ){
-            throw new CrearCitaException("Error al crear la cita.");
-        }
-    }
-    
+    }    
     
 }
