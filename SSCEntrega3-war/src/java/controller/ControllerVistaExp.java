@@ -259,7 +259,9 @@ public class ControllerVistaExp implements Serializable{
             FacesContext ctx = FacesContext.getCurrentInstance();
             String error = "No se ha podido crear el familiar";
             ctx.addMessage("form_add_familiar", new FacesMessage(error));
-           
+            newFamiliar = new Familiar();
+            addingFamiliar = false;
+            return browsePage(id);
         }
         return browsePage(id);
     }
