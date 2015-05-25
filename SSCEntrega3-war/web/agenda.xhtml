@@ -25,7 +25,7 @@
                 
 
                 <h:panelGrid id="panelCalendario" style="width: 75%" columnClasses="value"  >
-                    <h3 style="margin-top: 0; padding: 10px;">Mi Agenda</h3>
+                    <h3 id="Titulo" style="margin-top: 0; padding: 10px;">Mi Agenda</h3>
 
                         <p:schedule id="calendarioComponente"  locale="es" style="padding: 10px;" value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+2" draggable="false" rightHeaderTemplate="">
                             <p:ajax  event="eventSelect" listener="#{scheduleView.onEventSelect}" update="panelDetallesEvento" oncomplete="PF('eventDialog').show();" />
