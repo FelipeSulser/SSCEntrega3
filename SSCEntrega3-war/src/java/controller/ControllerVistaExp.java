@@ -117,7 +117,7 @@ public class ControllerVistaExp implements Serializable{
         familia = expedienteBean.getFamilia(id);
         
         intervenciones = expedienteBean.getIntervenciones(id);
-        return "expediente.xhtml";
+        return "expediente.xhtml?exp_id"+id;
         
     }
     public void addFamiliar() throws IOException{

@@ -157,12 +157,12 @@
                  <h:form id="formulario_vivienda" rendered="#{expedienteView.isAddingVivienda()  ==true }">
                      <h:panelGrid columns="2">
                         <h:outputText id="direccion" value="*Dirección: " />
-                        <h:inputText id="valor_direccion" a:placeholder="Dirección" value="#{expedienteView.newVivienda.calle}" required="true">
+                        <h:inputText id="valor_direccion" a:placeholder="Dirección" value="#{expedienteView.newVivienda.calle}">
                         </h:inputText>
                         <h:outputText id="codigo_postal" value="*Codigo Postal: " />
-                        <h:inputText id="valor_codigo_postal" a:placeholder="CP" value="#{expedienteView.newVivienda.codigoPostal}" required="true"></h:inputText>
+                        <h:inputText id="valor_codigo_postal" a:placeholder="CP" value="#{expedienteView.newVivienda.codigoPostal}" ></h:inputText>
                         <h:outputText id="municipio_vivienda" value="*Municipio: " />
-                        <h:inputText id="valor_municipio_vivienda" a:placeholder="Municipio" value="#{expedienteView.newVivienda.municipio}" required="true"></h:inputText>
+                        <h:inputText id="valor_municipio_vivienda" a:placeholder="Municipio" value="#{expedienteView.newVivienda.municipio}" ></h:inputText>
                         <h:outputText id="regimen_vivienda" value="Régimen de Tenencia " />
                         <h:inputText id="valor_regimen_vivienda" a:placeholder="Régimen" value="#{expedienteView.newVivienda.regimen_tenencia}"></h:inputText>
                         <h:outputText id="m2" value="Metros Cuadrados " />
