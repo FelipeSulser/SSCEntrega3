@@ -39,7 +39,7 @@
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->
-                <div class="fixed-size-square">
+                <div id="panel_index_boton" class="fixed-size-square">
                     <span>
                         <p class="estilo2">En este momento no se encuentra conectado. Por favor, conéctese.</p>
                         <br></br>
@@ -112,7 +112,7 @@
                         <p:toolbar></p:toolbar>
                         <br></br>
                         <img src="./resources/images/#{ctrLogin.image}"/>
-                        <p id="usuario" >Su usuario es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
+                        <p id="usuario" >Su usuario es  <h:outputText id="usuario_name_id" style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
                         <p id="dni" >Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.dni}"></h:outputText></p>
                         <p id="citas_pendientes"><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{ctrLogin.citasHoy}"></h:outputText></p>
                         <p id="total_intervenciones"><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{ctrLogin.totalIntervenciones}"></h:outputText> </p>
