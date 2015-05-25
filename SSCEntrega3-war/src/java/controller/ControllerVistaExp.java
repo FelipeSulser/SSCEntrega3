@@ -207,20 +207,50 @@ public class ControllerVistaExp implements Serializable{
         //Debido a que p:calendar usa util.Date hemos de convertirlo a sql Date
 
         try{
-        java.sql.Date dat = new Date(familiarDate.getTime());
-        newFamiliar.setFecha_nacimiento(dat);
-        expedienteBean.setFamiliar(id, newFamiliar);
-        
-        //as familiar is already persisted, just add it
-        newFamiliar = new Familiar();
-        
-        addingFamiliar = false;
-        //si, añadimos la query string a mano 
+            if(newFamiliar== null){
+                FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            if(newFamiliar.getDni() == null){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+                }
+            if(newFamiliar.getParentesco() == null){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            if(newFamiliar.getNombre() == null){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            if(newFamiliar.getApellido1() == null){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            java.sql.Date dat = new Date(familiarDate.getTime());
+            newFamiliar.setFecha_nacimiento(dat);
+
+
+            expedienteBean.setFamiliar(id, newFamiliar);
+
+            //as familiar is already persisted, just add it
+            newFamiliar = new Familiar();
+
+            addingFamiliar = false;
+            //si, añadimos la query string a mano 
         }catch(ExpedienteException e){
             FacesContext ctx = FacesContext.getCurrentInstance();
-            String error = "No se encuentra al ciudadano con DNI " +
-                    " en la base de datos. Es posible que esté mal escrito o"
-                    + " que no se haya dado de alta aún";
+            String error = "No se ha podido crear el familiar";
             ctx.addMessage("form_add_familiar", new FacesMessage(error));
             return null;
         }
