@@ -234,7 +234,7 @@ public class ControladorCita {
         this.newIntervencion = newIntervencion;
     }
     
-    public String persistIntervencion() throws IOException{
+    public String persistIntervencion() {
         ciudadano = infoCitaEJB.getCiudadano(id); //En este punto ciudadano es null por algún motivo desconocido
         if(intervencionDate == null){
             FacesContext.getCurrentInstance().addMessage("formulario_add_intervenciones", new FacesMessage("No se ha podido crear la intervencón. Introduzca la fecha por favor."));

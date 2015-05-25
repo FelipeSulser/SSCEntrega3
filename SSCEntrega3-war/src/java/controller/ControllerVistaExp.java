@@ -203,7 +203,7 @@ public class ControllerVistaExp implements Serializable{
     }
     
     
-    public String persistFamiliar() throws IOException{
+    public String persistFamiliar() {
         
         //Debido a que p:calendar usa util.Date hemos de convertirlo a sql Date
 
@@ -263,7 +263,7 @@ public class ControllerVistaExp implements Serializable{
         }
         return browsePage(id);
     }
-     public String persistVivienda() throws IOException{
+     public String persistVivienda() {
          try{
              
              if(newVivienda == null){
