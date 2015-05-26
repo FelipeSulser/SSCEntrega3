@@ -214,7 +214,7 @@ public class ControllerVistaExp implements Serializable{
                 addingFamiliar = false;
                 return browsePage(id);
             }
-            if(newFamiliar.getDni() == null){
+            if(newFamiliar.getDni() == null || newFamiliar.getDni().equals("")){
                  FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar, introduzca dni"));
                 newFamiliar = new Familiar();
                 addingFamiliar = false;
@@ -226,13 +226,13 @@ public class ControllerVistaExp implements Serializable{
                 addingFamiliar = false;
                 return browsePage(id);
             }
-            if(newFamiliar.getNombre() == null){
+            if(newFamiliar.getNombre() == null || newFamiliar.getNombre().equals("")){
                  FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar, introduzca nombre"));
                 newFamiliar = new Familiar();
                 addingFamiliar = false;
                 return browsePage(id);
             }
-            if(newFamiliar.getApellido1() == null){
+            if(newFamiliar.getApellido1() == null || newFamiliar.getApellido1().equals("")){
                  FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar, introduzca apellido"));
                 newFamiliar = new Familiar();
                 addingFamiliar = false;
@@ -274,7 +274,7 @@ public class ControllerVistaExp implements Serializable{
                addingVivienda = false;
                return browsePage(id);
              }
-             if(newVivienda.getCalle() == null) {
+             if(newVivienda.getCalle() == null || newVivienda.getCalle().equals("")) {
                  FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear la vivienda, introduzca la direccion"));
                newVivienda = new Vivienda();
                addingVivienda = false;
