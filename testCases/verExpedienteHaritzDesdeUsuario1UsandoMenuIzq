@@ -3,17 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost:8080/SSCEntrega3-war/" />
-<title>Ver mis citas dentro de dos meses</title>
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>verExpedienteHaritzDesdeUsuario1UsandoMenuIzq</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Ver mis citas dentro de dos meses</td></tr>
+<tr><td rowspan="1" colspan="3">verExpedienteHaritzDesdeUsuario1UsandoMenuIzq</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
 	<td>/SSCEntrega3-war/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_iniciar_sesion:index_entrar</td>
 	<td></td>
 </tr>
 <tr>
@@ -22,9 +27,19 @@
 	<td></td>
 </tr>
 <tr>
+	<td>verifyText</td>
+	<td>id=loginform:btn-login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=exact:¿Has olvidado la contraseña?</td>
+	<td>exact:¿Has olvidado la contraseña?</td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=loginform:lbl_username</td>
-	<td>usuario4</td>
+	<td>usuario1</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -38,38 +53,103 @@
 </tr>
 <tr>
 	<td>verifyText</td>
-	<td>css=#dni &gt; span</td>
-	<td>31113322G</td>
+	<td>id=bienvenida</td>
+	<td>Bienvenido, John Vercetti Pérez</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=usuario</td>
+	<td>Su usuario es usuario1</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=dni</td>
+	<td>Su DNI es 11223344E</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_datos_usuario:index_consultar_exp</td>
+	<td>Consultar y modificar expedientes</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_datos_usuario:index_ver_cita</td>
+	<td>Ver mis citas</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_datos_usuario:index_crear_nueva_cita</td>
+	<td>Crear nueva cita</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Agenda</td>
+	<td>id=form_datos_usuario:index_consultar_exp</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyText</td>
-	<td>css=div#content h3</td>
-	<td>Mi Agenda</td>
+	<td>id=labelCabeceraInformacion</td>
+	<td>Búsqueda de Expedientes. Escriba los datos con los que desee filtrar:</td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>xpath=(//button[@type='button'])[2]</td>
+	<td>verifyText</td>
+	<td>id=formularioSeleccionExpedientes:botonEnviarQueryExpedientes</td>
 	<td></td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>xpath=(//button[@type='button'])[2]</td>
+	<td>type</td>
+	<td>id=formularioSeleccionExpedientes:inputCampoNombre</td>
+	<td>haritz</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=formularioSeleccionExpedientes:botonEnviarQueryExpedientes</td>
 	<td></td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>xpath=(//button[@type='button'])[3]</td>
+	<td>verifyText</td>
+	<td>id=formularioSeleccionExpedientes:labelFiltrosBusquedaUsados</td>
+	<td>Se aplicaron los siguientes filtros: haritz - - - 0</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=formularioSeleccionExpedientes:tablaResultadoBusquedaExpedientes:0:outputCampoColumnaNombre</td>
+	<td>Haritz Puerto San Román</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=formularioSeleccionExpedientes:tablaResultadoBusquedaExpedientes:0:linkToExpediente</td>
 	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=expediente_ciudadano_nombre_out</td>
+	<td>Haritz Puerto San Román</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=expediente_datos_personales</td>
+	<td>Datos Personales</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Cerrar sesión</td>
+	<td>Cerrar sesión</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
 	<td>link=Cerrar sesión</td>
 	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_iniciar_sesion:index_entrar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=needHelp</td>
+	<td>exact:¿Necesita ayuda?</td>
 </tr>
 </tbody></table>
 </body>
