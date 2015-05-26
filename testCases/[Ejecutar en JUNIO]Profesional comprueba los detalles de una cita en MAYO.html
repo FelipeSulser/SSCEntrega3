@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/SSCEntrega3-war/" />
+<title>Profesional comprueba los detalles de una cita en MAYO</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Profesional comprueba los detalles de una cita en MAYO</td></tr>
+</thead><tbody>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_iniciar_sesion:index_entrar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginform:lbl_username</td>
+	<td>usuario4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginform:campo_introducir_pass</td>
+	<td>user</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=loginform:btn-login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_datos_usuario:index_ver_cita</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='button']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='formCalendarioProfesional:calendarioComponente_container']/div[2]/div/table/tbody/tr/td/div/div/div/div[2]/table/tbody/tr/td[4]/a/div/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=formCalendarioProfesional:botonVerDetallesCita</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_datos_cita:profesional2</td>
+	<td>Saturnino Salvador Solanera</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_datos_cita:ciudano2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=valor_vivienda</td>
+	<td>C/Anabeta Maldonado</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Perfil</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Cerrar sesión</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
