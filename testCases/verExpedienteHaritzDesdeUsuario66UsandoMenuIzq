@@ -147,31 +147,6 @@
 	<td>Añadir Vivienda</td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>link=SSCEntrega3</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=addUltimosId</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>css=li.commits &gt; a</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Compare &amp; pull request</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>link=SSCEntrega3</td>
-	<td></td>
-</tr>
-<tr>
 	<td>verifyText</td>
 	<td>id=form_boton_add_familiar</td>
 	<td>Familia Añadir Familiar</td>
@@ -201,7 +176,6 @@
 	<td>link=Iniciar sesión</td>
 	<td>Iniciar sesión</td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

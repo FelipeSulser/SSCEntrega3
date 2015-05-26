@@ -3,19 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost:8080/" />
-<title>ver_expediente_nombre_igual</title>
+<link rel="selenium.base" href="http://localhost:8080/SSCEntrega3-war/" />
+<title>Profesional comprueba los detalles de una cita en MAYO</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">ver_expediente_nombre_igual</td></tr>
+<tr><td rowspan="1" colspan="3">Profesional comprueba los detalles de una cita en MAYO</td></tr>
 </thead><tbody>
-<tr>
-	<td>open</td>
-	<td>/SSCEntrega3-war</td>
-	<td></td>
-</tr>
 <tr>
 	<td>clickAndWait</td>
 	<td>id=form_iniciar_sesion:index_entrar</td>
@@ -24,12 +19,7 @@
 <tr>
 	<td>type</td>
 	<td>id=loginform:lbl_username</td>
-	<td>usu</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=loginform:lbl_username</td>
-	<td>usuario2</td>
+	<td>usuario4</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -43,38 +33,43 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Expediente</td>
+	<td>id=form_datos_usuario:index_ver_cita</td>
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoNombre</td>
-	<td>Felipe</td>
+	<td>click</td>
+	<td>//button[@type='button']</td>
+	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoApellido1</td>
-	<td>Sulser</td>
+	<td>click</td>
+	<td>//div[@id='formCalendarioProfesional:calendarioComponente_container']/div[2]/div/table/tbody/tr/td/div/div/div/div[2]/table/tbody/tr/td[4]/a/div/span[2]</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>id=formularioSeleccionExpedientes:botonEnviarQueryExpedientes</td>
+	<td>id=formCalendarioProfesional:botonVerDetallesCita</td>
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoApellido2</td>
-	<td>Larraz</td>
+	<td>verifyText</td>
+	<td>id=form_datos_cita:profesional2</td>
+	<td>Saturnino Salvador Solanera</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>id=formularioSeleccionExpedientes:tablaResultadoBusquedaExpedientes:0:linkToExpediente</td>
+	<td>id=form_datos_cita:ciudano2</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextText</td>
-	<td>id=expediente_ciudadano_nombre_out</td>
-	<td>Felipe Sulser Larraz</td>
+	<td>verifyText</td>
+	<td>id=valor_vivienda</td>
+	<td>C/Anabeta Maldonado</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Perfil</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>

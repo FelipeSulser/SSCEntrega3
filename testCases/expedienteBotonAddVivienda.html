@@ -4,16 +4,16 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:8080/" />
-<title>ver_expediente_nombre_igual</title>
+<title>expedienteBotonAddVivienda</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">ver_expediente_nombre_igual</td></tr>
+<tr><td rowspan="1" colspan="3">expedienteBotonAddVivienda</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/SSCEntrega3-war</td>
+	<td>/SSCEntrega3-war/</td>
 	<td></td>
 </tr>
 <tr>
@@ -24,17 +24,12 @@
 <tr>
 	<td>type</td>
 	<td>id=loginform:lbl_username</td>
-	<td>usu</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=loginform:lbl_username</td>
-	<td>usuario2</td>
+	<td>usuario66</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=loginform:campo_introducir_pass</td>
-	<td>user</td>
+	<td>admin</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -47,14 +42,14 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoNombre</td>
-	<td>Felipe</td>
+	<td>click</td>
+	<td>id=formularioSeleccionExpedientes:inputCampoExpedienteNum</td>
+	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoApellido1</td>
-	<td>Sulser</td>
+	<td>id=formularioSeleccionExpedientes:inputCampoExpedienteNum</td>
+	<td>1</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -62,19 +57,34 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoApellido2</td>
-	<td>Larraz</td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>id=formularioSeleccionExpedientes:tablaResultadoBusquedaExpedientes:0:linkToExpediente</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextText</td>
-	<td>id=expediente_ciudadano_nombre_out</td>
-	<td>Felipe Sulser Larraz</td>
+	<td>clickAndWait</td>
+	<td>id=formulario_boton_vivienda:boton_add_vivienda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_boton_add_familiar:expediente_addFamiliar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=form_add_familiar:btn-famiiar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=formulario_boton_vivienda:boton_add_vivienda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=formulario_vivienda:btn-vivienda</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>

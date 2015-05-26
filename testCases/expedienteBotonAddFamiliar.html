@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:8080/" />
-<title>ver_expediente_nombre_igual</title>
+<title>expedienteBotonAddFamiliar</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">ver_expediente_nombre_igual</td></tr>
+<tr><td rowspan="1" colspan="3">expedienteBotonAddFamiliar</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -24,17 +24,12 @@
 <tr>
 	<td>type</td>
 	<td>id=loginform:lbl_username</td>
-	<td>usu</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=loginform:lbl_username</td>
-	<td>usuario2</td>
+	<td>usuario66</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=loginform:campo_introducir_pass</td>
-	<td>user</td>
+	<td>admin</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -48,13 +43,8 @@
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoNombre</td>
-	<td>Felipe</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoApellido1</td>
-	<td>Sulser</td>
+	<td>id=formularioSeleccionExpedientes:inputCampoExpedienteNum</td>
+	<td>1</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -62,19 +52,39 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=formularioSeleccionExpedientes:inputCampoApellido2</td>
-	<td>Larraz</td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>id=formularioSeleccionExpedientes:tablaResultadoBusquedaExpedientes:0:linkToExpediente</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextText</td>
-	<td>id=expediente_ciudadano_nombre_out</td>
-	<td>Felipe Sulser Larraz</td>
+	<td>clickAndWait</td>
+	<td>id=form_boton_add_familiar:expediente_addFamiliar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_add_familiar:campoTextoDNIFormularioFamilia</td>
+	<td>exact:*DNI:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_add_familiar:campoTextoDNIFormularioNombre</td>
+	<td>exact:*Nombre:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_add_familiar:campoTextoDNIFormularioApellido1</td>
+	<td>exact:*Apellido1:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_add_familiar:campoTextoDNIFormularioParentesco</td>
+	<td>exact:*Parentesco</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=form_add_familiar:btn-famiiar</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
