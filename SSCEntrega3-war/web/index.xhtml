@@ -85,52 +85,46 @@
     
             </h:form>
             <h:form id="form_datos_usuario" rendered="#{ctrLogin.isLoggedIn() == true}">
-                
-                <p:layout  style="min-width:500px;min-height:550px;" >
-                    <p:layoutUnit position="north" resizable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                         <p id="bienvenida" class="estilo2">Bienvenido, <h:outputText value="#{ctrLogin.getNombreDeUsuario()}"></h:outputText> </p>
-                    </p:layoutUnit>
-                    
-                    <p:layoutUnit position="west" resizable="true" size="350" minSize="250" maxSize="550">
-                        <div id="handlepnl" class="panel panel-primary"  style="width: 100%">
-                            <div class="panel-heading" id="pheadCitas">
-                                Módulo citas
-                            </div>
-                            <div class="panel-body" id="pbodyCitas">
-                                <h:link id="index_crear_nueva_cita" value="Crear nueva cita" outcome="nueva_cita.xhtml" style="color:black;"/>
-                                <br />
-                                <h:link id="index_ver_cita" rendered="#{ctrLogin.isIsAdmin()== false}" value="Ver mis citas" outcome="agenda.xhtml" style="color:black;"/>
-                                <h:link id="index_ver_todas" rendered="#{ctrLogin.isIsAdmin()== true}" value="Ver todas las citas" outcome="lista_citas.xhtml" style="color:black;" />
-                            </div>
-                        </div>
-                        <div id="handlepn2"  style="width: 100%" class="panel panel-primary">
-                            <div class="panel-heading" id="pheadExp">
-                                Módulo expedientes
-                            </div>
-                            <div class="panel-body" id="pbodyExp">
-                            <h:link id="index_consultar_exp" value="Consultar y modificar expedientes" outcome="buscador_expedientes.xhtml" style="color:black;"/>
-                             
-                            </div>
-                        </div>
-                        
-                        
-                    </p:layoutUnit>
-                    
-                    
-                    
-                    <p:layoutUnit position="center" resizable="true">
-                        <p id="mi_perfil" class="estilo2"><h:outputText value="Mi perfil"/></p>
-                        <hr/>
-                        <br></br>
-                        <img src="./resources/images/#{ctrLogin.image}"/>
-                        <p id="usuario" >Su usuario es  <h:outputText id="usuario_name_id" style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
-                        <p id="dni" >Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.dni}"></h:outputText></p>
-                        <p id="citas_pendientes"><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{ctrLogin.citasHoy}"></h:outputText></p>
-                        <p id="total_intervenciones"><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{ctrLogin.totalIntervenciones}"></h:outputText> </p>
-                        <p:separator/>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div id="handlepnl" class="panel panel-primary"  style="width: 100%">
+                                    <div class="panel-heading" id="pheadCitas">
+                                        Módulo citas
+                                    </div>
+                                    <div class="panel-body" id="pbodyCitas">
+                                        <h:link id="index_crear_nueva_cita" value="Crear nueva cita" outcome="nueva_cita.xhtml" style="color:black;"/>
+                                        <br />
+                                        <h:link id="index_ver_cita" rendered="#{ctrLogin.isIsAdmin()== false}" value="Ver mis citas" outcome="agenda.xhtml" style="color:black;"/>
+                                        <h:link id="index_ver_todas" rendered="#{ctrLogin.isIsAdmin()== true}" value="Ver todas las citas" outcome="lista_citas.xhtml" style="color:black;" />
+                                    </div>
+                                </div>
+                                <div id="handlepn2"  style="width: 100%" class="panel panel-primary">
+                                    <div class="panel-heading" id="pheadExp">
+                                        Módulo expedientes
+                                    </div>
+                                    <div class="panel-body" id="pbodyExp">
+                                    <h:link id="index_consultar_exp" value="Consultar y modificar expedientes" outcome="buscador_expedientes.xhtml" style="color:black;"/>
 
-                    </p:layoutUnit>
-                </p:layout>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">                                
+                                <img src="./resources/images/#{ctrLogin.image}"/>
+                                <p id="usuario" >Su usuario es  <h:outputText id="usuario_name_id" style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
+                                <p id="dni" >Su DNI es  <h:outputText style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.dni}"></h:outputText></p>
+                                <p id="citas_pendientes"><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Citas pendientes hoy:   #{ctrLogin.citasHoy}"></h:outputText></p>
+                                <p id="total_intervenciones"><h:outputText rendered="#{ctrLogin.isIsAdmin() == false}" style="font-weight:bold;font-size:20px;color:#000" value="Total Intervenciones: #{ctrLogin.totalIntervenciones}"></h:outputText> </p>
+                               
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
            </h:form>
         </ui:define>
     </ui:composition>
