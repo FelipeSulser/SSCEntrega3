@@ -33,9 +33,9 @@ public class ControllerExpSearch implements Serializable{
     @EJB
     private ImagenCiudadanoEJB imageCitizen;
     private boolean searchDone = false;
-    private String nombre;
-    private String apellido1;
-    private String apellido2;
+    private String nombre="";
+    private String apellido1="";
+    private String apellido2="";
     private long exp_id;
     private String filtrosDeBusqueda;
     private Map<Long,Ciudadano> ciudadanos;
