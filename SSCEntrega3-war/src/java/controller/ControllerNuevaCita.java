@@ -150,6 +150,13 @@ public class ControllerNuevaCita implements Serializable {
                 ctx.addMessage("calendario", new FacesMessage("Introduzca una fecha."));
                 return null;
             }
+            
+            if(tipoCita==null || tipoCita.equals("")){
+                FacesContext ctx = FacesContext.getCurrentInstance();
+                ctx.addMessage("calendario", new FacesMessage("Introduzca un tipo de cita."));
+                return null;
+            }
+            
             java.sql.Date date = new java.sql.Date(fecha.getTime());
 
             Cita cita = new Cita();
