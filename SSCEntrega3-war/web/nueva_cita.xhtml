@@ -25,13 +25,13 @@
         <h1>Crear cita</h1>
             <h:form id="formulario_crer_cita" style="padding: 10px;" rendered="#{ctrLogin.isLoggedIn() == true}">
                 <h:panelGrid columns="2">
-                    DNI del ciudadano: <h:inputText id="dni_ciudadano" size="9" maxlength="9" value="#{ctrNuevaCita.DNICiudadano}"/>
-                    DNI del profesional: <h:inputText id="dni_profesional" size="9" maxlength ="9" value="#{ctrNuevaCita.DNIProfesional}" />
-                    Fecha: <p:calendar id="calendario" pattern="dd/MM/yyyy" value="#{ctrNuevaCita.fecha}" />
-                    Tipo de cita: <h:inputText id="tipo_cita" value="#{ctrNuevaCita.tipoCita}"/>   
+                    *DNI del ciudadano: <h:inputText id="dni_ciudadano" size="9" maxlength="9" value="#{ctrNuevaCita.DNICiudadano}"/>
+                    *DNI del profesional: <h:inputText id="dni_profesional" size="9" maxlength ="9" value="#{ctrNuevaCita.DNIProfesional}" />
+                    *Fecha: <p:calendar id="calendario" pattern="dd/MM/yyyy" value="#{ctrNuevaCita.fecha}" />
+                    *Tipo de cita: <h:inputText id="tipo_cita" value="#{ctrNuevaCita.tipoCita}"/>   
                     Detalle de la gestión : <h:inputText id="detalle_gestion" value="#{ctrNuevaCita.detalleGestion}" /> 
                     <h:commandButton id="enviar" value="Enviar" action="#{ctrNuevaCita.persistCita()}" > </h:commandButton>
-                    
+                    <h:outputText id="formularioCitaObligatorio" style="color: red" value="Los campos marcados con * son obligatorios."/>
                 </h:panelGrid>
 	    </h:form>  
         </ui:define>
