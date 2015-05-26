@@ -39,7 +39,7 @@
             <c:choose>
                 <c:when test="#{!empty flash.message.summary}">
                     <!-- flash alert messages !-->
-                    <div class="alert alert-warning" role="alert" style="margin-top:20px;">
+                    <div id="error_iniciar_sesion" class="alert alert-warning" role="alert" style="margin-top:20px;">
                         #{flash.message.summary}
                     </div>
                     <!-- end flash alert messages !-->

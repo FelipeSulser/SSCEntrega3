@@ -6,12 +6,15 @@
 package controller;
 
 import ejb.ExpedienteEJB;
+import exceptions.ExpedienteException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import javax.ejb.EJB;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 
 import javax.faces.context.FacesContext;
 
@@ -33,7 +36,7 @@ import model.jpa.ssc.Vivienda;
 @RequestScoped
 public class ControllerVistaExp implements Serializable{
     //Injected
-    @Inject
+    @EJB
     private ExpedienteEJB expedienteBean;
     
     
@@ -85,7 +88,7 @@ public class ControllerVistaExp implements Serializable{
     public void init(){
         
         
-         expediente = expedienteBean.getExpediente(id);
+        expediente = expedienteBean.getExpediente(id);
         
         ciudadano = expedienteBean.getCiudadano(id);
         
@@ -97,6 +100,24 @@ public class ControllerVistaExp implements Serializable{
         
         intervenciones = expedienteBean.getIntervenciones(id);
         
+        
+    }
+    
+    public String browsePage(Long id){
+        if(id == null) return "index.xhtml";
+        this.id= id;
+        expediente = expedienteBean.getExpediente(id);
+        
+        ciudadano = expedienteBean.getCiudadano(id);
+        
+        principal = expedienteBean.getPrincipal(id);
+        
+        secundarias = expedienteBean.getSecundarias(id);
+        
+        familia = expedienteBean.getFamilia(id);
+        
+        intervenciones = expedienteBean.getIntervenciones(id);
+        return "expediente.xhtml?exp_id"+id;
         
     }
     public void addFamiliar() throws IOException{
@@ -182,30 +203,105 @@ public class ControllerVistaExp implements Serializable{
     }
     
     
-    public void persistFamiliar() throws IOException{
+    public String persistFamiliar() {
         
         //Debido a que p:calendar usa util.Date hemos de convertirlo a sql Date
 
-        
-        java.sql.Date dat = new Date(familiarDate.getTime());
-        newFamiliar.setFecha_nacimiento(dat);
-        expedienteBean.setFamiliar(id, newFamiliar);
-        
-        //as familiar is already persisted, just add it
-        newFamiliar = new Familiar();
-        
-        addingFamiliar = false;
-        //si, añadimos la query string a mano 
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml?exp_id="+id);
+        try{
+            if(newFamiliar== null){
+                FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            if(newFamiliar.getDni() == null){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar, introduzca dni"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+                }
+            if(newFamiliar.getParentesco() == null || newFamiliar.getParentesco().equals("")){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar, introduzca parentesco"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            if(newFamiliar.getNombre() == null){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar, introduzca nombre"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            if(newFamiliar.getApellido1() == null){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar, introduzca apellido"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            if(familiarDate == null){
+                  FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear el familiar, introduzca fecha"));
+                newFamiliar = new Familiar();
+                addingFamiliar = false;
+                return browsePage(id);
+            }
+            java.sql.Date dat = new Date(familiarDate.getTime());
+            newFamiliar.setFecha_nacimiento(dat);
+
+
+            expedienteBean.setFamiliar(id, newFamiliar);
+
+            //as familiar is already persisted, just add it
+            newFamiliar = new Familiar();
+
+            addingFamiliar = false;
+            //si, añadimos la query string a mano 
+        }catch(ExpedienteException e){
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            String error = "No se ha podido crear el familiar";
+            ctx.addMessage("form_add_familiar", new FacesMessage(error));
+            newFamiliar = new Familiar();
+            addingFamiliar = false;
+            return browsePage(id);
+        }
+        return browsePage(id);
     }
-     public void persistVivienda() throws IOException{
-         
-        expedienteBean.setVivienda(id, newVivienda);
-        
-        newVivienda = new Vivienda();
-        addingVivienda = false;
-        
-        FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml?exp_id="+id);
+     public String persistVivienda() {
+         try{
+             
+             if(newVivienda == null){
+               FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear la vivienda"));
+               newVivienda = new Vivienda();
+               addingVivienda = false;
+               return browsePage(id);
+             }
+             if(newVivienda.getCalle() == null) {
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear la vivienda, introduzca la direccion"));
+               newVivienda = new Vivienda();
+               addingVivienda = false;
+               return browsePage(id);
+             }
+             if(newVivienda.getCodigoPostal() == null || newVivienda.getCodigoPostal().equals("")){
+                 FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear la vivienda, introduzca CP"));
+               newVivienda = new Vivienda();
+               addingVivienda = false;
+               return browsePage(id);
+             }
+             if(newVivienda.getMunicipio() == null || newVivienda.getMunicipio().equals("")){
+                  FacesContext.getCurrentInstance().addMessage("form_add_familiar", new FacesMessage("No se ha podido crear la vivienda, introduzca municipio"));
+               newVivienda = new Vivienda();
+               addingVivienda = false;
+               return browsePage(id);
+             }
+             expedienteBean.setVivienda(id, newVivienda);
+             newVivienda = new Vivienda();
+             addingVivienda = false;
+         }catch(ExpedienteException e){
+              FacesContext ctx = FacesContext.getCurrentInstance();
+            String error = "No se ha podido crear el familiar";
+            ctx.addMessage("formulario_vivienda", new FacesMessage(error));
+         }
+        return browsePage(id);
+        //FacesContext.getCurrentInstance().getExternalContext().redirect("expediente.xhtml?exp_id="+id);
     }
 
     public java.util.Date getFamiliarDate() {

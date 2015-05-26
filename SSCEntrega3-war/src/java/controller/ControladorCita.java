@@ -7,11 +7,8 @@ package controller;
 
 import ejb.InfoCitaEJB;
 import exceptions.CrearIntervencionException;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import model.jpa.ssc.Cita;
@@ -234,7 +231,7 @@ public class ControladorCita {
         this.newIntervencion = newIntervencion;
     }
     
-    public String persistIntervencion() throws IOException{
+    public String persistIntervencion() {
         ciudadano = infoCitaEJB.getCiudadano(id); //En este punto ciudadano es null por algún motivo desconocido
         if(intervencionDate == null){
             FacesContext.getCurrentInstance().addMessage("formulario_add_intervenciones", new FacesMessage("No se ha podido crear la intervencón. Introduzca la fecha por favor."));
