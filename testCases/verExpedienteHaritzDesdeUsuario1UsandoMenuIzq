@@ -53,11 +53,6 @@
 </tr>
 <tr>
 	<td>verifyText</td>
-	<td>id=mi_perfil</td>
-	<td>Mi perfil</td>
-</tr>
-<tr>
-	<td>verifyText</td>
 	<td>id=bienvenida</td>
 	<td>Bienvenido, John Vercetti Pérez</td>
 </tr>
@@ -156,7 +151,6 @@
 	<td>id=needHelp</td>
 	<td>exact:¿Necesita ayuda?</td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
