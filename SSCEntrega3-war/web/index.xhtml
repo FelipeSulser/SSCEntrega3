@@ -92,16 +92,26 @@
                     </p:layoutUnit>
                     
                     <p:layoutUnit position="west" resizable="true" size="350" minSize="250" maxSize="550">
-                        <p:panel id="handlepnl" header="Módulo citas" style="width: 100%">
-                            <h:link id="index_crear_nueva_cita" value="Crear nueva cita" outcome="nueva_cita.xhtml"/>
-                            <br />
-                            <h:link id="index_ver_cita" rendered="#{ctrLogin.isIsAdmin()== false}" value="Ver mis citas" outcome="agenda.xhtml"/>
-                            <h:link id="index_ver_todas" rendered="#{ctrLogin.isIsAdmin()== true}" value="Ver todas las citas" outcome="lista_citas.xhtml"/>
-                        </p:panel>
-                        <p:panel id="handlepn2" header="Módulo expedientes" style="width: 100%">
-                            <h:link id="index_consultar_exp" value="Consultar y modificar expedientes" outcome="buscador_expedientes.xhtml"/>
-                            <br></br> 
-                        </p:panel>
+                        <div id="handlepnl" class="panel panel-primary"  style="width: 100%">
+                            <div class="panel-heading" id="pheadCitas">
+                                Módulo citas
+                            </div>
+                            <div class="panel-body" id="pbodyCitas">
+                                <h:link id="index_crear_nueva_cita" value="Crear nueva cita" outcome="nueva_cita.xhtml" style="color:black;"/>
+                                <br />
+                                <h:link id="index_ver_cita" rendered="#{ctrLogin.isIsAdmin()== false}" value="Ver mis citas" outcome="agenda.xhtml" style="color:black;"/>
+                                <h:link id="index_ver_todas" rendered="#{ctrLogin.isIsAdmin()== true}" value="Ver todas las citas" outcome="lista_citas.xhtml" style="color:black;" />
+                            </div>
+                        </div>
+                        <div id="handlepn2"  style="width: 100%" class="panel panel-primary">
+                            <div class="panel-heading" id="pheadExp">
+                                Módulo expedientes
+                            </div>
+                            <div class="panel-body" id="pbodyExp">
+                            <h:link id="index_consultar_exp" value="Consultar y modificar expedientes" outcome="buscador_expedientes.xhtml" style="color:black;"/>
+                             
+                            </div>
+                        </div>
                         
                         
                     </p:layoutUnit>
@@ -110,7 +120,7 @@
                     
                     <p:layoutUnit position="center" resizable="true">
                         <p id="mi_perfil" class="estilo2"><h:outputText value="Mi perfil"/></p>
-                        <p:toolbar></p:toolbar>
+                        <hr/>
                         <br></br>
                         <img src="./resources/images/#{ctrLogin.image}"/>
                         <p id="usuario" >Su usuario es  <h:outputText id="usuario_name_id" style="font-weight:bold;font-size:20px;color:#000" value="#{ctrLogin.user}"></h:outputText></p>
