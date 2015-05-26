@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 
 import javax.enterprise.context.RequestScoped;
@@ -87,18 +89,22 @@ public class ControllerVistaExp implements Serializable{
     
     public void init(){
         
+        if(id==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(ControllerVistaExp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            expediente = expedienteBean.getExpediente(id);
+            ciudadano = expedienteBean.getCiudadano(id);
+            principal = expedienteBean.getPrincipal(id);
+            secundarias = expedienteBean.getSecundarias(id);
+            familia = expedienteBean.getFamilia(id);
+            intervenciones = expedienteBean.getIntervenciones(id);
+        }
         
-        expediente = expedienteBean.getExpediente(id);
         
-        ciudadano = expedienteBean.getCiudadano(id);
-        
-        principal = expedienteBean.getPrincipal(id);
-        
-        secundarias = expedienteBean.getSecundarias(id);
-        
-        familia = expedienteBean.getFamilia(id);
-        
-        intervenciones = expedienteBean.getIntervenciones(id);
         
         
     }
